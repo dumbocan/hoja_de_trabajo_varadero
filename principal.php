@@ -30,6 +30,7 @@ $nombre=$_POST['nombre'];
    } 
 
 ?>
+<h1>hola esto en una prueba de git</h1>
 
 
 
