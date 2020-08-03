@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- codigo para poder tener caracteres en español y acentos -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<html lang="es">                                                                  <!-- bootstrap -->
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-
-	<title>Confirmar edicion</title>
-</head>
-<body>
-	<!--poner pagina color negro en css y letra blanca-->
-   <style>
-      body {background-color: black;}
-      color :{white};
-   </style>
-<div class=" text-white">
 
 <?php
 
 // llamo a la base de datos y recojo los valores que me manda por post ya cambiados y los actualiza en la base de datos//
-
+include("includes/header.php");
 include 'conexbd.php';
 $existe =0;
 $id= $_POST['id'];
@@ -68,18 +48,4 @@ $update ="UPDATE datos_personales SET
     	</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script> 
-</body>
-</html>	
+<?php include("includes/footer.php"); ?>

@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-      <!-- codigo para poder tener caracteres en español y acentos -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<html lang="es">                                                                  <!-- bootstrap -->
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/bootstrap.min.css">
 
-   <title>Editar datos</title>
-   </head>
-<body>
 <?php
+include ("includes/header.php");
 include 'conexbd.php'; 
 
 // inicio base de datos y les doy datos a los campos de valor ateriormente buscado// 
@@ -28,10 +16,6 @@ $comentario=$_POST['comentario'];
 
                
 ?>       
-  <!--poner pagina color negro en css-->
-<style>
-  body {background-color: black;}
-</style>
 
 <!-- composicion del formulario para editar los datos del monbre buscado-->
 
@@ -73,7 +57,4 @@ $comentario=$_POST['comentario'];
     </div>
   </div>
  
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script> 
-</body>
-</html>
+<?php include("includes/footer.php"); ?>
