@@ -31,6 +31,8 @@ $nombre=$_POST['nombre'];
 
 ?>
 <h1>hola esto en una prueba de git</h1>
+<br>
+<h2>hola esto es la segunda prueba</h2>
 
 
 
