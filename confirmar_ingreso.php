@@ -1,7 +1,7 @@
 
 <?php
 include("includes/header.php");
-include_once 'conexbd.php'; 
+include ("conexbd.php");
 
 // abro base de datos//
 // Si aprieto el boton insertar, meto todos los campos en la base de datos //

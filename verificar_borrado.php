@@ -1,6 +1,6 @@
 <?php
 include ("includes/header.php"); 
-include_once 'conexbd.php';
+include ("conexbd.php");
 $id=$_POST['id'];
 
 $_DELETE_SQL = "DELETE FROM datos_personales WHERE id_datos ='$id'";

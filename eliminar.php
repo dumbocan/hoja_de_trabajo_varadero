@@ -1,5 +1,5 @@
-<?php include("includes/header.php"); ?>
-  <?php
+<?php include("includes/header.php"); 
+ 
 //include_once 'conexbd.php';
 $id=$_POST['id'];
 $nombre=$_POST['nombre']; 
@@ -20,7 +20,7 @@ $nombre=$_POST['nombre'];
 					<div class="col-sm-1">
 					<button  class="btn btn-primary"  type="submit" name="borrar" id="borrar">BORRAR</button>
 				</div>
-					<input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
+					
 					</form>
 				<div class="col-sm-1">
 						<!-- boton regreso atras -->

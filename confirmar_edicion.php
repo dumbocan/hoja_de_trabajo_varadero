@@ -3,7 +3,7 @@
 
 // llamo a la base de datos y recojo los valores que me manda por post ya cambiados y los actualiza en la base de datos//
 include("includes/header.php");
-include 'conexbd.php';
+include ("conexbd.php");
 $existe =0;
 $id= $_POST['id'];
 $nombre= $_POST['nombre'];

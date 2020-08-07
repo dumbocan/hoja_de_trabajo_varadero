@@ -1,7 +1,7 @@
 
 <?php
 include ("includes/header.php");
-include 'conexbd.php'; 
+include ("conexbd.php");
 
 // inicio base de datos y les doy datos a los campos de valor ateriormente buscado// 
 $existe =0;

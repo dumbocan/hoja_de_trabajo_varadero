@@ -1,4 +1,7 @@
-<?php include("includes/header.php"); ?>
+<?php 
+include("includes/header.php");
+include("conexdb.php");
+ ?>
 <!--preguntas y botones-->
 <div class=" text-white">
    <div class="container mt-5">  

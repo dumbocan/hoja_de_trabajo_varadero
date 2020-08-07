@@ -1,6 +1,6 @@
 <?php
 include ("includes/header.php"); 
-include_once 'conexbd.php';
+include ("conexbd.php");
 if (isset($_POST['buscar_btn']))
    {
       $nombre1=($_POST['Nombre']);
