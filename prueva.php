@@ -23,18 +23,30 @@ include("includes/header.php"); ?>
                 <input type="text" class="form-control" name="comentario" id="comentario">  
               <label>Documento</label>
                 <input type="text" class="form-control" name="documento" id="documento">
-              <div class="form-group">
+              <div class="container mt-4">
               	<div class="row">
               <div class="col-md-4">
-              	<label>Propietario</label>
-
+              	
+<div class="checkbox">
+    <label>
+      <input type="checkbox"> Propietario
+    </label>
+  </div>
               </div>
               <div class="col-md-4">
-              	<label>Marinero</label>
+              <div class="checkbox">
+    <label>
+      <input type="checkbox"> Marinero
+    </label>
+  </div>	
               </div>
 
               <div class="col-md-4">
-              	<label>Trabajador</label>
+              	<div class="checkbox">
+    <label>
+      <input type="checkbox"> Trabajador
+    </label>
+  </div>
               </div>
               </div>	  
           	</div>
@@ -43,11 +55,11 @@ include("includes/header.php"); ?>
                 <div class="row">
                 <div class="col-md-7"> 	</div>	
                 <div class="col-md-3"> 	
-                	<button type="submit" class="btn btn-success p-2 " name="insertar_btn">Insertar</button>
+                	<button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
             	</div>
             	<div class="col-md-2">
 
-                	<a href="inicio3.php" class="btn btn-primary p-2 " name="buscar_btn">Buscar</a>
+                	<a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>
                 </div>
                 </div>  
               </div>  

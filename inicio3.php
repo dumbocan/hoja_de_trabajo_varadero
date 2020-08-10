@@ -1,6 +1,6 @@
 <?php 
 include("includes/header.php");
-include("conexdb.php");
+
  ?>
 <!--preguntas y botones-->
 <div class=" text-white">

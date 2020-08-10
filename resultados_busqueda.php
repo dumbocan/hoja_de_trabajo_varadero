@@ -51,6 +51,7 @@ if (isset($_POST['buscar_btn']))
 <br>
 <br>
 <br>
+<table class="table-responsive">
 <div class="container-fluid">
    <form action="editar_datos.php" method="POST">
    <div class="bg-secondary text-white">
@@ -174,6 +175,7 @@ if (isset($_POST['buscar_btn']))
       </div>
    </div> 
 </div>
+</table>
 <?php
             $existe++; 
             endwhile; 
