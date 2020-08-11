@@ -1,81 +1,27 @@
 <?php
 include("includes/header.php"); ?>
-
-<div class=" text-white">
-  <div class="container mt-5" >
-    <div class="row">
-      <div class=col-md-3></div>
-        <div class="col-md-5">
-          <h2> Agregar elementos </h2>
-          <form method="POST" action="confirmar_ingreso.php"> 
-            <div class="form-group">
-              <label>Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" >  
-              <label>Dirección</label>
-                <input type="text" class="form-control" name="direccion" id="direccion" > 
-              <label>Telefono</label>   
-                <input type="telephone" class="form-control" name="telefono1" id="telefono1">  
-              <label>Telefono 2</label>
-                <input type="telephone" class="form-control" name="telefono2" id="telefono2">
-              <label>Email</label>  
-                <input type="email" class="form-control" name="email" id="email">  
-              <label>Comentario</label>
-                <input type="text" class="form-control" name="comentario" id="comentario">  
-              <label>Documento</label>
-                <input type="text" class="form-control" name="documento" id="documento">
-              <div class="container mt-4">
-              	<div class="row">
-              <div class="col-md-4">
-              	
-<div class="checkbox">
-    <label>
-      <input type="checkbox"> Propietario
-    </label>
-  </div>
-              </div>
-              <div class="col-md-4">
-              <div class="checkbox">
-    <label>
-      <input type="checkbox"> Marinero
-    </label>
-  </div>	
-              </div>
-
-              <div class="col-md-4">
-              	<div class="checkbox">
-    <label>
-      <input type="checkbox"> Trabajador
-    </label>
-  </div>
-              </div>
-              </div>	  
-          	</div>
-              <div class="container mt-5">
-                  
-                <div class="row">
-                <div class="col-md-7"> 	</div>	
-                <div class="col-md-3"> 	
-                	<button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
-            	</div>
-            	<div class="col-md-2">
-
-                	<a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>
+<div class="container">
+    <h1>Comprobar valor del checkbox con PHP</h1>
+    <h2 class="lead">Envia el formulario</h2>
+    
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="https://www.jose-aguilar.com/blog/">Blog</a></li>
+          <li class="breadcrumb-item"><a href="#">Base Bootstrap</a></li>
+          <li class="breadcrumb-item active">Base Bootstrap Demo</li>
+        </ol>
+    </nav>
+  
+<div class="row">
+        <div id="content" class="col-lg-12">
+                        <form action="index.php" method="post">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="conditions" name="conditions" value="1">
+                    <label class="form-check-label" for="exampleCheck1">Aceptar condiciones de uso</label>
                 </div>
-                </div>  
-              </div>  
-            </div>
-          </form> 
-        </div>  
-      </div>
-    </div>    
-  </div>
- 
-
-
-
-
-
-
-
-
+                <input type="submit" class="btn btn-primary" name="sendForm" value="Enviar"/>
+            </form>
+        </div>
+    </div>
+ </div>
 <?php include("includes/footer.php"); ?>
