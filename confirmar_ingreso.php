@@ -73,8 +73,17 @@ if(isset($_POST['insertar_btn']))
 				}
 			else 
 				{
-					mysqli_query($conexion, "INSERT INTO datos_personales 
-					(nombre,direccion,telefono1,telefono2,email1,comentario,documento) VALUES ('$nombre','$direccion','$telefono1','$telefono2','$email','$comentario','$documento')");	
+					$sql="INSERT INTO datos_personales 
+					(nombre,direccion,telefono1,telefono2,email1,comentario,documento) VALUES ('$nombre','$direccion','$telefono1','$telefono2','$email','$comentario','$documento')";
+					mysqli_query($conexion,$sql);	
+
+					if (mysqli_query($conexion, $sql)) {
+  $last_id = mysqli_insert_id($conexion);
+  echo "New record created successfully. Last inserted ID is: " . $last_id;
+} else {
+  echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
+}
+
 				}
 			
 
