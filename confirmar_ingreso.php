@@ -6,13 +6,13 @@ include("includes/header.php");
 include ("conexbd.php");
 
 //recoje los valores de las casillas check//
-if(isset($_POST['propietario']) && $_POST['propietario'] == '1')
+if(isset($_POST['cliente']) && $_POST['cliente'] == '1')
 				{
-					$propietario='1';
-					echo "propietario";}
+					$cliente='1';
+					echo "cliente";}
 			else 
 				{
-					$propietario='0';
+					$cliente='0';
 					}
 		
 			if(isset($_POST['marinero']) && $_POST['marinero'] == '1')
@@ -24,23 +24,23 @@ if(isset($_POST['propietario']) && $_POST['propietario'] == '1')
 					$marinero='0';
 					}
 
-			if(isset($_POST['trabajador']) && $_POST['trabajador'] == '1')
+			if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
 				{
-					$trabajador='1';
-					echo "trabajador";}
+					$tecnico='1';
+					echo "tecnico";}
 			else 
 				{
-					$trabajador='0';
+					$tecnico='0';
 					}
 // si ninguna de las casillas check se han clicado te da error//
-			if ($propietario + $marinero + $trabajador == '0' )
+			if ($cliente + $marinero + $tecnico == '0' )
 			 {
 				?>
 					<div class="row m-0 justify-content-center align-items-center vh-100">
 						<div class="alert alert-primary" role="alert">
 							<div class="row">
 								<div class="col-sm-10">
-    								<h1 class="text-uppercase" class="align-items-center"  >añadir propietario, marinero, o trabajador porfabor</h1>
+    								<h1 class="text-uppercase" class="align-items-center"  >añadir cliente, marinero, o tecnico porfabor</h1>
     							</div>
     			 
  			 					<div class="col-sm-2"> 
@@ -73,24 +73,38 @@ if(isset($_POST['insertar_btn']))
 				}
 			else 
 				{
-					$sql="INSERT INTO datos_personales 
-					(nombre,direccion,telefono1,telefono2,email1,comentario,documento) VALUES ('$nombre','$direccion','$telefono1','$telefono2','$email','$comentario','$documento')";
-					mysqli_query($conexion,$sql);	
-
-					if (mysqli_query($conexion, $sql)) {
-  $last_id = mysqli_insert_id($conexion);
-  echo "New record created successfully. Last inserted ID is: " . $last_id;
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
-}
-
+					$sqldatos="INSERT INTO datos_personales 
+					(nombre,direccion,telefono1,telefono2,email1,comentario,documento) VALUES
+					('$nombre','$direccion','$telefono1','$telefono2','$email','$comentario','$documento')";
+					mysqli_query($conexion,$sqldatos);		
+  					$last_id = mysqli_insert_id($conexion);
+ 				 	echo "New record created successfully. Last inserted ID is: " . $last_id;
+ 				 	if ($cliente =='1') 
+ 				 	{
+ 				 		$sqlcli="INSERT INTO clientes
+ 				 		(id_datos)
+ 				 		VALUES
+ 				 		($last_id)";
+ 				 		mysqli_query($conexion,$sqlcli);
+ 				 	}
+ 				 	if ($marinero =='1')
+ 				 	{
+ 				 		$sqlmar="INSERT INTO marineros
+ 				 		(id_datos)
+ 				 		VALUES
+ 				 		($last_id)";
+ 				 		mysqli_query($conexion,$sqlmar);
+ 				 	}
+ 				 	
+ 				 	if ($tecnico =='1')
+ 				 	{
+ 				 		$sqltec="INSERT INTO tecnicos
+ 				 		(id_datos)
+ 				 		VALUES
+ 				 		($last_id)";
+ 				 		mysqli_query($conexion,$sqltec);
+ 				 	}
 				}
-			
-
-				
-			
-			
-
 	}
 
 //presento una caja con texto centrado y boton ok con hiperlink a inicio//

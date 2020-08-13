@@ -28,8 +28,8 @@ include("includes/header.php"); ?>
               <div class="form-group row">
                 <div class="col-md-4">
                   <div class="form-group form-check">               
-                    <input type="checkbox" class="form-check-input" id="propietario" name="propietario" value="1">
-                    <label class="form-check-label" for="propietario-check">Propietario</label>
+                    <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1">
+                    <label class="form-check-label" for="cliente-check">Cliente</label>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -40,8 +40,8 @@ include("includes/header.php"); ?>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="trabajador"  name="trabajador" value="1">
-                    <label class="form-check-label" for="trabajador-check">Trabajador</label>
+                    <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1">
+                    <label class="form-check-label" for="tecnico-check">Tecnico</label>
                   </div>
                 </div>
               </div>
