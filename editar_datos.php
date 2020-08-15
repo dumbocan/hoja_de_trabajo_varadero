@@ -46,9 +46,37 @@ $comentario=$_POST['comentario'];
                 <input type="text" value="<?php echo $comentario; ?>" class="form-control" name="comentario" id="comentario">  
               <label>Documento</label>
                 <input type="text" value="<?php echo $documento; ?>" class="form-control" name="documento" id="documento">
-              <div class="container mt-5">                  
-                <button type="submit" class="btn btn-primary" name="insertar_btn">Cambiar</button>
-                <a href="inicio3.php" class="btn btn-success" name="buscar_btn">Inicio</a>    
+               <div class="container mt-4">
+              <div class="form-group row">
+                <div class="col-md-4">
+                  <div class="form-group form-check">               
+                    <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1">
+                    <label class="form-check-label" for="cliente-check">Cliente</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1">
+                    <label class="form-check-label" for="marinero-check">Marinero</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1">
+                    <label class="form-check-label" for="tecnico-check">Tecnico</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container mt-5">
+              <div class="form-group">  
+                <div class="row">
+                  <div class="col-md-7">  </div>  
+                    <div class="col-md-3">  
+                      <button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>   
               </div>  
             </div>
           </form> 

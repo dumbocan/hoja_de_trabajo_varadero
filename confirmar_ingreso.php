@@ -6,32 +6,19 @@ include("includes/header.php");
 include ("conexbd.php");
 
 //recoje los valores de las casillas check//
-if(isset($_POST['cliente']) && $_POST['cliente'] == '1')
-				{
-					$cliente='1';
-					echo "cliente";}
-			else 
-				{
-					$cliente='0';
-					}
-		
-			if(isset($_POST['marinero']) && $_POST['marinero'] == '1')
-				{
-					$marinero='1';
-					echo "marinero";}
-			else 
-				{
-					$marinero='0';
-					}
+$cliente='0';
+$marinero='0';
+$tecnico='0';
 
-			if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
-				{
-					$tecnico='1';
-					echo "tecnico";}
-			else 
-				{
-					$tecnico='0';
-					}
+if(isset($_POST['cliente']) && $_POST['cliente'] == '1')
+	{$cliente='1';}
+		
+if(isset($_POST['marinero']) && $_POST['marinero'] == '1')
+	{$marinero='1';}
+								
+if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
+	{$tecnico='1';}		
+
 // si ninguna de las casillas check se han clicado te da error//
 			if ($cliente + $marinero + $tecnico == '0' )
 			 {
@@ -69,7 +56,22 @@ if(isset($_POST['insertar_btn']))
 
 			if ($nombre =="" || $documento =="")
 				{
-					echo "Al menos el nombre y documento son obligatorios";
+					?>
+					<div class="row m-0 justify-content-center align-items-center vh-100">
+						<div class="alert alert-primary" role="alert">
+							<div class="row">
+								<div class="col-sm-10">
+    								<h1 class="text-uppercase" class="align-items-center"  >Al menos el nombre y documento son obligatorios</h1>
+    							</div>
+    			 
+ 			 					<div class="col-sm-2"> 
+    								<a href="javascript: history.go(-1)" class="btn btn-danger"  name="cancelar" id="cancelar">OK</a>  
+    							</div>
+    						</div>
+    					</div>
+					</div>
+    			<?php			
+				
 				}
 			else 
 				{
@@ -104,8 +106,8 @@ if(isset($_POST['insertar_btn']))
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqltec);
  				 	}
-				}
-	}
+				
+	
 
 //presento una caja con texto centrado y boton ok con hiperlink a inicio//
 
@@ -125,6 +127,8 @@ if(isset($_POST['insertar_btn']))
     	</div>
 	</div>
 </div>
-<?php 
+<?php
+ }
+}
 }
 include("includes/footer.php"); ?>

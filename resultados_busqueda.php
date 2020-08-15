@@ -1,6 +1,7 @@
 <?php
 include ("includes/header.php"); 
 include ("conexbd.php");
+
 if (isset($_POST['buscar_btn']))
    {
       $nombre1=($_POST['Nombre']);
@@ -34,9 +35,15 @@ if (isset($_POST['buscar_btn']))
 <?php
             }
             else
-            {
-               $resultados = mysqli_query($conexion,"SELECT * FROM datos_personales where nombre like '%$nombre1%'"); 
+            {  
+               $sqldatos="SELECT * FROM datos_personales where nombre like '%$nombre1%'";
+              
+
+               $resultados = mysqli_query($conexion,$sqldatos); 
+               
                while($consulta = mysqli_fetch_array($resultados)):
+               
+
 
                $id= $consulta ['id_datos'];
                $nombre= $consulta ['nombre'];
@@ -46,6 +53,29 @@ if (isset($_POST['buscar_btn']))
                $email= $consulta['email1'];
                $documento= $consulta['documento'];
                $comentario= $consulta['comentario'];
+
+
+               $sql="SELECT * FROM clientes where id_datos = '$id'";
+               $resul = mysqli_query($conexion,$sql); 
+               while($con = mysqli_fetch_array($resul))
+               {
+               $id1= $con ['id_cliente'];
+               echo $id1;
+               if ($id1 ) {
+                  echo " no cliente";
+               }
+               
+               }
+             /*  $sqlcli = "SELECT * FROM clientes where id_datos = '$id'";
+               $checkcli = mysqli_query($conexion,$sqlcli);
+               while($cli = mysqli_fetch_array($checkcli));
+               $id= $cli ['id_cliente'];
+               //if ($checkcli = 'true')
+              // { 
+                  
+              // }*/
+
+
 
 ?> 
 <br>
