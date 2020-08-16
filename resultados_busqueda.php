@@ -43,8 +43,10 @@ if (isset($_POST['buscar_btn']))
                
                while($consulta = mysqli_fetch_array($resultados)):
                
-
-
+               $rolcli="";
+               $rolmar="";
+               $roltec="";
+               
                $id= $consulta ['id_datos'];
                $nombre= $consulta ['nombre'];
                $direccion= $consulta ['direccion'];
@@ -60,15 +62,16 @@ if (isset($_POST['buscar_btn']))
                while($cliente = mysqli_fetch_array($resulcli))
                {
                $idcli = $cliente ['id_cliente'];
-               if ($idcli) {$rol= "Cliente";}
+               if ($idcli) {$rolcli= "Cliente";}
                }
                
+
                $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
                $resulmar = mysqli_query($conexion,$sqlmar); 
                while($marinero = mysqli_fetch_array($resulmar))
                {
                $idmar = $marinero ['id_marinero'];
-               if ($idmar) {$rol= "Marinero";}
+               if ($idmar) {$rolmar= "Marinero";}
                }
 
                $sqltec="SELECT * FROM tecnicos where id_datos = '$id'";
@@ -76,7 +79,7 @@ if (isset($_POST['buscar_btn']))
                while($tecnico = mysqli_fetch_array($resultec))
                {
                $idtec = $tecnico ['id_tecnico'];
-               if ($idtec) {$rol= "Tecnico";}
+               if ($idtec) {$roltec= "Tecnico";}
                }
 
 
@@ -174,7 +177,7 @@ if (isset($_POST['buscar_btn']))
             <div class="form-group row"> 
                   <label for="rol" class="col-sm-4 col-form-label">ROL:</label>
                  <div class="col-sm-8">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="rol" value="<?php echo $rol ?>"
+                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="rol" value="<?php echo $rolcli."  " .$rolmar."  " .$roltec ?>"
                      name="rol"> 
                   </div>     
                </div>

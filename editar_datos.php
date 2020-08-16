@@ -14,7 +14,28 @@ $email= $_POST['email'];
 $documento=$_POST['documento'];
 $comentario=$_POST['comentario'];
 
-               
+$rol=$_POST['rol'];
+echo $rol;
+$rolcli ="0";
+$rolmar ="0";
+$roltec ="0";
+
+
+if (strpos($rol, "Cliente") !== false)
+{ $rolcli = "checked"; }
+
+if (strpos($rol, "Marinero") !== false)
+{ $rolmar = "checked"; }
+
+if (strpos($rol, "Tecnico") !== false)
+{ $roltec = "checked"; }
+
+echo "<br>";           
+echo $rolcli;
+echo $rolmar;
+echo $roltec;
+
+
 ?>       
 
 <!-- composicion del formulario para editar los datos del monbre buscado-->
@@ -30,7 +51,7 @@ $comentario=$_POST['comentario'];
 
           <form method="POST" action="confirmar_edicion.php"> 
             <div class="form-group">               
-                <input type="int" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id ?>"
+              <input type="int" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id ?>"
                      name="id"> 
               <label>Nombre</label>               
                 <input type="text" value="<?php echo $nombre; ?>" class="form-control" name="nombre" id="nombre" >  
@@ -46,43 +67,49 @@ $comentario=$_POST['comentario'];
                 <input type="text" value="<?php echo $comentario; ?>" class="form-control" name="comentario" id="comentario">  
               <label>Documento</label>
                 <input type="text" value="<?php echo $documento; ?>" class="form-control" name="documento" id="documento">
-               <div class="container mt-4">
-              <div class="form-group row">
-                <div class="col-md-4">
-                  <div class="form-group form-check">               
-                    <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1">
-                    <label class="form-check-label" for="cliente-check">Cliente</label>
+               
+               <!--pintar y dar valor a celdas de check box.  --> 
+
+              <div class="container mt-4">
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <div class="form-group form-check">               
+                      <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1" <?php echo $rolcli ?>>
+                      <label class="form-check-label" for="cliente-check">Cliente</label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1">
-                    <label class="form-check-label" for="marinero-check">Marinero</label>
+                  <div class="col-md-4">
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1" <?php echo $rolmar ?>>
+                      <label class="form-check-label" for="marinero-check">Marinero</label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1">
-                    <label class="form-check-label" for="tecnico-check">Tecnico</label>
+                  <div class="col-md-4">
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1" <?php echo $roltec ?>>
+                      <label class="form-check-label" for="tecnico-check">Tecnico</label>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="container mt-5">
+                <div class="form-group">  
+                  <div class="row">
+                    <div class="col-md-7">  </div>  
+                      <div class="col-md-3">  
+                        <button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
+                      </div>
+                      <div class="col-md-2">
+                        <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>   
+                    </div>  
+                  </div>
+                </form> 
+                </div>  
+              </div>
             </div>
-            <div class="container mt-5">
-              <div class="form-group">  
-                <div class="row">
-                  <div class="col-md-7">  </div>  
-                    <div class="col-md-3">  
-                      <button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
-                    </div>
-                    <div class="col-md-2">
-                      <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>   
-              </div>  
-            </div>
-          </form> 
-        </div>  
+        </div>
       </div>
     </div>
   </div>
- 
+</div>
 <?php include("includes/footer.php"); ?>

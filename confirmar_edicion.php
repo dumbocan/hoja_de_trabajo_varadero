@@ -76,6 +76,12 @@ else
             ($id)";
             mysqli_query($conexion,$sqlcli);
           }
+        else
+          {
+           $sqlbocli="DELETE FROM clientes WHERE id_datos ='$id'";
+           mysqli_query($conexion,$sqlbocli);     
+          }
+
         if ($marinero =='1')
           {
             $sqlmar="INSERT INTO marineros
@@ -84,7 +90,12 @@ else
             ($id)";
             mysqli_query($conexion,$sqlmar);
           }
-          
+        else
+          {
+            $sqlbomar="DELETE FROM marineros WHERE id_datos ='$id'";
+            mysqli_query($conexion,$sqlbomar);     
+          }  
+
         if ($tecnico =='1')
           {
             $sqltec="INSERT INTO tecnicos
@@ -93,6 +104,12 @@ else
             ($id)";
             mysqli_query($conexion,$sqltec);
           }
+        else 
+          {
+          $sqlbotec="DELETE FROM tecnicos WHERE id_datos ='$id'";
+           mysqli_query($conexion,$sqlbotec);       
+          }  
+
       }
            
 ?>
