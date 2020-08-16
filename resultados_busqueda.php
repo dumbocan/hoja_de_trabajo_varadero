@@ -55,26 +55,29 @@ if (isset($_POST['buscar_btn']))
                $comentario= $consulta['comentario'];
 
 
-               $sql="SELECT * FROM clientes where id_datos = '$id'";
-               $resul = mysqli_query($conexion,$sql); 
-               while($con = mysqli_fetch_array($resul))
+               $sqlcli="SELECT * FROM clientes where id_datos = '$id'";
+               $resulcli = mysqli_query($conexion,$sqlcli); 
+               while($cliente = mysqli_fetch_array($resulcli))
                {
-               $id1= $con ['id_cliente'];
-               echo $id1;
-               if ($id1 ) {
-                  echo " no cliente";
+               $idcli = $cliente ['id_cliente'];
+               if ($idcli) {$rol= "Cliente";}
                }
                
+               $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
+               $resulmar = mysqli_query($conexion,$sqlmar); 
+               while($marinero = mysqli_fetch_array($resulmar))
+               {
+               $idmar = $marinero ['id_marinero'];
+               if ($idmar) {$rol= "Marinero";}
                }
-             /*  $sqlcli = "SELECT * FROM clientes where id_datos = '$id'";
-               $checkcli = mysqli_query($conexion,$sqlcli);
-               while($cli = mysqli_fetch_array($checkcli));
-               $id= $cli ['id_cliente'];
-               //if ($checkcli = 'true')
-              // { 
-                  
-              // }*/
 
+               $sqltec="SELECT * FROM tecnicos where id_datos = '$id'";
+               $resultec = mysqli_query($conexion,$sqltec); 
+               while($tecnico = mysqli_fetch_array($resultec))
+               {
+               $idtec = $tecnico ['id_tecnico'];
+               if ($idtec) {$rol= "Tecnico";}
+               }
 
 
 ?> 
@@ -166,6 +169,17 @@ if (isset($_POST['buscar_btn']))
                   </div>     
                </div>
             </div>
+
+            <div class="col-sm-2">
+            <div class="form-group row"> 
+                  <label for="rol" class="col-sm-4 col-form-label">ROL:</label>
+                 <div class="col-sm-8">
+                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="rol" value="<?php echo $rol ?>"
+                     name="rol"> 
+                  </div>     
+               </div>
+            </div>
+
          </div>
 
       <div class="row">
