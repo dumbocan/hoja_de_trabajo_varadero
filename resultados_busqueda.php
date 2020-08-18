@@ -46,7 +46,7 @@ if (isset($_POST['buscar_btn']))
                $rolcli="";
                $rolmar="";
                $roltec="";
-               
+
                $id= $consulta ['id_datos'];
                $nombre= $consulta ['nombre'];
                $direccion= $consulta ['direccion'];
@@ -56,6 +56,7 @@ if (isset($_POST['buscar_btn']))
                $documento= $consulta['documento'];
                $comentario= $consulta['comentario'];
 
+//buscar datos en tablas clientes, marineros, tecnicos //
 
                $sqlcli="SELECT * FROM clientes where id_datos = '$id'";
                $resulcli = mysqli_query($conexion,$sqlcli); 
@@ -65,7 +66,6 @@ if (isset($_POST['buscar_btn']))
                if ($idcli) {$rolcli= "Cliente";}
                }
                
-
                $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
                $resulmar = mysqli_query($conexion,$sqlmar); 
                while($marinero = mysqli_fetch_array($resulmar))
@@ -214,8 +214,8 @@ if (isset($_POST['buscar_btn']))
             </form>
          </div>
          <div class="col-sm-1">
-            <form action="principal.php" method="POST">
-               <input id="nombre" name="nombre" class="text-uppercase" type="hidden" value="<?php echo $nombre; ?>">   
+            <form action="pres_datos_y_rol.php" method="POST">
+               <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">   
                <button class="btn btn-primary" name="continuar_btn" type="submit">Continuar</button>
             </form>
          </div>           
