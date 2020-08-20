@@ -12,12 +12,12 @@ $tecnico='0';
 
 if(isset($_POST['cliente']) && $_POST['cliente'] == '1')
   {$cliente='1';}
-    
+
 if(isset($_POST['marinero']) && $_POST['marinero'] == '1')
   {$marinero='1';}
-                
+
 if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
-  {$tecnico='1';}   
+  {$tecnico='1';}
 
 // si ninguna de las casillas check se han clicado te da error//
 if ($cliente + $marinero + $tecnico == '0' )
@@ -43,7 +43,7 @@ else
   {
 
 // Si aprieto el boton insertar, meto todos los campos en la base de datos //
-
+    $chcli=0;
     $existe =0;
     $id= $_POST['id'];
     $nombre= $_POST['nombre'];
@@ -67,28 +67,60 @@ else
         WHERE 
         id_datos='$id'";
         mysqli_query($conexion,$update);
-   
-        if ($cliente =='1') 
+$idcli="0";
+$idmar="0";
+$idtec="0";
+  echo $cliente;
+  echo $marinero;
+  echo $tecnico;
+  echo $id;
+        if ($cliente ==="1") 
           {
-            $sqlcli="INSERT INTO clientes
-            (id_datos)
-            VALUES
-            ($id)";
-            mysqli_query($conexion,$sqlcli);
+
+            $sqlcli="SELECT * FROM clientes where id_datos = '$id'";
+            $resulcli = mysqli_query($conexion,$sqlcli); 
+            while($cliente = mysqli_fetch_array($resulcli)) 
+              {
+                $idcli = $cliente ['id_datos'];
+               
+                echo $id;echo $idcli;var_dump($cliente);
+                if ($idcli<>$id)
+                  {
+                    $sqlcli2 = "INSERT INTO clientes 
+                    (id_datos)
+                    VALUES
+                    ($id)";
+                    mysqli_query($conexion,$sqlcli2);    
+                  }
+              }
           }
         else
           {
-           $sqlbocli="DELETE FROM clientes WHERE id_datos ='$id'";
-           mysqli_query($conexion,$sqlbocli);     
-          }
+            echo "borro";
+            $sqlbocli="DELETE FROM clientes WHERE id_datos ='$id'";
+            mysqli_query($conexion,$sqlbocli);     
+          }    
 
-        if ($marinero =='1')
+
+        if ($marinero ==="1")
           {
-            $sqlmar="INSERT INTO marineros
-            (id_datos)
-            VALUES
-            ($id)";
-            mysqli_query($conexion,$sqlmar);
+
+            $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
+            $resulmar = mysqli_query($conexion,$sqlmar); 
+            while($marinero = mysqli_fetch_array($resulmar)) 
+              {
+                $idmar = $marinero ['id_datos'];
+               
+                echo $id;echo $idmar;var_dump($marinero);
+                if ($idmar<>$id)
+                  {
+                    $sqlcli2 = "INSERT INTO marineros 
+                    (id_datos)
+                    VALUES
+                    ($id)";
+                    mysqli_query($conexion,$sqlmar2);    
+                  }
+              }
           }
         else
           {
@@ -96,13 +128,25 @@ else
             mysqli_query($conexion,$sqlbomar);     
           }  
 
-        if ($tecnico =='1')
+        if ($tecnico ==="1")
           {
-            $sqltec="INSERT INTO tecnicos
-            (id_datos)
-            VALUES
-            ($id)";
-            mysqli_query($conexion,$sqltec);
+
+            $sqltec="SELECT * FROM tecnicos where id_datos = '$id'";
+            $resultec = mysqli_query($conexion,$sqltec); 
+            while($tecnico = mysqli_fetch_array($resultec)) 
+              {
+                $idtec = $tecnico ['id_datos'];
+               
+                echo $id;echo $idtec;var_dump($tecnico);
+                if ($idtec<>$id)
+                  {
+                    $sqltec2 = "INSERT INTO tecnicos 
+                    (id_datos)
+                    VALUES
+                    ($id)";
+                    mysqli_query($conexion,$sqltec2);    
+                  }
+              }
           }
         else 
           {
