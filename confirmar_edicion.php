@@ -6,18 +6,18 @@ include("includes/header.php");
 include ("conexbd.php");
 
 //recoje los valores de las casillas check//
-$cliente='0';
-$marinero='0';
-$tecnico='0';
+$cliente=0;
+$marinero=0;
+$tecnico=0;
 
-if(isset($_POST['cliente']) && $_POST['cliente'] == '1')
-  {$cliente='1';}
+if(isset($_POST['cliente']) && $_POST['cliente'] == 1)
+  {$cliente=1;}
 
-if(isset($_POST['marinero']) && $_POST['marinero'] == '1')
-  {$marinero='1';}
+if(isset($_POST['marinero']) && $_POST['marinero'] == 1)
+  {$marinero=1;}
 
-if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
-  {$tecnico='1';}
+if(isset($_POST['tecnico']) && $_POST['tecnico'] == 1)
+  {$tecnico=1;}
 
 // si ninguna de las casillas check se han clicado te da error//
 if ($cliente + $marinero + $tecnico == '0' )
@@ -27,7 +27,7 @@ if ($cliente + $marinero + $tecnico == '0' )
         <div class="alert alert-primary" role="alert">
           <div class="row">
             <div class="col-sm-10">
-              <h1 class="text-uppercase" class="align-items-center"  >añadicliente, marinero, o tecnico porfabor</h1>
+              <h1 class="text-uppercase" class="align-items-center"  >Añadir cliente, marinero, o tecnico.</h1>
                 </div>
          
               <div class="col-sm-2"> 
@@ -67,24 +67,26 @@ else
         WHERE 
         id_datos='$id'";
         mysqli_query($conexion,$update);
-$idcli="0";
-$idmar="0";
-$idtec="0";
-  echo $cliente;
-  echo $marinero;
-  echo $tecnico;
-  echo $id;
-        if ($cliente ==="1") 
-          {
+$idcli=0;
+$idmar=0;
+$idtec=0;
 
+// se comprueba que los checkbox que se han introducido existen ya o no para no duplicar valores en la base de datos y si se desmarcaron los checkbox borrar el dato de la base de datos.//
+
+$contcli = 0;
+$contmar = 0;
+$conttec = 0;
+ 
+        if ($cliente == 1) //si checkbox esta clicada comprueba si ya existe por id
+          {
             $sqlcli="SELECT * FROM clientes where id_datos = '$id'";
             $resulcli = mysqli_query($conexion,$sqlcli); 
             while($cliente = mysqli_fetch_array($resulcli)) 
               {
                 $idcli = $cliente ['id_datos'];
-               
-                echo $id;echo $idcli;var_dump($cliente);
-                if ($idcli<>$id)
+                $contcli ++;
+               }               
+                if ($contcli == 0) // si no existe inserta dato id
                   {
                     $sqlcli2 = "INSERT INTO clientes 
                     (id_datos)
@@ -92,35 +94,30 @@ $idtec="0";
                     ($id)";
                     mysqli_query($conexion,$sqlcli2);    
                   }
-              }
           }
-        else
+        else  // si checkbox no esta clicada borro id de base de datos
           {
-            echo "borro";
             $sqlbocli="DELETE FROM clientes WHERE id_datos ='$id'";
             mysqli_query($conexion,$sqlbocli);     
           }    
 
-
-        if ($marinero ==="1")
+        if ($marinero ==1)
           {
-
             $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
             $resulmar = mysqli_query($conexion,$sqlmar); 
             while($marinero = mysqli_fetch_array($resulmar)) 
               {
                 $idmar = $marinero ['id_datos'];
-               
-                echo $id;echo $idmar;var_dump($marinero);
-                if ($idmar<>$id)
+                $contmar ++;
+              } 
+                if ($contmar == 0)
                   {
-                    $sqlcli2 = "INSERT INTO marineros 
+                    $sqlmar2 = "INSERT INTO marineros 
                     (id_datos)
                     VALUES
                     ($id)";
                     mysqli_query($conexion,$sqlmar2);    
-                  }
-              }
+                  }              
           }
         else
           {
@@ -128,32 +125,29 @@ $idtec="0";
             mysqli_query($conexion,$sqlbomar);     
           }  
 
-        if ($tecnico ==="1")
+        if ($tecnico ==1)
           {
-
             $sqltec="SELECT * FROM tecnicos where id_datos = '$id'";
             $resultec = mysqli_query($conexion,$sqltec); 
             while($tecnico = mysqli_fetch_array($resultec)) 
               {
                 $idtec = $tecnico ['id_datos'];
-               
-                echo $id;echo $idtec;var_dump($tecnico);
-                if ($idtec<>$id)
+                $conttec ++;
+              }             
+                if ($conttec == 0)
                   {
                     $sqltec2 = "INSERT INTO tecnicos 
                     (id_datos)
                     VALUES
                     ($id)";
                     mysqli_query($conexion,$sqltec2);    
-                  }
-              }
+                  }              
           }
         else 
           {
           $sqlbotec="DELETE FROM tecnicos WHERE id_datos ='$id'";
            mysqli_query($conexion,$sqlbotec);       
           }  
-
       }
            
 ?>

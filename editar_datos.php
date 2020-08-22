@@ -15,27 +15,22 @@ $documento=$_POST['documento'];
 $comentario=$_POST['comentario'];
 
 $rol=$_POST['rol'];
-echo $rol;
-$rolcli ="0";
-$rolmar ="0";
-$roltec ="0";
+
+$rolcli =0;
+$rolmar =0;
+$roltec =0;
 
 
-if (strpos($rol, "Cliente") !== false)
-{ $rolcli = "checked"; }
+if (strpos($rol, 'Cliente') !== false)
+{ $rolcli = 'checked'; }
 
-if (strpos($rol, "Marinero") !== false)
-{ $rolmar = "checked"; }
+if (strpos($rol, 'Marinero') !== false)
+{ $rolmar = 'checked'; }
 
-if (strpos($rol, "Tecnico") !== false)
-{ $roltec = "checked"; }
+if (strpos($rol, 'Tecnico') !== false)
+{ $roltec = 'checked'; }
 
-echo "<br>";           
-echo $rolcli;
-echo $rolmar;
-echo $roltec;
-
-
+echo '<br>';           
 ?>       
 
 <!-- composicion del formulario para editar los datos del monbre buscado-->
@@ -101,10 +96,11 @@ echo $roltec;
                       </div>
                       <div class="col-md-2">
                         <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>   
-                    </div>  
-                  </div>
+                      </div>  
+                    </div>
                 </form> 
-                </div>  
+                  </div>  
+                </div>
               </div>
             </div>
         </div>
