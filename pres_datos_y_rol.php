@@ -1,3 +1,4 @@
+
   <?php
 include("includes/header.php");
 include ("conexbd.php");
@@ -49,50 +50,25 @@ while ($consulta = mysqli_fetch_array($resultados))
 	}
 
 ?>
-<!--<table class="table table-sm table-dark">
-	<thead>
-		<tr>
-			<th></th>
-			<th></th>
-			<th scope="col"><H1>FORMULARIO CLIENTE</H1></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>NOMBRE: <?php echo $nombre ?></td> 
-			<td>DIRECCION: <?php echo $direccion ?> </td>
-			<td>TELEFONO: <?php echo $telefono1 ?></td>
-			<td>TELEFONO 2: <?php echo $telefono2 ?></td>
-			<td>EMAIL: <?php echo $email ?></td>
 
-    </tr>
-</tbody>
-</table>
 
--->
+
 <div class="container-fluid mt-5">
 	<div class="bg-secondary text-white">
 		<div class="border border-white">
-			<div class="border border-white">
-
-				
-					
-					<center><h1>HOJA DE TRABAJO</h1></center>
-					
-				</div>
-			
-		
-		<div class="row">
-			<div class="col-sm-4">
-            	<div class="form-group row"> 
-                  <label for="id" class="col-sm-3 col-form-label ml-5">NOMBRE:</label>
-                  <div class="col-sm-7">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="nombre" value="<?php echo $nombre ?>"
-                     name="nombre"> 
-                  </div>     
-                </div>
-            </div>
-			<div class="col-sm-5">
+			<center><h1>HOJA DE TRABAJO</h1></center>
+				<div class="border border-white">
+					<div class="row ml-3">			
+						<div class="col-sm-4">				
+            				<div class="form-group row"> 
+                  			<label for="id" class="col-sm-3 col-form-label  ">NOMBRE:</label>
+                    			<div class="col-sm">
+                     			<input type="text" style= "color: white" readonly class="form-control-plaintext" id="nombre" value="<?php echo $nombre ?>"
+                     			name="nombre"> 
+                    		</div>     
+                		</div>
+            		</div>
+        		<div class="col-sm-5">
             	<div class="form-group row"> 
                   <label for="id" class="col-sm-2 col-form-label">DIRECCION:</label>
                   <div class="col-sm-10">
@@ -101,7 +77,7 @@ while ($consulta = mysqli_fetch_array($resultados))
                   </div>     
                 </div>
             </div>
-         	<div class="col-sm-3">
+         	<div class="col-sm-3 col-xs-12">
             	<div class="form-group row"> 
                   <label for="documento" class="col-sm-4 col-form-label">DOCUMENTO:</label>
                   <div class="col-sm-7">
@@ -109,14 +85,15 @@ while ($consulta = mysqli_fetch_array($resultados))
                      name="documento"> 
                   </div>     
                 </div>
+          
             </div>
-            
         </div>
-        <div class="row">
+        <div class="border border-white">
+        <div class="row ml-3">
 
-        	<div class="col-sm-3">
+        	<div class="col-sm-3 ">
             	<div class="form-group row"> 
-                  <label for="telefono1" class="col-sm-4 col-form-label ml-5">TELEFONO:</label>
+                  <label for="telefono1" class="col-sm-4 col-form-label">TELEFONO:</label>
                   <div class="col-sm-6">
                      <input type="text" style= "color: white" readonly class="form-control-plaintext" id="telefono1" value="<?php echo $telefono1 ?>"
                      name="telefono1"> 
@@ -124,7 +101,7 @@ while ($consulta = mysqli_fetch_array($resultados))
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
             	<div class="form-group row"> 
                   <label for="telefono2" class="col-sm-4 col-form-label">TELEFONO 2:</label>
                   	<div class="col-sm-8">
@@ -148,21 +125,21 @@ while ($consulta = mysqli_fetch_array($resultados))
             <div class="col-sm-2">
             <div class="form-group row"> 
                   <label for="rol" class="col-sm-2 col-form-label">ROL:</label>
-                 <div class="col-sm-10">
+                 <div class="col-sm-9">
                      <input type="text" style= "color: white" readonly class="form-control-plaintext" id="rol" value="<?php echo $rolcli."  " .$rolmar."  " .$roltec ?>"
                      name="rol"> 
                   </div>     
                </div>
             </div>
-
         </div>
-
-        <div class="row">
+        </div>
+        <div class="border border-white">
+        <div class="row ml-3">
          
 
          	<div class="col-sm-11">
             	<div class="form-group row"> 
-                  <label for="comentario" class="col-sm-1 col-form-label ml-5">COMENTARIO:</label>
+                  <label for="comentario" class="col-sm-1 col-form-label">COMENTARIO:</label>
                   <div class="col-sm">
                      <input type="text" style= "color: white" readonly class="form-control-plaintext" id="comentario" value="<?php echo $comentario ?>"
                      name="comentario"> 
@@ -171,6 +148,73 @@ while ($consulta = mysqli_fetch_array($resultados))
             </div>
         </div>
     </div>
-</div>    
 </div>
+</div>
+</div> 
+
+
+
+
+<div class="container-fluid mt-5">
+	<div class="bg-secondary text-white">          
+  		<table  class="table table-bordered">
+  			<h1>HOJA DE TRABAJO</h1>
+  
+    		<tbody>
+		      <tr>
+		        <td>NOMBRE:  <?php echo $nombre ?></td>
+		        <td>DIRECCION:  <?php echo $direccion ?></td>
+		        <td>DOCUMENTO:  <?php echo $documento ?></td>
+		      </tr>
+		      <tr>
+		        <td>TELEFONO:   <?php echo $telefono1 ?></td>
+		        <td>TELEFONO 2:   <?php echo $telefono2 ?></td>
+		        <td>EMAIL:   <?php echo $email ?></td>
+		        
+		      </tr>
+		      <tr>
+		        <td>ROL:  <?php echo $rolcli."  " .$rolmar."  " .$roltec ?></td>
+		        <td>COMENTARIO:  <?php echo $comentario ?></td>
+        
+     	 	 </tr>
+    	   </tbody>
+  		</table>
+	</div>
+</div>
+
+<div class="container-fluid mt-5">
+	<div class="bg-secondary text-white">
+		<div class="border border-white">
+			<div class="row ml-3">
+				<div class="mx-auto"><h1>HOJA DE TRABAJO</h1></div>
+			</div>
+		</div>
+		<div class="border border-white">	
+			<div class="row ml-3">
+				<div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
+				<div class="col-sm-4"><label>DIRECCION </label><?php echo":  ". $direccion ?></div>
+				<div class="col-sm-4"><label>DOCUMENTO</label> <?php echo":  ". $documento ?></div>
+			</div>	
+		</div>
+		<div class="border border-white">
+			<div class="row ml-3">
+				<div class="col-sm-3">
+					TELEFONO<?php echo":  ".$telefono1 ?>	
+				</div>
+				<div class="col-sm-3"><label>TELEFONO 2</label><?php echo":  ".$telefono2 ?></div>
+				<div class="col-sm-3"><label>EMAIL</label><?php echo":  ".$email ?></div>
+				<div class="col-sm-3"><label>ROL</label><?php echo $rolcli."  " .$rolmar."  " .$roltec ?></div>
+			</div>
+		</div>
+		<div class="border border-white">
+			<div class="row ml-3">
+				<div class="col-sm-11"><label>COMENTARIO</label><?php echo":  ".$comentario ?>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <?php include("includes/footer.php"); ?>
