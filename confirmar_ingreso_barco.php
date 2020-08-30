@@ -9,20 +9,39 @@ $nombrebarco=$_POST['nombrebarco'];
 $tipobarco=$_POST['tipobarco'];
 $puerto=$_POST['puerto'];
 $comentbarco=$_POST['comentbarco'];
-if ($idmar == "")
-	{
-		$idmar=1;
+
+$nombremarinero=$_POST['nombremarinero'];
+echo $nombremarinero;		
+//print_r($nombremarinero);
+
+
+
 	
-	}
-$insertbarco = "INSERT INTO barcos
+	
+
+
+if ($nombremarinero == " ")
+	{
+		$insertbarco = "INSERT INTO barcos
 				(nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
 				VALUES 
 				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli')";
+	}
+else 	
+	{
+$insertbarco = "INSERT INTO barcos
+				(nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente,id_marinero)
+				VALUES 
+				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli','$nombremarinero')";
+	
+		
+				
+	}		
 mysqli_query($conexion,$insertbarco) ;
 print_r($insertbarco);
 echo $nombrebarco;
 echo $idcli;
-
+echo $idmar;
 ?>
 <div class="container-fluid mt-5">
 	<div class="bg-secondary">

@@ -85,12 +85,38 @@ if ($count== '0')
               				<label>Puerto </label>   
                 			<input type="text" class="form-control" name="puerto" id="puerto">  
               				<label>Comentario</label>
-                			<input type="text" class="form-control" name="comentbarco" id="comentbarco"> 
+                			<input type="text" class="form-control" name="comentbarco" id="comentbarco">
+                			<label>Marinero</label>
+                			<select class="custom-select" name="nombremarinero">
+
+                				<option selected>Choose...</option>
+								<option value=" ">Ninguno</option>
+                			<?php
+							
+
+                			$buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
+                			$buscanommar=mysqli_query($conexion,$buscamar);
+                			
+                			while ($datos=mysqli_fetch_array($buscanommar)):
+                				
+                			 	?>
+                			    
+                			    <option value="<?php echo $datos['id_marinero'];?>"><?php echo $datos['nombre'];?></option>
+
+                			<?php 
+                			 
+                		endwhile;
+                		
+                			?>
+                			</select>
+
+                		</div>
+
                 			<input id="id" name="id"  type="hidden" value="<?php echo $id; ?>">
-
-                		<button type="submit" class="btn btn-success mt-3" name="ingresar_embarcacion">INSERTAR EMBARCACION</button>
-
-                		<form action="editar_embarcacion.php" method="POST"> 
+                			
+                			<button type="submit" class="btn btn-success mt-3" name="ingresar_embarcacion">INSERTAR EMBARCACION</button>
+                		</form>
+                			<form action="editar_embarcacion.php" method="POST"> 
 							<button type="submit" class="btn btn-warning mt-3 ml-4" name="editar_embarcacion">EDITAR EMBARCACION</button>
 
 							<input id="idbarco" name="idbarco"  type="hidden" value="<?php echo $idbarco; ?>">   
@@ -105,14 +131,15 @@ if ($count== '0')
     	
     	<?php
     }    
-    else {
-    	echo ' tiene barco'.'<br>';
-    	echo $idbarco.'<br>';
-    	echo $nombrebarco .'<br>';
-    	echo $tipobarco .'<br>';
-    	echo $puertobarco.'<br>';
-    	echo $comenbarco.'<br>';
-    }
+    else
+    	{
+    		echo ' tiene barco'.'<br>';
+    		echo $idbarco.'<br>';
+    		echo $nombrebarco .'<br>';
+    		echo $tipobarco .'<br>';
+    		echo $puertobarco.'<br>';
+    		echo $comenbarco.'<br>';
+    	}
 
 
 ?>
