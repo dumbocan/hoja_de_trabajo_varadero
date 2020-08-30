@@ -42,9 +42,9 @@ if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
 
 			else 
 			{
-// abro base de datos//
+
 // Si aprieto el boton insertar, meto todos los campos en la base de datos //
-if(isset($_POST['insertar_btn']))
+if(isset($_POST['ingresar_btn']))
 	{
 		$nombre=$_POST['nombre'];
 		$direccion=$_POST['direccion'];

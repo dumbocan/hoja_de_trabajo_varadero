@@ -3,7 +3,7 @@ include("includes/header.php");
 
  ?>
 <!--preguntas y botones-->
-<div class=" text-white">
+
    <div class="container mt-5">  
       <div class="row">
          <div class="col-md-3"></div>
@@ -11,7 +11,7 @@ include("includes/header.php");
                <h2> Busqueda datos </h2>
                <form method="POST" action="resultados_busqueda.php">
                   <div class="form-group">
-                     <label><h3>Nombre cliente</h3></label>
+                     <label><h3>Introducir nombre</h3></label>
                      <input type="text" class="form-control" name="Nombre"> 
                         <div class="container mt-5">
                            <button type="submit" class="btn btn-success" name="buscar_btn">Buscar</button>
@@ -23,6 +23,6 @@ include("includes/header.php");
          </div>
       </div>
    </div>
-</div>
+
 
 <?php include("includes/footer.php"); ?>

@@ -1,7 +1,7 @@
 <?php
 include("includes/header.php"); ?>
 
-<div class=" text-white">
+
   <div class="container mt-5" >
     <div class="row">
       <div class=col-md-3></div>
@@ -51,7 +51,7 @@ include("includes/header.php"); ?>
                 <div class="row">
                   <div class="col-md-7">  </div>  
                     <div class="col-md-3">  
-                      <button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
+                      <button type="submit" class="btn btn-success" name="ingresar_btn">Ingresar</button>
                     </div>
                     <div class="col-md-2">
                       <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>
@@ -65,5 +65,5 @@ include("includes/header.php"); ?>
       </div>
     </div>    
   </div>
-</div>
+
 <?php include("includes/footer.php"); ?>

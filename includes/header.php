@@ -17,3 +17,4 @@
       body {background-color: black;}
       color :{white};
    </style>
+   <div class="text-white">
