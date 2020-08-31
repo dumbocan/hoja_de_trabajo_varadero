@@ -98,10 +98,10 @@ if ($count== '0')
                 			$buscanommar=mysqli_query($conexion,$buscamar);
                 			
                 			while ($datos=mysqli_fetch_array($buscanommar)):
-                				
+                				$idmarinero=$datos['nombre'];
                 			 	?>
                 			    
-                			    <option value="<?php echo $datos['id_marinero'];?>"><?php echo $datos['nombre'];?></option>
+                			    <option value="<?php echo $datos['id_marinero'];?>"><?php echo $idmarinero;?></option>
 
                 			<?php 
                 			 
