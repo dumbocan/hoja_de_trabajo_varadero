@@ -12,30 +12,33 @@ $comentbarco=$_POST['comentbarco'];
 
 $nombremarinero=$_POST['nombremarinero'];
 		
-
-
-
 if ($nombremarinero == " ")
 	{
 		$insertbarco = "INSERT INTO barcos
 				(nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
 				VALUES 
 				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli')";
+				$nombre_marinero='ninguno';
+
 	}
 else 	
 	{
 $insertbarco = "INSERT INTO barcos
 				(nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente,id_marinero)
 				VALUES 
-				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli','$nombremarinero')";			
-	}
-
-mysqli_query($conexion,$insertbarco) ;
-
+				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli','$nombremarinero')";	
 $idmarinero ="SELECT nombre FROM datos_personales D INNER JOIN marineros  M ON M.id_datos = D.id_datos WHERE id_marinero = '$nombremarinero'";
 $nommar=mysqli_query($conexion,$idmarinero);
 $result=mysqli_fetch_array($nommar);
 $nombre_marinero=$result['nombre'];
+
+
+	}
+
+mysqli_query($conexion,$insertbarco) ;
+
+
+
 
 
 
@@ -47,8 +50,10 @@ $nombre_marinero=$result['nombre'];
 				<div class="mx-auto"><h1>HOJA DE TRABAJO</h1></div>
 			</div>
 		</div>
+		
 		<div class="border border-white">	
 			<div class="row ml-3">
+
 				<div class="col-sm"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
 				<div class="col-sm"><label>DIRECCION </label><?php echo":  ". $direccion ?></div>
 				<span >
@@ -56,6 +61,7 @@ $nombre_marinero=$result['nombre'];
 				</span>
 			</div>	
 		</div>
+	
 		<div class="border border-white">
 			<div class="row ml-3">
 				<div class="col-sm">

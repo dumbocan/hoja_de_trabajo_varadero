@@ -71,7 +71,7 @@ if ($count== '0')
 	{
 		?>
 
-		<div class="container mt-5">
+		<div class="container mt-3">
 			<div class="row">
 				<div class=col-md-3></div>
         		<div class="col-md-5">
@@ -89,8 +89,8 @@ if ($count== '0')
                 			<label>Marinero</label>
                 			<select class="custom-select" name="nombremarinero">
 
-                				<option selected>Choose...</option>
-								<option value=" ">Ninguno</option>
+                				<option value=" ">Ninguno</option>
+								<option value="1">Nuevo marinero</option>
                 			<?php
 							
 
@@ -111,16 +111,23 @@ if ($count== '0')
                 			</select>
 
                 		</div>
-
+                		<div class="btn-group">
                 			<input id="id" name="id"  type="hidden" value="<?php echo $id; ?>">
                 			
                 			<button type="submit" class="btn btn-success mt-3" name="ingresar_embarcacion">INSERTAR EMBARCACION</button>
                 		</form>
+
+
+
+
+
+
+
                 			<form action="editar_embarcacion.php" method="POST"> 
 							<button type="submit" class="btn btn-warning mt-3 ml-4" name="editar_embarcacion">EDITAR EMBARCACION</button>
 
 							<input id="idbarco" name="idbarco"  type="hidden" value="<?php echo $idbarco; ?>">   
-
+						</div>
 						</form>
 						</div>
 
