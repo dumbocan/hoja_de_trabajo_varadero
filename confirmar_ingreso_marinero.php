@@ -12,16 +12,16 @@ if(isset($_POST['ingresar_btn']))
 		$telefono2=$_POST['telefono2'];
 		$email=$_POST['email'];
 		$comentario=$_POST['comentario'];
-		$documento=$_POST['documento'];
+		
 
-			if ($nombre =="" || $documento =="")
+			if ($nombre =="" || $telefono1 =="")
 				{
 					?>
 					<div class="row m-0 justify-content-center align-items-center vh-100">
 						<div class="alert alert-primary" role="alert">
 							<div class="row">
 								<div class="col-sm-10">
-    								<h1 class="text-uppercase" class="align-items-center"  >Al menos el nombre y documento son obligatorios</h1>
+    								<h1 class="text-uppercase" class="align-items-center"  >Al menos el nombre y telefono son obligatorios</h1>
     							</div>
     			 
  			 					<div class="col-sm-2"> 
@@ -36,18 +36,17 @@ if(isset($_POST['ingresar_btn']))
 			else 
 				{
 					$sqldatos="INSERT INTO datos_personales 
-					(nombre,direccion,telefono1,telefono2,email1,comentario,documento) VALUES
-					('$nombre','$direccion','$telefono1','$telefono2','$email','$comentario','$documento')";
-					mysqli_query($conexion,$sqldatos);		
+					(nombre,direccion,telefono1,telefono2,email1) VALUES
+					('$nombre','$direccion','$telefono1','$telefono2','$email')";
+					mysqli_query($conexion,$sqldatos);
+
   					$last_id = mysqli_insert_id($conexion);
- 				 	echo "New record created successfully. Last inserted ID is: " . $last_id;
  				 	
- 				 	
- 				 	
+ 				 				 	
  				 		$sqlmar="INSERT INTO marineros
- 				 		(id_datos)
+ 				 		(id_datos,comentario)
  				 		VALUES
- 				 		($last_id)";
+ 				 		('$last_id','$comentario')";
  				 		mysqli_query($conexion,$sqlmar);
  				 	
 
@@ -61,8 +60,12 @@ if(isset($_POST['ingresar_btn']))
     			<h1 class="text-uppercase" class="align-items-center"  >CONTACTO INGRESADO EN LA BASE DE DATOS</h1>
     		</div>
     			 
- 			 <div class="col-sm-2"> 
-    			<a href="inicio3.php" type="button" class="btn btn-primary" >OK</a> 
+ 			 <div class="col-sm-2">
+ 			 	<form method="POST" action="confirmar_ingreso_barco.php">
+ 			 	<input id="id" name="id" type="hidden" value="<?php echo $last_id?>">  
+ 			 	<button class="btn btn-primary" name="eliminar_btn" type="submit">OK</button>
+
+    			</form>
     		</div>
     		
     	

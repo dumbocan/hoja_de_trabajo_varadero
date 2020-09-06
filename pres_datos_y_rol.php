@@ -66,7 +66,25 @@ while ($consulbarcos=mysqli_fetch_array($resulbarcos) )
 
 
 	$count ++;
+
 }
+if ($rolmar) 
+	{
+		
+		
+		$sql_mar="SELECT * FROM barcos where id_marinero = '$idmar'";
+		$sql_marquery=mysqli_query($conexion,$sql_mar);
+		while ($databarco = mysqli_fetch_array($sql_marquery))
+		{
+			$nombrebarco=$databarco['nombre_barco'];
+		}
+		
+		echo "encargado del barco".$nombrebarco;
+	}
+else {
+	
+
+
 if ($count== '0')
 	{
 		?>
@@ -147,7 +165,7 @@ if ($count== '0')
     		echo $puertobarco.'<br>';
     		echo $comenbarco.'<br>';
     	}
-
+}
 
 ?>
 

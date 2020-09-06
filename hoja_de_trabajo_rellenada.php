@@ -5,50 +5,10 @@ $id=$_POST['id'];
 include ("includes/sql_datos_personales.php");
 include ("includes/sql_cliente_marinero_tecnico.php");
 
-$nombrebarco=$_POST['nombrebarco'];
-$tipobarco=$_POST['tipobarco'];
-$puerto=$_POST['puerto'];
-$comentbarco=$_POST['comentbarco'];
-
-$nombremarinero=$_POST['nombremarinero'];
-
-if ($nombremarinero =="1") 
-{
-header("location:http://localhost/programacion/varadero/hoja_de_trabajo_varadero/ingresar_marinero.php");
-
-}
-
-elseif ($nombremarinero == " ")
-	{
-			$insertbarco = "INSERT INTO barcos
-				(nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
-				VALUES 
-				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli')";
-				$nombre_marinero='ninguno';
-				$tel_mar='ninguno';
-	}
-	else 	
-	{
-		$insertbarco = "INSERT INTO barcos
-				(nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente,id_marinero)
-				VALUES 
-				('$nombrebarco','$tipobarco','$puerto','$comentbarco','$idcli','$nombremarinero')";	
-		$idmarinero ="SELECT * FROM datos_personales D INNER JOIN marineros  M ON M.id_datos = D.id_datos WHERE id_marinero = '$nombremarinero'";
-		$nommar=mysqli_query($conexion,$idmarinero);
-		$result=mysqli_fetch_array($nommar);
-		$nombre_marinero=$result['nombre'];
-		$tel_mar=$result['telefono1'];
-	}
-	
-
-mysqli_query($conexion,$insertbarco) ;
-
-
-
-
-
-
 ?>
+
+
+
 <div class="container-fluid mt-5">
 	<div class="bg-secondary">
 		<div class="border border-white">
@@ -113,6 +73,5 @@ mysqli_query($conexion,$insertbarco) ;
 	</div>
 </div>
 <?php
-
- 
-include("includes/footer.php"); ?>
+include("includes/footer.php"); 
+?>

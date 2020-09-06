@@ -27,7 +27,7 @@ if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
 						<div class="alert alert-primary" role="alert">
 							<div class="row">
 								<div class="col-sm-10">
-    								<h1 class="text-uppercase" class="align-items-center"  >añadir cliente, marinero, o tecnico porfabor</h1>
+    								<h1 class="text-uppercase" class="align-items-center"  >añadir cliente o tecnico porfavor</h1>
     							</div>
     			 
  			 					<div class="col-sm-2"> 
@@ -89,14 +89,14 @@ if(isset($_POST['ingresar_btn']))
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqlcli);
  				 	}
- 				 	if ($marinero =='1')
+ 				/* 	if ($marinero =='1')
  				 	{
  				 		$sqlmar="INSERT INTO marineros
  				 		(id_datos)
  				 		VALUES
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqlmar);
- 				 	}
+ 				 	}*/
  				 	
  				 	if ($tecnico =='1')
  				 	{
@@ -118,9 +118,13 @@ if(isset($_POST['ingresar_btn']))
 			<div class="col-sm-10">
     			<h1 class="text-uppercase" class="align-items-center"  >CONTACTO INGRESADO EN LA BASE DE DATOS</h1>
     		</div>
-    			 
+    		<form action="resultados_busqueda.php" method="POST">
+    			<input id="Nombre" name="Nombre"  type="hidden" value="<?php echo $nombre; ?>">
+    		
  			 <div class="col-sm-2"> 
-    			<a href="inicio3.php" type="button" class="btn btn-primary" >OK</a> 
+
+ 			 	<button class="btn btn-primary" name="buscar_btn" type="submit">OK</button>
+    			</form>
     		</div>
     		
     	
