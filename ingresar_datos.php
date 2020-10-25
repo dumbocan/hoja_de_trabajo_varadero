@@ -14,9 +14,9 @@ include("includes/header.php"); ?>
               <label>Dirección</label>
                 <input type="text" class="form-control" name="direccion" id="direccion" > 
               <label>Telefono</label>   
-                <input type="telephone" class="form-control" name="telefono1" id="telefono1">  
+                <input type="number" class="form-control" name="telefono1" id="telefono1">  
               <label>Telefono 2</label>
-                <input type="telephone" class="form-control" name="telefono2" id="telefono2">
+                <input type="number" class="form-control" name="telefono2" id="telefono2">
               <label>Email</label>  
                 <input type="email" class="form-control" name="email" id="email">  
               <label>Comentario</label>
@@ -60,11 +60,12 @@ include("includes/header.php"); ?>
                   </div>  
                 </div>  
               </div>
-            </div>
-          </form> 
-        </div>  
-      </div>
-    </div>    
-  </div>
+            </form>
+        </div>
+     </div>       
+  </div>       
+   
+        
+  
 
 <?php include("includes/footer.php"); ?>

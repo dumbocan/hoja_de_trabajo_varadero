@@ -11,7 +11,7 @@ include("includes/header.php");
                <h2> Busqueda datos </h2>
                <form method="POST" action="resultados_busqueda.php">
                   <div class="form-group">
-                     <label><h3>Introducir nombre</h3></label>
+                     <h3>Introducir nombre</h3>
                      <input type="text" class="form-control" name="Nombre"> 
                         <div class="container mt-5">
                            <button type="submit" class="btn btn-success" name="buscar_btn">Buscar</button>
@@ -20,9 +20,9 @@ include("includes/header.php");
                   </div>      
                </form>        
             </div>
-         </div>
       </div>
    </div>
+  
 
 
 <?php include("includes/footer.php"); ?>

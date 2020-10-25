@@ -64,6 +64,7 @@ if (isset($_POST['buscar_btn']))
                {
                $idcli = $cliente ['id_cliente'];
                if ($idcli) {$rolcli= "Cliente";}
+                    
                }
                
                $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
@@ -87,142 +88,144 @@ if (isset($_POST['buscar_btn']))
 <br>
 <br>
 <br>
-<table class="table-responsive">
 <div class="container-fluid">
-   <form action="editar_datos.php" method="POST">
-   <div class="bg-secondary text-white">
-      <div class="row">
+    <form action="editar_datos.php" method="POST">
+    <div class="bg-secondary text-white">
+        <table class="table-responsive">
+           
+            <div class="row">
 
-
-         <div class="col-sm-2">
-            <div class="form-group row"> 
-                  <label for="id" class="col-sm-5 col-form-label">NUMERO:</label>
-                  <div class="col-sm-5">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id ?>"
-                     name="id"> 
-                  </div>     
-               </div>
-            </div>
+                <div class="col-sm-2">
+                   <div class="form-group row"> 
+                      <label for="id" class="col-sm-5 col-form-label">NUMERO:</label>
+                      <div class="col-sm-5">
+                         <input type="text" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id ?>"
+                         name="id"> 
+                      </div>     
+                   </div>
+                </div>
 
          
-         <div class="col-sm-4">
-            <div class="form-group row"> 
-                  <label for="id" class="col-sm-2 col-form-label">NOMBRE:</label>
-                  <div class="col-sm-8">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="nombre" value="<?php echo $nombre ?>"
-                     name="nombre"> 
-                  </div>     
-               </div>
-            </div>
-         
-
-
-         <div class="col-sm-6">
-            <div class="form-group row"> 
-                  <label for="id" class="col-sm-2 col-form-label">DIRECCION:</label>
-                  <div class="col-sm-10">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="direccion" value="<?php echo $direccion ?>"
-                     name="direccion"> 
-                  </div>     
-               </div>
-            </div>
-         </div>
-
-
-      <div class="row">
-
-
-         <div class="col-sm-2">
-            <div class="form-group row"> 
-                  <label for="telefono1" class="col-sm-4 col-form-label">TELEFONO:</label>
-                  <div class="col-sm-8">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="telefono1" value="<?php echo $telefono1 ?>"
-                     name="telefono1"> 
-                  </div>     
-               </div>
-            </div>
-
-            <div class="col-sm-2">
-            <div class="form-group row"> 
-                  <label for="telefono2" class="col-sm-4 col-form-label">TELEFONO:</label>
-                  <div class="col-sm-8">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="telefono2" value="<?php echo $telefono2 ?>"
-                     name="telefono2"> 
-                  </div>     
-               </div>
-            </div>
-
-            <div class="col-sm-3">
-            <div class="form-group row"> 
-                  <label for="email" class="col-sm-2 col-form-label">EMAIL:</label>
-                  <div class="col-sm-9">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="email" value="<?php echo $email ?>"
-                     name="email"> 
-                  </div>     
-               </div>
-            </div>
-
-
-            <div class="col-sm-3">
-            <div class="form-group row"> 
-                  <label for="documento" class="col-sm-4 col-form-label">DOCUMENTO:</label>
-                  <div class="col-sm-8">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="documento" value="<?php echo $documento ?>"
-                     name="documento"> 
-                  </div>     
-               </div>
-            </div>
-
-            <div class="col-sm-2">
-            <div class="form-group row"> 
-                  <label for="rol" class="col-sm-4 col-form-label">ROL:</label>
-                 <div class="col-sm-8">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="rol" value="<?php echo $rolcli."  " .$rolmar."  " .$roltec ?>"
-                     name="rol"> 
-                  </div>     
-               </div>
-            </div>
-
-         </div>
-
-      <div class="row">
-         
-
-         <div class="col-sm-9">
-            <div class="form-group row"> 
-                  <label for="comentario" class="col-sm-2 col-form-label">COMENTARIO:</label>
-                  <div class="col-sm-10">
-                     <input type="text" style= "color: white" readonly class="form-control-plaintext" id="comentario" value="<?php echo $comentario ?>"
-                     name="comentario"> 
-                  </div>     
-               </div>
-            </div>
+                <div class="col-sm-4">
+                   <div class="form-group row"> 
+                        <label for="id" class="col-sm-2 col-form-label">NOMBRE:</label>
+                        <div class="col-sm-8">
+                             <input type="text" style= "color: white" readonly class="form-control-plaintext" id="nombre" value="<?php echo $nombre ?>"
+                             name="nombre"> 
+                        </div>     
+                   </div>
+                </div>
          
 
 
-         <div class="col-sm-1">
-            
-            <button class="btn btn-warning" type="submit">Editar</button>
-            </form>
-         </div>
-         <div class="col-sm-1">
-            <form action="eliminar.php" method="POST">
-               <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
+                <div class="col-sm-6">
+                    <div class="form-group row"> 
+                         <label for="id" class="col-sm-2 col-form-label">DIRECCION:</label>
+                         <div class="col-sm-10">
+                             <input type="text" style= "color: white" readonly class="form-control-plaintext" id="direccion" value="<?php echo $direccion ?>"
+                             name="direccion"> 
+                         </div>     
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-2">
+                    <div class="form-group row"> 
+                        <label for="telefono1" class="col-sm-4 col-form-label">TELEFONO:</label>
+                        <div class="col-sm-8">
+                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="telefono1" value="<?php echo $telefono1 ?>"
+                            name="telefono1"> 
+                        </div>     
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group row"> 
+                        <label for="telefono2" class="col-sm-4 col-form-label">TELEFONO:</label>
+                        <div class="col-sm-8">
+                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="telefono2" value="<?php echo $telefono2 ?>"
+                            name="telefono2"> 
+                        </div>     
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group row"> 
+                        <label for="email" class="col-sm-2 col-form-label">EMAIL:</label>
+                        <div class="col-sm-9">
+                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="email" value="<?php echo $email ?>"
+                            name="email"> 
+                        </div>     
+                    </div>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <div class="form-group row"> 
+                        <label for="documento" class="col-sm-4 col-form-label">DOCUMENTO:</label>
+                        <div class="col-sm-8">
+                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="documento" value="<?php echo $documento ?>"
+                            name="documento"> 
+                        </div>     
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group row"> 
+                        <label for="rol" class="col-sm-4 col-form-label">ROL:</label>
+                        <div class="col-sm-8">
+                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="rol" value="<?php echo $rolcli."  " .$rolmar."  " .$roltec ?>"
+                            name="rol"> 
+                        </div>     
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+         
+                <div class="col-sm-9">
+                    <div class="form-group row"> 
+                        <label for="comentario" class="col-sm-2 col-form-label">COMENTARIO:</label>
+                        <div class="col-sm-10">
+                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="comentario" value="<?php echo $comentario ?>"
+                            name="comentario"> 
+                        </div>     
+                    </div>
+                </div>
+         
+                <div class="col-sm-1">           
+                <button class="btn btn-warning" type="submit">Editar</button>
+                </div>
+           
+
+
+    </form>
+         
+                <div class="col-sm-1">
+                    <form action="eliminar.php" method="POST">
+                        <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
                 
-               <input id="nombre" name="nombre" class="text-uppercase" type="hidden" value="<?php echo $nombre; ?>">       
-               <button class="btn btn-danger" name="eliminar_btn" type="submit">Eliminar</button>
-            </form>
-         </div>
-         <div class="col-sm-1">
-            <form action="pres_datos_y_rol.php" method="POST">
-               <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">   
-               <button class="btn btn-primary" name="continuar_btn" type="submit">Continuar</button>
-            </form>
-         </div>           
-      </div>
+                        <input id="nombre" name="nombre" class="text-uppercase" type="hidden" value="<?php echo $nombre; ?>">       
+                        <button class="btn btn-danger" name="eliminar_btn" type="submit">Eliminar</button>
+                    </form>
+                </div>
+                <div class="col-sm-1">
+                    <form action="pres_datos_y_rol.php" method="POST">
+                        <input id="id" name="id" type="hidden" value="<?php echo $id; ?>"> 
+
+                         <?php if ($rolcli) {?>                 
+                        <button class="btn btn-primary" name="continuar_btn" type="submit">Continuar</button>
+                        <?php ;} ?>
+
+                    </form>
+                </div>           
+      </table>
    </div> 
-</div>
-</table>
+
+
 <?php
             $existe++; 
             endwhile; 
