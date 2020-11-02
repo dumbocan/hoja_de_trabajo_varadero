@@ -125,7 +125,7 @@ if(isset($_POST['ingresar_btn']))
 
  			 	<button class="btn btn-primary" name="buscar_btn" type="submit">OK</button>
     			</form>
-    		</div>
+    		 </div>
     		
     	
     	</div>

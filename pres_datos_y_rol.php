@@ -12,7 +12,7 @@ include ("includes/sql_datos_personales.php");
 
 ?>
 
-
+<!-- Enseño en pantaya el resumen de los datos del cliente-->
 
 <div class="container-fluid mt-5">
 	<div class="bg-secondary">
@@ -52,7 +52,7 @@ include ("includes/sql_datos_personales.php");
 	</div>
 </div>
 <?php
-
+/* compruevo en base de datos si el cliente tiene un barco a su nombre*/
 $count = 0;
 $sqlbarcos=("SELECT * FROM barcos WHERE id_cliente = '$idcli'");
 $resulbarcos = mysqli_query($conexion,$sqlbarcos);
@@ -70,7 +70,7 @@ while ($consulbarcos=mysqli_fetch_array($resulbarcos) )
 }
 if ($rolmar) 
 	{
-		
+		/* compruevo si el barco tiene algun marinero asociado */
 		
 		$sql_mar="SELECT * FROM barcos where id_marinero = '$idmar'";
 		$sql_marquery=mysqli_query($conexion,$sql_mar);
@@ -87,6 +87,7 @@ else {
 
 if ($count== '0')
 	{
+	/* si no tiene ningun barco en base de datos, se muestra un formulario para introducir el barco y el marinero si lo tuviese*/
 		?>
 
 		<div class="container mt-3">
@@ -123,7 +124,7 @@ if ($count== '0')
 
                 			<?php 
                 			 
-                		endwhile;
+                			endwhile;
                 		
                 			?>
                 			</select>
@@ -144,15 +145,14 @@ if ($count== '0')
                 			<form action="editar_embarcacion.php" method="POST"> 
 							<button type="submit" class="btn btn-warning mt-3 ml-4" name="editar_embarcacion">EDITAR EMBARCACION</button>
 
-							<input id="idbarco" name="idbarco"  type="hidden" value="<?php echo $idbarco; ?>">   
-						</div>
-						</form>
-						</div>
-
+							
 				</div>
-
+						</form>
 			</div>
+
 		</div>
+
+	
     	
     	<?php
     }    

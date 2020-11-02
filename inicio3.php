@@ -3,8 +3,12 @@ include("includes/header.php");
 
  ?>
 <!--preguntas y botones-->
-
-   <div class="container mt-5">  
+<br />
+<br />
+<br />
+<br />
+<br />
+   <div class="container">  
       <div class="row">
          <div class="col-md-3"></div>
             <div class="col-md-6">

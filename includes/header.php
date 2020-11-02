@@ -18,3 +18,17 @@
       color :{white};
    </style>
    <div class="text-white">
+
+       <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <a class="navbar-brand" href="inicio3.php">Inicio</a>
+  <ul class="navbar-nav">
+    <!--<li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>-->
+  </ul>
+</nav>
+
+

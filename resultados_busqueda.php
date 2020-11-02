@@ -221,10 +221,11 @@ if (isset($_POST['buscar_btn']))
                         <?php ;} ?>
 
                     </form>
-                </div>           
+                </div> 
+       
       </table>
    </div> 
-
+ </div>
 
 <?php
             $existe++; 
