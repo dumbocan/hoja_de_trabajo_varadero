@@ -32,13 +32,13 @@ include("includes/header.php"); ?>
                     <label class="form-check-label" for="cliente-check">Cliente</label>
                   </div>
                 </div>
-           <!--     <div class="col-md-4">
+                <div class="col-md-4">
                   <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1">
                     <label class="form-check-label" for="marinero-check">Marinero</label>
                   </div>
                 </div>
-            -->
+            
                 <div class="col-md-4">
                   <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1">

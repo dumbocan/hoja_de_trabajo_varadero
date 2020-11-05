@@ -89,14 +89,14 @@ if(isset($_POST['ingresar_btn']))
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqlcli);
  				 	}
- 				/* 	if ($marinero =='1')
+ 				 	if ($marinero =='1')
  				 	{
  				 		$sqlmar="INSERT INTO marineros
  				 		(id_datos)
  				 		VALUES
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqlmar);
- 				 	}*/
+ 				 	}
  				 	
  				 	if ($tecnico =='1')
  				 	{

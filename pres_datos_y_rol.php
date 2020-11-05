@@ -13,6 +13,8 @@ include ("includes/sql_datos_personales.php");
 ?>
 
 <!-- Enseño en pantaya el resumen de los datos del cliente-->
+<br />
+
 
 <div class="container-fluid mt-5">
 	<div class="bg-secondary">
@@ -44,9 +46,9 @@ include ("includes/sql_datos_personales.php");
 		<div class="border border-white">
 			<div class="row ml-3">
 				<div class="col-sm"><label>COMENTARIO</label><?php echo":  ".$comentario ?></div>
-				 <span >
+				 <!--<span >
 				<div class="col-sm mr-5"class="float-left" ><label>ROL</label><?php echo ":  ".$rolcli.", " .$rolmar.",  " .$roltec ?></div>
-				</span>
+				</span>-->
 			</div>
 		</div>
 	</div>
@@ -72,6 +74,10 @@ if ($rolmar)
 	{
 		/* compruevo si el barco tiene algun marinero asociado */
 		
+		
+
+
+
 		$sql_mar="SELECT * FROM barcos where id_marinero = '$idmar'";
 		$sql_marquery=mysqli_query($conexion,$sql_mar);
 		while ($databarco = mysqli_fetch_array($sql_marquery))
@@ -82,8 +88,6 @@ if ($rolmar)
 		echo "encargado del barco".$nombrebarco;
 	}
 else {
-	
-
 
 if ($count== '0')
 	{
@@ -96,68 +100,94 @@ if ($count== '0')
         		<div class="col-md-5">
         			<div class="mx-auto"><h1>Ingresar embarcación.</h1></div>
 						<form method="POST" action="confirmar_ingreso_barco.php"> 
-            			<div class="form-group">
-              				<label>Nombre embarcación.</label>
-                			<input type="text" class="form-control" name="nombrebarco" id="nombrebarco" >  
-              				<label>Tipo de embarcación.</label>
-                			<input type="text" class="form-control" name="tipobarco" id="tipobarco" > 
-              				<label>Puerto </label>   
-                			<input type="text" class="form-control" name="puerto" id="puerto">  
-              				<label>Comentario</label>
-                			<input type="text" class="form-control" name="comentbarco" id="comentbarco">
-                			<label>Marinero</label>
-                			<select class="custom-select" name="nombremarinero">
+            				<div class="form-group">
+              					<label>Nombre embarcación.</label>
+                				<input type="text" class="form-control" name="nombrebarco" id="nombrebarco" >  
+              					<label>Tipo de embarcación.</label>
+                				<input type="text" class="form-control" name="tipobarco" id="tipobarco" > 
+              					<label>Puerto </label>   
+                				<input type="text" class="form-control" name="puerto" id="puerto">  
+              					<label>Comentario</label>
+                				<input type="text" class="form-control" name="comentbarco" id="comentbarco">
+                				<label>Marinero</label>
+                					<select class="custom-select" name="nombremarinero">
 
-                				<option value=" ">Ninguno</option>
-								<option value="1">Nuevo marinero</option>
-                			<?php
+                						<option value=" ">Ninguno</option>
+										<option value="1">Nuevo marinero</option>
+                						<?php
 							
 
-                			$buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
-                			$buscanommar=mysqli_query($conexion,$buscamar);
+                						$buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
+                						$buscanommar=mysqli_query($conexion,$buscamar);
                 			
-                			while ($datos=mysqli_fetch_array($buscanommar)):
-                				$idmarinero=$datos['nombre'];
-                			 	?>
+                						while ($datos=mysqli_fetch_array($buscanommar)):
+                						$idmarinero=$datos['nombre'];
+                			 			?>
                 			    
-                			    <option value="<?php echo $datos['id_marinero'];?>"><?php echo $idmarinero;?></option>
+                						<option value="<?php echo $datos['id_marinero'];?>"><?php echo $idmarinero;?></option>
 
-                			<?php 
+                						<?php 
                 			 
-                			endwhile;
+                						endwhile;
                 		
-                			?>
-                			</select>
+                						?>
+                					</select>
 
-                		</div>
-                		<div class="btn-group">
-                			<input id="id" name="id"  type="hidden" value="<?php echo $id; ?>">
+                			</div>
+                			<div class="btn-group">
+                				<input id="id" name="id"  type="hidden" value="<?php echo $id; ?>">
                 			
-                			<button type="submit" class="btn btn-success mt-3" name="ingresar_embarcacion">INSERTAR EMBARCACION</button>
+                				<button type="submit" class="btn btn-success mt-3" name="ingresar_embarcacion">INSERTAR EMBARCACION</button>
                 		</form>
-
-
-
-
-
-
-
-                			<form action="editar_embarcacion.php" method="POST"> 
-							<button type="submit" class="btn btn-warning mt-3 ml-4" name="editar_embarcacion">EDITAR EMBARCACION</button>
-
 							
 				</div>
-						</form>
+						
 			</div>
 
 		</div>
-
-	
-    	
+  	
     	<?php
     }    
-    else
+	else
     	{
+		$idmarinero ="SELECT * FROM datos_personales D INNER JOIN marineros  M ON M.id_datos=D.id_datos ";
+		$nommar=mysqli_query($conexion,$idmarinero);
+		$result=mysqli_fetch_array($nommar);
+		$nombre_marinero=$result['nombre'];
+		$tel_mar=$result['telefono1'];
+		
+
+
+		?>
+
+<div class="container-fluid">
+	<div class="bg-secondary">
+		<div class="border border-white">
+			<div class="row ml-3">
+				<div class="col-sm"><label> NOMBRE EMBARCACION </label><?php echo ":  ". $nombrebarco; ?></div>
+				<div class="col-sm"><label>TIPO DE BARCO </label><?php echo":  ". $tipobarco ?></div>
+				<span >
+				<div class="col-sm mr-5" class="float-left"><label>PUERTO</label> <?php echo":  ". $puertobarco ?></div>
+				</span>
+			</div>
+		</div>
+		<div class="border border-white">
+			<div class="row ml-3">
+				<div class="col-sm"><label> COMENTARIO EMBARCACION </label><?php echo ":  ". $comenbarco; ?></div>
+				
+			</div>
+		</div>
+		<div class="border border-white">
+			<div class="row ml-3">
+				<div class="col-sm-4"><label>MARINERO O ENCARGADO  </label><?php echo":  ". $nombre_marinero ?></div>
+				
+				<div class="col-sm-8"><label>TELEFONO MARINERO</label> <?php echo ":  ". $tel_mar; ?></div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<?php
     		echo ' tiene barco'.'<br>';
     		echo $idbarco.'<br>';
     		echo $nombrebarco .'<br>';

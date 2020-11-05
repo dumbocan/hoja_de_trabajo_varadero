@@ -216,7 +216,7 @@ if (isset($_POST['buscar_btn']))
                     <form action="pres_datos_y_rol.php" method="POST">
                         <input id="id" name="id" type="hidden" value="<?php echo $id; ?>"> 
 
-                         <?php if ($rolcli) {?>                 
+                         <?php if ( $rolmar || $rolcli) {?>                 
                         <button class="btn btn-primary" name="continuar_btn" type="submit">Continuar</button>
                         <?php ;} ?>
 
