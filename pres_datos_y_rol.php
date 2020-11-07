@@ -46,14 +46,18 @@ include ("includes/sql_datos_personales.php");
 		<div class="border border-white">
 			<div class="row ml-3">
 				<div class="col-sm"><label>COMENTARIO</label><?php echo":  ".$comentario ?></div>
+
 				 <!--<span >
 				<div class="col-sm mr-5"class="float-left" ><label>ROL</label><?php echo ":  ".$rolcli.", " .$rolmar.",  " .$roltec ?></div>
 				</span>-->
+
 			</div>
 		</div>
 	</div>
 </div>
 <?php
+
+
 /* compruevo en base de datos si el cliente tiene un barco a su nombre*/
 $count = 0;
 $sqlbarcos=("SELECT * FROM barcos WHERE id_cliente = '$idcli'");
@@ -72,20 +76,30 @@ while ($consulbarcos=mysqli_fetch_array($resulbarcos) )
 }
 if ($rolmar) 
 	{
-		/* compruevo si el barco tiene algun marinero asociado */
+		/* compruevo si el marinero esta asociado a algun barco */
 		
-		
-
-
 
 		$sql_mar="SELECT * FROM barcos where id_marinero = '$idmar'";
 		$sql_marquery=mysqli_query($conexion,$sql_mar);
 		while ($databarco = mysqli_fetch_array($sql_marquery))
 		{
 			$nombrebarco=$databarco['nombre_barco'];
+			
+?>
+		<div class="container-fluid ">
+			<div class="bg-secondary">
+				<div class="border border-white">
+					<div class="row">
+						<div class="mx-auto"><?php echo "encargado del barco. $nombrebarco <br/> "; ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php
+		
+
 		}
 		
-		echo "encargado del barco".$nombrebarco;
 	}
 else {
 
@@ -188,12 +202,7 @@ if ($count== '0')
 	</div>
 </div>
 <?php
-    		echo ' tiene barco'.'<br>';
-    		echo $idbarco.'<br>';
-    		echo $nombrebarco .'<br>';
-    		echo $tipobarco .'<br>';
-    		echo $puertobarco.'<br>';
-    		echo $comenbarco.'<br>';
+    	
     	}
 }
 

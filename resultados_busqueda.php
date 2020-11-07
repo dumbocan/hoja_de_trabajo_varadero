@@ -36,12 +36,44 @@ if (isset($_POST['buscar_btn']))
             }
             else
             {  
-               $sqldatos="SELECT * FROM datos_personales where nombre like '%$nombre1%'";
-              
 
-               $resultados = mysqli_query($conexion,$sqldatos); 
+            /*busca en la base de datos de barcos si el nombre introducido se parece a un nombre de barco*/
+
+            ?>
+            <br>
+            <br>
+            <br>            
+            <?php
+            $idbarco="";
+            $sqlbarco="SELECT * FROM barcos WHERE nombre_barco like '%$nombre1%'";
+            $sqlbarcoresul = mysqli_query($conexion,$sqlbarco);
+            while($consultabarco = mysqli_fetch_array($sqlbarcoresul))
+                {
+                    $idbarco=$consultabarco ['id_barco'];         
+                    echo $idbarco;
+                }
+            if($idbarco)
+                {
+                $sqldatosbarco ="SELECT * FROM barcos B INNER JOIN clientes C ON C.id_cliente = B.id_cliente
+					               INNER JOIN datos_personales D     ON D.id_datos = C.id_datos
+                                   WHERE id_barco = $idbarco";
+                $sqldatosbarcoresul = mysqli_query($conexion,$sqldatosbarco);
+                    while($consultadatosbarco = mysqli_fetch_assoc($sqldatosbarcoresul))
+                        {
+                            $nombrebarco = $consultadatosbarco ['nombre_barco'];
+                            $nombrecliente = $consultadatosbarco['nombre'];
+                            echo $nombrebarco;
+                            echo $nombrecliente;
+                            $existe++;
+                        }
+                }
+           /*busca en base de datos de datos personales si hay algun nombre de cliente parecido al introducido*/
+
+         $sqldatos="SELECT * FROM datos_personales where nombre like '%$nombre1%'";
+              
+         $resultados = mysqli_query($conexion,$sqldatos); 
                
-               while($consulta = mysqli_fetch_array($resultados)):
+            while($consulta = mysqli_fetch_array($resultados)):
                
                $rolcli="";
                $rolmar="";
@@ -232,6 +264,11 @@ if (isset($_POST['buscar_btn']))
             endwhile; 
             if ($existe== 0)
             {
+         
+
+
+
+
 ?> 
 <!--avisa que el resultado no se encuentra en la base d datos  -->
 <br>
