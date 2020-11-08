@@ -51,9 +51,7 @@ if (isset($_POST['buscar_btn']))
                 {
                     $idbarco=$consultabarco ['id_barco'];         
                     echo $idbarco;
-                }
-            if($idbarco)
-                {
+         
                 $sqldatosbarco ="SELECT * FROM barcos B INNER JOIN clientes C ON C.id_cliente = B.id_cliente
 					               INNER JOIN datos_personales D     ON D.id_datos = C.id_datos
                                    WHERE id_barco = $idbarco";
@@ -62,11 +60,18 @@ if (isset($_POST['buscar_btn']))
                         {
                             $nombrebarco = $consultadatosbarco ['nombre_barco'];
                             $nombrecliente = $consultadatosbarco['nombre'];
-                            echo $nombrebarco;
-                            echo $nombrecliente;
+                            $tipobarco = $consultadatosbarco ['tipo_barco'];
+                            $puertobarco = $consultadatosbarco['puerto_barco'];
+                            $comentbarco = $consultadatosbarco ['comentario_barco'];
+                            $puertobarco = $consultadatosbarco['puerto_barco'];
+                            echo $nombrebarco."<br>";
+                            echo $nombrecliente."<br>";
+
                             $existe++;
                         }
                 }
+
+
            /*busca en base de datos de datos personales si hay algun nombre de cliente parecido al introducido*/
 
          $sqldatos="SELECT * FROM datos_personales where nombre like '%$nombre1%'";
@@ -87,7 +92,7 @@ if (isset($_POST['buscar_btn']))
                $email= $consulta['email1'];
                $documento= $consulta['documento'];
                $comentario= $consulta['comentario'];
-
+               $existe ++;
 //buscar datos en tablas clientes, marineros, tecnicos //
 
                $sqlcli="SELECT * FROM clientes where id_datos = '$id'";
@@ -114,6 +119,22 @@ if (isset($_POST['buscar_btn']))
                $idtec = $tecnico ['id_tecnico'];
                if ($idtec) {$roltec= "Tecnico";}
                }
+
+                $sqldatosbarco2 ="SELECT * FROM datos_personales D   left JOIN clientes C    ON c.id_datos = D.id_datos
+								                                   left JOIN barcos B      ON b.id_cliente = C.id_cliente
+                                WHERE nombre = '$nombre'";
+                $sqldatosbarcoresul2 = mysqli_query($conexion,$sqldatosbarco2);
+                    while($consultadatosbarcocli = mysqli_fetch_array($sqldatosbarcoresul2))
+                        {
+                            $nombrebarco2 = $consultadatosbarcocli ['nombre_barco'];
+                            $nombrecliente2 = $consultadatosbarcocli['nombre'];
+                            $tipobarco2 = $consultadatosbarcocli ['tipo_barco'];
+                            $puertobarco2 = $consultadatosbarcocli['puerto_barco'];
+                            $comentbarco2 = $consultadatosbarcocli ['comentario_barco'];
+                            $puertobarco2 = $consultadatosbarcocli['puerto_barco'];
+                      
+                        
+            
 
 
 ?> 
@@ -227,12 +248,27 @@ if (isset($_POST['buscar_btn']))
                         </div>     
                     </div>
                 </div>
-         
+            </div>
+
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group row">
+                        <label for="nombre_barco" class="col-sm-2 col-form-label">NOMBRE EMBARCACION</label>
+                        <div class="col-sm-10">
+                            <input type="text" style="color: white" readonly class="form-control-plaintext" id="nombre_barco" value=" <?php echo $nombrebarco2 ?>" name="nombre_barco" />
+                            
+                          
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
                 <div class="col-sm-1">           
                 <button class="btn btn-warning" type="submit">Editar</button>
                 </div>
            
-
+                
 
     </form>
          
@@ -256,12 +292,14 @@ if (isset($_POST['buscar_btn']))
                 </div> 
        
       </table>
-   </div> 
+</div> 
  </div>
 
 <?php
-            $existe++; 
+            $existe++;
+                } 
             endwhile; 
+            
             if ($existe== 0)
             {
          
