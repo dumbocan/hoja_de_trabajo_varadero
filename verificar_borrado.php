@@ -6,6 +6,10 @@ include ("conexbd.php");
   $_DELETE_SQL = "DELETE FROM datos_personales WHERE id_datos ='$id'";
               mysqli_query($conexion,$_DELETE_SQL);
 ?>
+<br>
+<br>
+<br>
+<br>
 <div class="row m-0 justify-content-center align-items-center">
   <div class="alert alert-primary" role="alert">
     <div class="row">

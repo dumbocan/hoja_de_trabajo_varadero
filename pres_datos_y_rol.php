@@ -76,21 +76,21 @@ while ($consulbarcos=mysqli_fetch_array($resulbarcos) )
 }
 if ($rolmar) 
 	{
-		/* compruevo si el marinero esta asociado a algun barco */
+		/* compruevo si el nombre introducido es de un marinero lista los barcos asociados a el */
 		
 
 		$sql_mar="SELECT * FROM barcos where id_marinero = '$idmar'";
 		$sql_marquery=mysqli_query($conexion,$sql_mar);
 		while ($databarco = mysqli_fetch_array($sql_marquery))
 		{
-			$nombrebarco=$databarco['nombre_barco'];
+			$nombrebarco2=$databarco['nombre_barco'];
 			
 ?>
 		<div class="container-fluid ">
 			<div class="bg-secondary">
 				<div class="border border-white">
 					<div class="row">
-						<div class="mx-auto"><?php echo "encargado del barco. $nombrebarco <br/> "; ?></div>
+						<div class="mx-auto"><?php echo "encargado del barco. $nombrebarco2 <br/> "; ?></div>
 					</div>
 				</div>
 			</div>
@@ -164,7 +164,8 @@ if ($count== '0')
     }    
 	else
     	{
-		$idmarinero ="SELECT * FROM datos_personales D INNER JOIN marineros  M ON M.id_datos=D.id_datos ";
+		$idmarinero ="SELECT * FROM datos_personales D 	INNER JOIN marineros  M ON M.id_datos=D.id_datos
+														INNER JOIN barcos B     ON M.id_marinero=B.id_marinero where B.id_barco = $idbarco";
 		$nommar=mysqli_query($conexion,$idmarinero);
 		$result=mysqli_fetch_array($nommar);
 		$nombre_marinero=$result['nombre'];
