@@ -308,11 +308,17 @@ if (isset($_POST['buscar_btn'])) {
                     <div class="container-fluid">
                         
                         <div class="bg-secondary text-white">
-                            <div class="border border-white">	
+                            <div class="border border-white">
+                            <style type="text/css">
+                                .transformacion2 { text-transform: uppercase;} 
+                             </style>     
+                            <center><u><h2 class="transformacion2"><?php echo $nombrebarco ?></h2></u></center>
+                            <br />       
+                                
 			                    <div class="row ml-1">
                                     <div class="col-sm-1"><label>NUMERO </label><?php echo ": ". $idbarco;?></div>
 				                    <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombrecliente; ?></div>
-				                    <div class="col-sm-4 " "><label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
+				                    <div class="col-sm-4" <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
 				                    <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
 			                    </div>
                                 <div class="row ml-1">
@@ -341,8 +347,13 @@ if (isset($_POST['buscar_btn'])) {
                                     <div class="col-sm-1"></div>
                                     <div class="col-sm"><label>COMENTARIO EMBARCACION</label><?php echo" :   ".$comentbarco ?></div>
                                 </div>
-                                
-
+                                <div class="row">
+                                    <div class="col-2 col-sm-5 col-lg-8"></div>
+                                    <div class="col col-sm-2 col-lg-1"><button type="button" class="btn btn-warning">Warning</button></div>
+                                    <div class="col col-sm-2 col-lg-1"><button type="button" class="btn btn-danger">Danger</button></div>
+                                    <div class="col col-sm-2 col-lg-1"><button type="button" class="btn btn-primary">Primary</button></div>                                   
+                                </div>
+                                <br />
 
 
 		                    </div>
