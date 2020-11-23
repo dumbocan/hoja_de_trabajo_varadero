@@ -1,36 +1,38 @@
 
 <?php
-include ("includes/header.php");
-include ("conexbd.php");
+include 'includes/header.php';
+include 'conexbd.php';
 
-// inicio base de datos y les doy datos a los campos de valor ateriormente buscado// 
-$existe =0;
-$id= $_POST['id'];
-$nombre= $_POST['nombre'];
-$direccion= $_POST['direccion'];
-$telefono1= $_POST['telefono1'];
-$telefono2= $_POST['telefono2'];
-$email= $_POST['email'];
-$documento=$_POST['documento'];
-$comentario=$_POST['comentario'];
+// inicio base de datos y les doy datos a los campos de valor ateriormente buscado//
+$existe = 0;
+$id = $_POST['id'];
+$nombre = $_POST['nombre'];
+$direccion = $_POST['direccion'];
+$telefono1 = $_POST['telefono1'];
+$telefono2 = $_POST['telefono2'];
+$email = $_POST['email'];
+$documento = $_POST['documento'];
+$comentario = $_POST['comentario'];
 
-$rol=$_POST['rol'];
+$rol = $_POST['rol'];
 
-$rolcli =0;
-$rolmar =0;
-$roltec =0;
+$rolcli = 0;
+$rolmar = 0;
+$roltec = 0;
 
+if (strpos($rol, 'Cliente') !== false) {
+    $rolcli = 'checked';
+}
 
-if (strpos($rol, 'Cliente') !== false)
-{ $rolcli = 'checked'; }
+if (strpos($rol, 'Marinero') !== false) {
+    $rolmar = 'checked';
+}
 
-if (strpos($rol, 'Marinero') !== false)
-{ $rolmar = 'checked'; }
+if (strpos($rol, 'Tecnico') !== false) {
+    $roltec = 'checked';
+}
 
-if (strpos($rol, 'Tecnico') !== false)
-{ $roltec = 'checked'; }
-
-echo '<br>';           
+echo '<br>';
 ?>       
 
 <!-- composicion del formulario para editar los datos del monbre buscado-->
@@ -46,7 +48,7 @@ echo '<br>';
 
           <form method="POST" action="confirmar_edicion.php"> 
             <div class="form-group">               
-              <input type="int" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id ?>"
+              <input type="int" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id; ?>"
                      name="id"> 
               <label>Nombre</label>               
                 <input type="text" value="<?php echo $nombre; ?>" class="form-control" name="nombre" id="nombre" >  
@@ -69,19 +71,19 @@ echo '<br>';
                 <div class="form-group row">
                   <div class="col-md-4">
                     <div class="form-group form-check">               
-                      <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1" <?php echo $rolcli ?>>
+                      <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1" <?php echo $rolcli; ?>>
                       <label class="form-check-label" for="cliente-check">Cliente</label>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1" <?php echo $rolmar ?>>
+                      <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1" <?php echo $rolmar; ?>>
                       <label class="form-check-label" for="marinero-check">Marinero</label>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1" <?php echo $roltec ?>>
+                      <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1" <?php echo $roltec; ?>>
                       <label class="form-check-label" for="tecnico-check">Tecnico</label>
                     </div>
                   </div>
@@ -94,9 +96,11 @@ echo '<br>';
                       <div class="col-md-3">  
                         <button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
                       </div>
+                      <!--
                       <div class="col-md-2">
                         <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>   
-                      </div>  
+                      </div>
+                      -->
                     </div>
                 </form> 
                   </div>  
@@ -108,4 +112,4 @@ echo '<br>';
     </div>
   </div>
 </div>
-<?php include("includes/footer.php"); ?>
+<?php include 'includes/footer.php'; ?>

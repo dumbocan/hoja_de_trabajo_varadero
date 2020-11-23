@@ -54,9 +54,11 @@ include("includes/header.php"); ?>
                     <div class="col-md-3">  
                       <button type="submit" class="btn btn-success" name="ingresar_btn">Ingresar</button>
                     </div>
+                    <!--
                     <div class="col-md-2">
                       <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>
                     </div>
+                    -->
                   </div>  
                 </div>  
               </div>
