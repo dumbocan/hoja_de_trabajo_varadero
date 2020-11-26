@@ -292,7 +292,7 @@ if (isset($_POST['buscar_btn'])) {
                 $nombrebarco = $consultadatosbarco['nombre_barco'];
                 $nombrecliente = $consultadatosbarco['nombre'];
                 $tipobarco = $consultadatosbarco['tipo_barco'];
-                $puertobarco = $consultadatosbarco['puerto_barco'];
+                
                 $comentbarco = $consultadatosbarco['comentario_barco'];
                 $puertobarco = $consultadatosbarco['puerto_barco'];
                 $direccion = $consultadatosbarco['direccion'];
@@ -352,6 +352,7 @@ if (isset($_POST['buscar_btn'])) {
                                     <div class="col-2 col-sm-5 col-lg-8"></div>
                                     <div class="col col-sm-2 col-lg-1">
                                         <input id="id" name="id" type="hidden" value="<?php echo $iddatos; ?>">
+                                        <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
                                         <button type="submit" name="editar" class="btn btn-warning">EDITAR</button>
                                     </div>
                                     <div class="col col-sm-2 col-lg-1">
