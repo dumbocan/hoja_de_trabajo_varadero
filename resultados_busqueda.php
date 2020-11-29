@@ -176,6 +176,7 @@ if (isset($_POST['buscar_btn'])) {
                                                     </div>
                                                 </div>
                                         </div>
+                                        <!--
                                         <div class="row">        
                                                 <div class="col-sm">
                                                     <div class="form-group row"> 
@@ -187,6 +188,35 @@ if (isset($_POST['buscar_btn'])) {
                                                     </div>
                                                 </div>
                                         </div>
+                                        -->
+
+                                        <?php
+                                        if($rolmar)
+                                        {
+                                        ?>
+
+
+                                        <div class="row">        
+                                                <div class="col-sm">
+                                                    <div class="form-group row"> 
+                                                        <label for="comentario" class="col-sm-3 col-form-label">BARCOS A CARGO:</label>
+                                                        <div class="col-sm-9">
+                                                        <input type="text" style= "color: white" readonly class="form-control-plaintext" id="comentario" value="<?php echo $comentariocli1; ?>"
+                                                            name="comentario"> 
+                                                        </div>     
+                                                    </div>
+                                                </div>
+                                        </div>
+
+
+                                        <?php
+                                        }
+
+                                        else
+                                        {
+
+                                        ?>
+
                                         <div class="row">        
                                                 <div class="col-sm">
                                                     <div class="form-group row"> 
@@ -239,7 +269,9 @@ if (isset($_POST['buscar_btn'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                                                               
+                                         <?php
+                                        }
+                                         ?>
                                         <div class="row">
                                             <div class="col-sm-8"></div>
                                             <div class="col-sm-1">           
@@ -329,10 +361,12 @@ if (isset($_POST['buscar_btn'])) {
 				                    <div class="col-sm-3"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
                                     <div class="col-sm-1"><label>ROL</label><?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?> </div>                                    
                                 </div>
+                                <!--
                                 <div class="row ml-1">
                                     <div class="col-sm-1"></div>
                                     <div class="col-sm"><label>COMENTARIO DATOS PERSONALES</label><?php echo" :   ".$comentariodatos ?></div>
                                 </div>
+                                -->
                                 <div class="row ml-1">
                                     <div class="col-sm-1"></div>
                                     <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli ?></div>

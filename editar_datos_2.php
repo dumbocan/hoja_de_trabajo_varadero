@@ -41,7 +41,8 @@ while ($consulta = mysqli_fetch_array($res_sql_datos))
 <div class="container-fluid">
                         <form method="POST" action="confirmar_edicion.php"> 
                         <div class="bg-secondary text-white">
-                            <div class="border border-white"><br />
+                            <div class="border border-white">
+                                <br />
                                 <div class="row">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-3">
@@ -80,11 +81,59 @@ while ($consulta = mysqli_fetch_array($res_sql_datos))
                                         <label>DOCUMENTO</label>
                                        <input type="text" value="<?php echo $documento; ?>" class="form-control" name="documento" id="documento">
                                     </div>
-                                    <div class="col-sm-1">
-                                        <label>ROL</label>  
-                                        <?php echo $rol ?> 
-                                    </div>                                    
+                                   
+                                    <?php
+                                    
+/* se dan valores a checkbox*/
+                                    $rolcli = 0;
+                                    $rolmar = 0;
+                                    $roltec = 0;
+
+                                    if (strpos($rol, 'Cliente') !== false)  
+                                    {
+                                        $rolcli = 'checked';
+                                    }
+
+                                    if (strpos($rol, 'Marinero') !== false) 
+                                    {
+                                        $rolmar = 'checked';
+                                    }
+
+                                    if (strpos($rol, 'Tecnico') !== false) 
+                                    {
+                                        $roltec = 'checked';
+                                    }
+
+
+                                    ?>       
+
+                                    <!--pintar y dar valor a celdas de check box.  --> 
+
+                                    <div class="container mt-4">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-check">               
+                                                    <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1" <?php echo $rolcli; ?>>
+                                                    <label class="form-check-label" for="cliente-check">Cliente</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1" <?php echo $rolmar; ?>>
+                                                    <label class="form-check-label" for="marinero-check">Marinero</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1" <?php echo $roltec; ?>>
+                                                    <label class="form-check-label" for="tecnico-check">Tecnico</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <!--
                                 <div class="row">
                                     <div class="col-sm-1"></div>
                                     <div class="col-sm mr-4">
@@ -92,6 +141,7 @@ while ($consulta = mysqli_fetch_array($res_sql_datos))
                                         <input type="text" value="<?php echo $comentariodatos; ?>" class="form-control" name="comentariodatos" id="comentariodatos">  
                                     </div>
                                 </div>
+                                -->
                                 <div class="row">
                                     <div class="col-sm-1"></div>
                                     <div class="col-sm mr-4">
