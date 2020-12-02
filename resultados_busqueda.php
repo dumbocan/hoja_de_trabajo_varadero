@@ -94,7 +94,117 @@ if (isset($_POST['buscar_btn'])) {
             $comentbarco2 = $consultadatosbarcocli['comentario_barco'];
             $puertobarco2 = $consultadatosbarcocli['puerto_barco']; 
             $comentariocli1 = $consultadatosbarcocli['comentario_cliente'];
+            $comentbarco2 = $consultadatosbarcocli['comentario_barco'];
+            $idmarinero = $consultadatosbarcocli['id_marinero'];
             ?> 
+
+                <br>
+                    
+
+                    <div class="container-fluid">
+                        
+                        <div class="bg-secondary text-white">
+                            <div class="border border-white">
+                            <style type="text/css">
+                                .transformacion2 { text-transform: uppercase;} 
+                            </style>     
+                            <center><h2><u class="transformacion2"><?php echo $nombre ?></u></h2></center>
+                            <br />       
+                            <form action="editar_datos_2.php" method="post">   
+			                    <div class="row ">
+                                    <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$id;?></div>
+				                    <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
+				                    <div class="col-sm-4"> <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
+				                    <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
+			                    </div>
+                                <div class="row ml-1">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3"><label>TELEFONO 2</label><?php echo" :   ".$telefono2 ?></div>				 
+				                    <div class="col-sm-3"><label>EMAIL</label><?php echo" :   ".$email ?></div>
+				                    <div class="col-sm-3"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
+                                    <div class="col-sm-1"><label>ROL</label><?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?> </div>                                    
+                                </div>
+                                <!--
+                                <div class="row ml-1">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm"><label>COMENTARIO DATOS PERSONALES</label><?php echo" :   ".$comentariodatos ?></div>
+                                </div>
+                                -->
+                                
+                                <div class="row ml-1">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli1 ?></div>
+                                </div>
+                                <?php
+                                    if ($rolmar)
+                                        { ?>
+                                        <div class="row ml-1">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm"><label>BARCO/S A CARGO</label>
+                                    <br />
+                                    <?php
+                                    
+                                    $consul_barcos = "SELECT * FROM marineros M INNER JOIN datos_personales D ON d.id_datos = M.id_marinero
+							                                                    INNER JOIN barcos B on B.id_marinero = m.id_marinero 
+                                                                                WHERE m.id_datos = '$id'";
+                                    $consul_barcos2 = mysqli_query($conexion,$consul_barcos);
+                                    while ($consul_barcos_loop= mysqli_fetch_array($consul_barcos2))
+                                    {
+                                    $barcomar = $consul_barcos_loop['nombre_barco'];
+                                    echo $barcomar;
+                                    }
+
+                                     ?>
+                                    </div>
+                                </div>
+                                    <?php
+                                    }
+                                   ?>
+                                <div class="row ml-1">
+                                     
+
+                                    <?php
+                                    if ($nombrebarco2)
+                                        {?>
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm"><label>NOMBRE EMBARCACION</label><?php echo" :   ".$nombrebarco2 ?></div>
+                                            <div class="col-sm"><label>TIPO EMBARCACION</label><?php echo" :   ".$tipobarco2 ?></div>
+                                            <div class="col-sm"><label>PUERTO EMBARCACION</label><?php echo" :   ".$puertobarco2 ?></div>
+
+                                </div>
+                                    <div class="row ml-1">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm"><label>COMENTARIO EMBARCACION</label><?php echo" :   ".$comentbarco2 ?></div>
+                                
+                                        <?php } ?>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-2 col-sm-5 col-lg-8"></div>
+                                    <div class="col col-sm-2 col-lg-1">
+                                        <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
+                                        <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
+                                        <button type="submit" name="editar" class="btn btn-warning">EDITAR</button>
+                                    </div>
+                                    <div class="col col-sm-2 col-lg-1">
+                                        <button type="submit" name="eliminar" class="btn btn-danger">ELIMINAR</button>
+                                    </div>
+                                    <div class="col col-sm-2 col-lg-1">
+                                         <?php if ($rolmar || $rolcli)
+                                                    {?>                 
+                                                        <button class="btn btn-primary" name="continuar_btn" type="submit">Continuar</button>
+                                              <?php } ?>
+                                        
+                                    </div>                                   
+                                </div>
+                            </form>
+                                <br />
+                        
+
+		                    </div>
+                        </div>
+                        
+                    </div>
+
                             <br>
                             <br>
                             <br>

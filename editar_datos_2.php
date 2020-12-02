@@ -6,8 +6,6 @@ include 'conexbd.php';
 <br />
 <br />
 
-editar
-
 <?php
 if(isset($_POST['editar']))
 {
