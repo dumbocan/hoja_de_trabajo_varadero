@@ -13,22 +13,38 @@
 <body>
  
 <!--poner pagina color negro en css y letra blanca-->
-   <style>
-      body {background-color: black;}
-      color :{white};
-   </style>
-   <div class="text-white">
-
-       <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <a class="navbar-brand" href="inicio3.php">Inicio</a>
-  <ul class="navbar-nav">
-    <!--<li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>-->
-  </ul>
+    <style>
+       body {background-color: black;}
+       color :{white};
+    </style>
+    <div class="text-white">
+<!--BARRA DE NAVEGACION-->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  
+ <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+         <li class="nav-item active">
+       <a class="navbar-brand" href="inicio3.php">Inicio</a> 
+      </li>
+    </ul>
+  <form class="form-inline my-2 my-lg-0" method="POST" action="resultados_busqueda.php" >
+      <input name="Nombre" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-success" type="submit" name="buscar_btn" aria-pressed="true">BUSCAR</button>
+ <a href="ingresar_datos.php" class="btn btn-primary" role="button" aria-pressed="true">NUEVO</a>
+    </form>
+              
+                 
+                     
+                   
+                          
+                        
+                     
+        </div>         
+           
+     
+  
+  
+   
 </nav>
 
 

@@ -12,8 +12,8 @@ if(isset($_POST['editar']))
 $id_datos = ($_POST['id']);
 $rol =($_POST['rol']);
 
-$sql_datos="SELECT * FROM datos_personales D    INNER JOIN clientes C ON c.id_datos = D.id_datos 
-                                                INNER JOIN barcos B ON b.id_cliente = C.id_cliente
+$sql_datos="SELECT * FROM datos_personales D    LEFT JOIN clientes C ON c.id_datos = D.id_datos 
+                                                LEFT JOIN barcos B ON b.id_cliente = C.id_cliente
                                                 WHERE D.id_datos = $id_datos";
 $res_sql_datos = mysqli_query($conexion, $sql_datos);
 while ($consulta = mysqli_fetch_array($res_sql_datos))

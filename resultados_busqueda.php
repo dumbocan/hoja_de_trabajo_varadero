@@ -80,7 +80,7 @@ if (isset($_POST['buscar_btn'])) {
             }
         }
 
-        /*busco en base de datos de barcos  */
+        /*busco en base de datos de barcos si hay algun barco con el nombre introducido */
 
         $sqldatosbarco2 = "SELECT * FROM datos_personales D   left JOIN clientes C    ON c.id_datos = D.id_datos
 								                                         left JOIN barcos B    ON b.id_cliente = C.id_cliente
@@ -97,73 +97,72 @@ if (isset($_POST['buscar_btn'])) {
             $comentbarco2 = $consultadatosbarcocli['comentario_barco'];
             $idmarinero = $consultadatosbarcocli['id_marinero'];
             ?> 
+<!--presento en pantalla los resultados de la busqueda-->
+            <br>
+            <div class="container-fluid">
+                <div class="bg-secondary text-white">
+                    <div class="border border-white">
+                        <style type="text/css">
+                            .transformacion2 { text-transform: uppercase;} 
+                        </style>     
+                        <center><h2><u class="transformacion2"><?php echo $nombre ?></u></h2></center>
+                        <br /> 
+<!--creo un formulario que me envia los datos a la pagina editar datos_2.php-->
+                        <form action="editar_datos_2.php" method="post">   
+			                <div class="row ">
+                                <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$id;?></div>
+				                <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
+				                <div class="col-sm-4"> <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
+				                <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
+			                </div>
+                            <div class="row ml-1">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-3"><label>TELEFONO 2</label><?php echo" :   ".$telefono2 ?></div>				 
+				                <div class="col-sm-3"><label>EMAIL</label><?php echo" :   ".$email ?></div>
+				                <div class="col-sm-3"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
+                                <div class="col-sm-1"><label>ROL</label><?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?> </div>                                    
+                            </div>
 
-                <br>
-                    
-
-                    <div class="container-fluid">
-                        
-                        <div class="bg-secondary text-white">
-                            <div class="border border-white">
-                            <style type="text/css">
-                                .transformacion2 { text-transform: uppercase;} 
-                            </style>     
-                            <center><h2><u class="transformacion2"><?php echo $nombre ?></u></h2></center>
-                            <br />       
-                            <form action="editar_datos_2.php" method="post">   
-			                    <div class="row ">
-                                    <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$id;?></div>
-				                    <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
-				                    <div class="col-sm-4"> <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
-				                    <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
-			                    </div>
-                                <div class="row ml-1">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-3"><label>TELEFONO 2</label><?php echo" :   ".$telefono2 ?></div>				 
-				                    <div class="col-sm-3"><label>EMAIL</label><?php echo" :   ".$email ?></div>
-				                    <div class="col-sm-3"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
-                                    <div class="col-sm-1"><label>ROL</label><?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?> </div>                                    
-                                </div>
-                                <!--
-                                <div class="row ml-1">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm"><label>COMENTARIO DATOS PERSONALES</label><?php echo" :   ".$comentariodatos ?></div>
-                                </div>
-                                -->
+                            <!--
+                            <div class="row ml-1">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm"><label>COMENTARIO DATOS PERSONALES</label><?php echo" :   ".$comentariodatos ?></div>
+                            </div>
+                            -->
                                 
-                                <div class="row ml-1">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli1 ?></div>
-                                </div>
-                                <?php
-                                    if ($rolmar)
-                                        { ?>
-                                        <div class="row ml-1">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm"><label>BARCO/S A CARGO</label>
-                                    <br />
-                                    <?php
-                                    
-                                    $consul_barcos = "SELECT * FROM marineros M INNER JOIN datos_personales D ON d.id_datos = M.id_marinero
+                            <div class="row ml-1">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli1 ?></div>
+                            </div>
+                            <?php
+/*Si el nombre encontrado es un marinero se muestran los barcos que tiene a cargo*/
+                            if ($rolmar)
+                                { ?>
+                                    <div class="row ml-1">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm"><label>BARCO/S A CARGO</label>
+                                        <br />
+                                        <?php
+ /*busqueda de barcos a cargo*/
+                                        $consul_barcos = "SELECT * FROM marineros M INNER JOIN datos_personales D ON d.id_datos = M.id_marinero
 							                                                    INNER JOIN barcos B on B.id_marinero = m.id_marinero 
                                                                                 WHERE m.id_datos = '$id'";
-                                    $consul_barcos2 = mysqli_query($conexion,$consul_barcos);
-                                    while ($consul_barcos_loop= mysqli_fetch_array($consul_barcos2))
-                                    {
-                                    $barcomar = $consul_barcos_loop['nombre_barco'];
-                                    echo $barcomar;
-                                    }
+                                        $consul_barcos2 = mysqli_query($conexion,$consul_barcos);
+                                        while ($consul_barcos_loop= mysqli_fetch_array($consul_barcos2))
+                                            {
+                                            $barcomar = $consul_barcos_loop['nombre_barco'];
+                                            echo $barcomar;
+                                            }
 
-                                     ?>
+                                        ?>
+                                        </div>
                                     </div>
-                                </div>
                                     <?php
-                                    }
-                                   ?>
+                                }
+                                ?>
                                 <div class="row ml-1">
-                                     
-
                                     <?php
+/*si el cliente tiene barco se muestra la informacion del barco si no no sale*/
                                     if ($nombrebarco2)
                                         {?>
                                             <div class="col-sm-1"></div>
@@ -181,6 +180,7 @@ if (isset($_POST['buscar_btn'])) {
                                 <div class="row">
                                     <div class="col-2 col-sm-5 col-lg-8"></div>
                                     <div class="col col-sm-2 col-lg-1">
+<!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
                                         <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
                                         <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
                                         <button type="submit" name="editar" class="btn btn-warning">EDITAR</button>
@@ -189,25 +189,21 @@ if (isset($_POST['buscar_btn'])) {
                                         <button type="submit" name="eliminar" class="btn btn-danger">ELIMINAR</button>
                                     </div>
                                     <div class="col col-sm-2 col-lg-1">
-                                         <?php if ($rolmar || $rolcli)
-                                                    {?>                 
-                                                        <button class="btn btn-primary" name="continuar_btn" type="submit">Continuar</button>
-                                              <?php } ?>
-                                        
+                                        <button type="submit" name="continuar_btn" class="btn btn-primary">CONTINUAR</button>
                                     </div>                                   
                                 </div>
-                            </form>
-                                <br />
+                        </form>
+                        <br />
                         
 
-		                    </div>
-                        </div>
-                        
-                    </div>
+		            </div>
+                </div>       
+            </div>
 
+    <!--                        <br>
                             <br>
                             <br>
-                            <br>
+
                             <div class="container-fluid">
                                <div class="bg-secondary text-white">
                                     <form action="editar_datos.php" method="POST">                                
@@ -249,7 +245,7 @@ if (isset($_POST['buscar_btn'])) {
                                                         </div>     
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2">
+                                              <div class="col-sm-2">
                                                     <div class="form-group row"> 
                                                         <label for="telefono2" class="col-sm-4 col-form-label">TELEFONO:</label>
                                                         <div class="col-sm-8">
@@ -298,7 +294,7 @@ if (isset($_POST['buscar_btn'])) {
                                                     </div>
                                                 </div>
                                         </div>
-                                        -->
+                                       
 
                                         <?php
                                         if($rolmar)
@@ -406,6 +402,7 @@ if (isset($_POST['buscar_btn'])) {
                                         </div> 
                                 </div>
                             </div>
+-->  
                             <?php
                             ++$existe;
         }
