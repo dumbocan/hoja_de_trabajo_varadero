@@ -53,6 +53,10 @@ if(isset($_POST['ingresar_btn']))
 		$email=$_POST['email'];
 		$comentario=$_POST['comentario'];
 		$documento=$_POST['documento'];
+        echo "$nombre<br>";
+        echo "$direccion<br>";
+        echo "$telefono1<br>";
+        echo "$documento<br>";
 
 			if ($nombre =="" || $documento =="")
 				{

@@ -29,7 +29,8 @@
     </ul>
   <form class="form-inline my-2 my-lg-0" method="POST" action="resultados_busqueda.php" >
       <input name="Nombre" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-success" type="submit" name="buscar_btn" aria-pressed="true">BUSCAR</button>
+      <button class="btn btn-success" type="submit" name="buscar_nombre_btn" aria-pressed="true">BUSCAR NOMBRE</button>
+      <button class="btn btn-info" type="submit" name="buscar_barco_btn" aria-pressed="true">BUSCAR BARCO</button>
  <a href="ingresar_datos.php" class="btn btn-primary" role="button" aria-pressed="true">NUEVO</a>
     </form>
               

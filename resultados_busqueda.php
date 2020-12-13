@@ -1,10 +1,12 @@
 <?php
 include 'includes/header.php';
 include 'conexbd.php';
-if (isset($_POST['buscar_btn'])) {
+if (isset($_POST['buscar_nombre_btn'])) 
+{
     $nombre1 = ($_POST['Nombre']);
     $existe = 0;
-    if ($nombre1 == '') {
+    if ($nombre1 == '') 
+    {
         ?>
 <!--no deja insertar en blanco te da un error-->
                 <br>
@@ -408,7 +410,72 @@ if (isset($_POST['buscar_btn'])) {
         }
         endwhile;
         
-        
+            if ($existe == 0) 
+            {
+            ?> 
+<!--avisa que el resultado no se encuentra en la base d datos  -->
+                    <br>
+                    <br>
+                    <br>            
+                    <br>                        
+                    <div class="container-md">
+                           <div class="container mt-5">
+                              <div class="alert alert-primary" role="alert">
+                                 <div class="row">
+
+                                    <div class="col md-2">
+                                       <h1> Lo siento<br> El documento no existe. </h1>
+                                    </div>
+                                    <div class="col md-10">
+                                       <div class="col text-right">
+                                          <a href="inicio3.php" class="btn btn-success" name="regresar_btn">Regresar</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                    <?php
+            }
+        }
+    }
+    
+/*si el boton es buscar barco busco en base de datos de barco y muestro en pantaya*/
+else 
+    {
+    $nombre1=($_POST['Nombre']);
+     $existe = 0;
+
+      if ($nombre1 == '') 
+      {
+        ?>
+<!--no deja insertar en blanco te da un error-->
+                <br>
+                <br>
+                <br>            
+                <br>  
+                <div class="container-md">
+                    <div class="container mt-5">
+                        <div class="alert alert-primary" role="alert">
+                            <div class="row">
+                                <div class="col md-2">
+                                <h1>Insertar texto.</h1>
+                                </div>
+                                <div class="col md-10">
+                                    <div class="col text-right">
+                                        <a href="inicio3.php" class="btn btn-success" name="regresar_btn">Regresar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--busca resultados en base de datos-->          
+                <?php
+      } 
+      else
+      {
+
          /*busca en la base de datos de barcos si el nombre introducido se parece a un nombre de barco*/ ?>
             <br>
             <br>
@@ -427,7 +494,7 @@ if (isset($_POST['buscar_btn'])) {
                                    WHERE id_barco = $idbarco";
             $sqldatosbarcoresul = mysqli_query($conexion, $sqldatosbarco);
             while ($consultadatosbarco = mysqli_fetch_assoc($sqldatosbarcoresul)) {
-                $iddatos = $consultadatosbarco['id_datos'];
+                $id = $consultadatosbarco['id_datos'];
                 $nombrebarco = $consultadatosbarco['nombre_barco'];
                 $nombrecliente = $consultadatosbarco['nombre'];
                 $tipobarco = $consultadatosbarco['tipo_barco'];
@@ -441,6 +508,7 @@ if (isset($_POST['buscar_btn'])) {
                 $documento = $consultadatosbarco['documento'];
                 $comentariocli= $consultadatosbarco['comentario_cliente'];
                 $comentariodatos= $consultadatosbarco['comentario_datos'];
+                include ("includes/sql_cliente_marinero_tecnico.php");
                 ?> 
                 <br>
                     
@@ -456,7 +524,7 @@ if (isset($_POST['buscar_btn'])) {
                             <br />       
                             <form action="editar_datos_2.php" method="post">   
 			                    <div class="row ">
-                                    <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$iddatos;?></div>
+                                    <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$id;?></div>
 				                    <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombrecliente; ?></div>
 				                    <div class="col-sm-4"> <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
 				                    <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
@@ -492,7 +560,7 @@ if (isset($_POST['buscar_btn'])) {
                                 <div class="row">
                                     <div class="col-2 col-sm-5 col-lg-8"></div>
                                     <div class="col col-sm-2 col-lg-1">
-                                        <input id="id" name="id" type="hidden" value="<?php echo $iddatos; ?>">
+                                        <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
                                         <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
                                         <button type="submit" name="editar" class="btn btn-warning">EDITAR</button>
                                     </div>
@@ -516,7 +584,7 @@ if (isset($_POST['buscar_btn'])) {
                 ++$existe;
             }
         }
-
+      
 
         if ($existe == 0) {
             ?> 
@@ -545,6 +613,6 @@ if (isset($_POST['buscar_btn'])) {
                     <?php
         }
     }
-}
+    }
 include 'includes/footer.php';
 ?>
