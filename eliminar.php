@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<!-- codigo para poder tener caracteres en español y acentos -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<html lang="es">                                                                  <!-- bootstrap -->
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-
-	<title>eliminar</title>
-</head>
-<body>
-	<!--poner pagina color negro en css y letra blanca-->
-   <style>
-      body {background-color: black;}
-      color :{white};
-   </style>
-<div class=" text-white">
-
-  <?php
+<?php include("includes/header.php"); 
+ 
 //include_once 'conexbd.php';
 $id=$_POST['id'];
 $nombre=$_POST['nombre']; 
@@ -32,38 +12,22 @@ $nombre=$_POST['nombre'];
     		<div class="row"> 
     			<h1 class="text-uppercase" class="align-items-center"  >ESTAS SEGURO DE QUERER ELIMINAR A <?php echo $nombre ; ?></h1> 
 			</div>
-			<br>
-			<br>
+			<br>			
 			<div class="row">
 				<div class="col-sm-9"></div>
 					<form method="POST" action="verificar_borrado.php">
 					<div class="col-sm-1">
-					<button  class="btn btn-primary"  type="submit" name="borrar" id="borrar">BORRAR</button>
-				</div>
-					<input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
+						<input name="id" type="hidden" value="<?php echo $id; ?>">
+              			<button class="btn btn-success" name="borrar" type="submit">BORRAR</button>
+					</div>		
 					</form>
-				<div class="col-sm-1">
+					<div class="col-sm-1">
 						<!-- boton regreso atras -->
-					<a href="javascript: history.go(-1)" class="btn btn-danger"  name="cancelar" id="cancelar">CANCELAR</a>
-				</div>
-			</div>  
-		</div>
-	</div>		
+						<a href="javascript: history.go(-1)" class="btn btn-danger"  name="cancelar" id="cancelar">CANCELAR</a>
+					</div>					
+				</div>  
+			</div>
+		</div>		
+	</div>
 </div>
-<?php 
-
-/*if (isset($_POST['borrar']))
-{
-	$_DELETE_SQL = "DELETE FROM datos_personales WHERE id_datos ='$id'";
-							mysqli_query($conexion,$_DELETE_SQL);
-
-		if ($id<>"0"){
-			header("location: http://localhost/programacion/varadero/verificar_borrado.php");
-		}
-} */
-   		
-  ?>  			
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script> 
-</body>
-</html>
+<?php include("includes/footer.php"); ?>

@@ -1,37 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-      <!-- codigo para poder tener caracteres en español y acentos -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<html lang="es">                                                                  <!-- bootstrap -->
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/bootstrap.min.css">
 
-   <title>Editar datos</title>
-   </head>
-<body>
 <?php
-include 'conexbd.php'; 
+include 'includes/header.php';
+include 'conexbd.php';
 
-// inicio base de datos y les doy datos a los campos de valor ateriormente buscado// 
-$existe =0;
-$id= $_POST['id'];
-$nombre= $_POST['nombre'];
-$direccion= $_POST['direccion'];
-$telefono1= $_POST['telefono1'];
-$telefono2= $_POST['telefono2'];
-$email= $_POST['email'];
-$documento=$_POST['documento'];
-$comentario=$_POST['comentario'];
+// inicio base de datos y les doy datos a los campos de valor ateriormente buscado//
+$existe = 0;
+$id = $_POST['id'];
+$nombre = $_POST['nombre'];
+$direccion = $_POST['direccion'];
+$telefono1 = $_POST['telefono1'];
+$telefono2 = $_POST['telefono2'];
+$email = $_POST['email'];
+$documento = $_POST['documento'];
+$comentario = $_POST['comentario'];
 
-               
+$rol = $_POST['rol'];
+
+$rolcli = 0;
+$rolmar = 0;
+$roltec = 0;
+
+if (strpos($rol, 'Cliente') !== false) {
+    $rolcli = 'checked';
+}
+
+if (strpos($rol, 'Marinero') !== false) {
+    $rolmar = 'checked';
+}
+
+if (strpos($rol, 'Tecnico') !== false) {
+    $roltec = 'checked';
+}
+
+echo '<br>';
 ?>       
-  <!--poner pagina color negro en css-->
-<style>
-  body {background-color: black;}
-</style>
 
 <!-- composicion del formulario para editar los datos del monbre buscado-->
 
@@ -46,7 +48,7 @@ $comentario=$_POST['comentario'];
 
           <form method="POST" action="confirmar_edicion.php"> 
             <div class="form-group">               
-                <input type="int" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id ?>"
+              <input type="int" style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo $id; ?>"
                      name="id"> 
               <label>Nombre</label>               
                 <input type="text" value="<?php echo $nombre; ?>" class="form-control" name="nombre" id="nombre" >  
@@ -62,18 +64,52 @@ $comentario=$_POST['comentario'];
                 <input type="text" value="<?php echo $comentario; ?>" class="form-control" name="comentario" id="comentario">  
               <label>Documento</label>
                 <input type="text" value="<?php echo $documento; ?>" class="form-control" name="documento" id="documento">
-              <div class="container mt-5">                  
-                <button type="submit" class="btn btn-primary" name="insertar_btn">Cambiar</button>
-                <a href="inicio3.php" class="btn btn-success" name="buscar_btn">Inicio</a>    
-              </div>  
+               
+               <!--pintar y dar valor a celdas de check box.  --> 
+
+              <div class="container mt-4">
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <div class="form-group form-check">               
+                      <input type="checkbox" class="form-check-input" id="cliente" name="cliente" value="1" <?php echo $rolcli; ?>>
+                      <label class="form-check-label" for="cliente-check">Cliente</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="marinero" name="marinero" value="1" <?php echo $rolmar; ?>>
+                      <label class="form-check-label" for="marinero-check">Marinero</label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="tecnico"  name="tecnico" value="1" <?php echo $roltec; ?>>
+                      <label class="form-check-label" for="tecnico-check">Tecnico</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container mt-5">
+                <div class="form-group">  
+                  <div class="row">
+                    <div class="col-md-7">  </div>  
+                      <div class="col-md-3">  
+                        <button type="submit" class="btn btn-success" name="insertar_btn">Insertar</button>
+                      </div>
+                      <!--
+                      <div class="col-md-2">
+                        <a href="inicio3.php" class="btn btn-primary" name="buscar_btn">Buscar</a>   
+                      </div>
+                      -->
+                    </div>
+                </form> 
+                  </div>  
+                </div>
+              </div>
             </div>
-          </form> 
-        </div>  
+        </div>
       </div>
     </div>
   </div>
- 
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script> 
-</body>
-</html>
+</div>
+<?php include 'includes/footer.php'; ?>
