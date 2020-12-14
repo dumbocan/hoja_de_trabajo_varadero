@@ -51,7 +51,7 @@ if(isset($_POST['ingresar_btn']))
 		$telefono1=$_POST['telefono1'];
 		$telefono2=$_POST['telefono2'];
 		$email=$_POST['email'];
-		$comentario=$_POST['comentario'];
+		
 		$documento=$_POST['documento'];
         echo "$nombre<br>";
         echo "$direccion<br>";
@@ -80,8 +80,8 @@ if(isset($_POST['ingresar_btn']))
 			else 
 				{
 					$sqldatos="INSERT INTO datos_personales 
-					(nombre,direccion,telefono1,telefono2,email1,comentario,documento) VALUES
-					('$nombre','$direccion','$telefono1','$telefono2','$email','$comentario','$documento')";
+					(nombre,direccion,telefono1,telefono2,email1,documento) VALUES
+					('$nombre','$direccion','$telefono1','$telefono2','$email','$documento')";
 					mysqli_query($conexion,$sqldatos);		
   					$last_id = mysqli_insert_id($conexion);
  				 	echo "New record created successfully. Last inserted ID is: " . $last_id;
@@ -127,7 +127,7 @@ if(isset($_POST['ingresar_btn']))
     		
  			 <div class="col-sm-2"> 
 
- 			 	<button class="btn btn-primary" name="buscar_btn" type="submit">OK</button>
+ 			 	<button class="btn btn-primary" name="buscar_nombre_btn" type="submit">OK</button>
     			</form>
     		 </div>
     		
