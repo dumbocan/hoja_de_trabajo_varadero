@@ -51,6 +51,11 @@ if(isset($_POST['ingresar_btn']))
 		$telefono1=$_POST['telefono1'];
 		$telefono2=$_POST['telefono2'];
 		$email=$_POST['email'];
+        $nombrebarco=$_POST['nombrebarco'];
+        $tipobarco=$_POST['tipobarco'];
+        $puertobarco=$_POST['puertobarco'];
+        $comentbarco=$_POST['comentbarco'];
+
 		
 		$documento=$_POST['documento'];
         echo "$nombre<br>";
@@ -82,8 +87,12 @@ if(isset($_POST['ingresar_btn']))
 					$sqldatos="INSERT INTO datos_personales 
 					(nombre,direccion,telefono1,telefono2,email1,documento) VALUES
 					('$nombre','$direccion','$telefono1','$telefono2','$email','$documento')";
-					mysqli_query($conexion,$sqldatos);		
+					mysqli_query($conexion,$sqldatos); 
   					$last_id = mysqli_insert_id($conexion);
+                    
+                    $sqldatos_barco="insert into barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco) values ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco')";
+                    mysqli_query($conexion,$sqldatos_barco);
+
  				 	echo "New record created successfully. Last inserted ID is: " . $last_id;
  				 	if ($cliente =='1') 
  				 	{

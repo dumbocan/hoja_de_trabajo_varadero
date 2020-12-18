@@ -53,8 +53,25 @@ if (isset($_POST['buscar_nombre_btn']))
         $telefono2 = $consulta['telefono2'];
         $email = $consulta['email1'];
         $documento = $consulta['documento'];
-        $comentariodatos1 = $consulta['comentario_datos'];
         
+        $sqldatos_barco="SELECT * FROM datos_personales D   left JOIN clientes C    ON c.id_datos = D.id_datos
+								                                         left JOIN barcos B    ON b.id_cliente = C.id_cliente
+                                                                         WHERE nombre = '$nombre'";
+        $sqldatosbarcoresul2 = mysqli_query($conexion, $sqldatos_barco);
+       
+        while ($consultadatosbarcocli = mysqli_fetch_array($sqldatosbarcoresul2)) {
+            $nombrebarco2 = $consultadatosbarcocli['nombre_barco'];
+            $nombrecliente2 = $consultadatosbarcocli['nombre'];
+            $tipobarco2 = $consultadatosbarcocli['tipo_barco'];
+            $puertobarco2 = $consultadatosbarcocli['puerto_barco'];
+            $comentbarco2 = $consultadatosbarcocli['comentario_barco'];
+            $puertobarco2 = $consultadatosbarcocli['puerto_barco']; 
+            $comentariocli1 = $consultadatosbarcocli['comentario_cliente'];
+            $comentbarco2 = $consultadatosbarcocli['comentario_barco'];
+            $idmarinero = $consultadatosbarcocli['id_marinero'];
+
+        }
+
         ++$existe;
         //buscar datos en tablas clientes, marineros, tecnicos //
         $sqlcli = "SELECT * FROM clientes where id_datos = '$id'";
