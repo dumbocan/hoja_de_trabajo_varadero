@@ -1,6 +1,8 @@
-<?php
-include("includes/header.php"); ?>
 
+<?php
+include 'includes/header.php';
+include 'conexbd.php';
+ ?>
 <br />
 <br />
 <br />
@@ -87,6 +89,37 @@ include("includes/header.php"); ?>
                         <input type="text"  class="form-control" name="comentbarco" id="comentbarco">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-3 mr-4 ml-4">
+                        <label>MARINERO</label>
+                					<select class="custom-select" name="nombre_marinero" id="nombre_marinero">
+
+                						<option value=" ">Ninguno</option>
+										<option value="1">Nuevo marinero</option>
+                						<?php
+							
+
+                						$buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
+                						$buscanommar=mysqli_query($conexion,$buscamar);
+                			
+                						while ($datos=mysqli_fetch_array($buscanommar)):
+                						$nombre_marinero=$datos['nombre'];
+                                        $id_marinero=$datos['id_marinero'];
+
+                			 			?>
+                			    
+                						<option value="<?php echo $id_marinero;?>"><?php echo $nombre_marinero;?></option>
+
+                						<?php 
+                			 
+                						endwhile;
+                		
+                						?>
+                					</select>
+
+                    </div>
+                </div>
+                <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombre_marinero; ?>">
                 <div class="container mt-2">
                    <div class="form-group">  
                         <div class="row">
