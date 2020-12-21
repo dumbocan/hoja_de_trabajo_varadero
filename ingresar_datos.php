@@ -94,8 +94,8 @@ include 'conexbd.php';
                         <label>MARINERO</label>
                 					<select class="custom-select" name="nombre_marinero" id="nombre_marinero">
 
-                						<option value=" ">Ninguno</option>
-										<option value="1">Nuevo marinero</option>
+                						<option value="0">Ninguno</option>
+										
                 						<?php
 							
 
@@ -119,7 +119,7 @@ include 'conexbd.php';
 
                     </div>
                 </div>
-                <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombre_marinero; ?>">
+               
                 <div class="container mt-2">
                    <div class="form-group">  
                         <div class="row">

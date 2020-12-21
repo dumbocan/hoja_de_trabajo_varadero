@@ -1,11 +1,12 @@
 <?php 
 include("includes/header.php");
 include 'conexbd.php';
+$nombre_marinero=' ';
+
  ?>
 <br />
 <br />
 <br />
-
 <?php
 if(isset($_POST['editar']))
     {
@@ -15,8 +16,8 @@ if(isset($_POST['editar']))
 
 
     $sql_datos="SELECT * FROM datos_personales D    LEFT JOIN clientes C ON c.id_datos = D.id_datos 
-                                                LEFT JOIN barcos B ON b.id_cliente = C.id_cliente
-                                                WHERE D.id_datos = $id_datos";
+                                                    LEFT JOIN barcos B ON b.id_cliente = C.id_cliente
+                                                    WHERE D.id_datos = $id_datos";
     $res_sql_datos = mysqli_query($conexion, $sql_datos);
     while ($consulta = mysqli_fetch_array($res_sql_datos))
         {
@@ -26,7 +27,6 @@ if(isset($_POST['editar']))
         $telefono2 = $consulta['telefono2'];
         $email = $consulta['email1'];
         $documento = $consulta['documento'];
-
         $nombrebarco =  $consulta['nombre_barco'];
         $tipobarco =  $consulta['tipo_barco'];
         $comentbarco =  $consulta['comentario_barco'];
@@ -45,12 +45,11 @@ if(isset($_POST['editar']))
                         <div class="row">
                             <div class="col-sm-4 ml-5">
                                 
-                                    <input  style= "color: white" readonly class="form-control-plaintext" id="id" value="<?php echo "Nro: ".$id_datos; ?>"
-                                    name="id"> 
+                             Nro:<input  style= "color: white" readonly class="form-control-plaintext" id="id" name="id" value="<?php echo $id_datos; ?>"> 
                             </div>
-                                <div class="col-md-3">
+                                <!--<div class="col-md-3">
                                     <input type="text" value="<?php echo $nombrebarco ?>" class="form-control" name="nombrebarco" id="nombrebaco">               
-                                </div>
+                                </div>-->
                         </div>      
 			            <div class="row ">
                         <div class="col-md-1"></div>    
@@ -165,13 +164,14 @@ if(isset($_POST['editar']))
                                         <input type="text" value="<?php echo $comentbarco; ?>" class="form-control" name="comentbarco" id="comentbarco">
                                     </div>
                                 </div>
+<!--hacer un desplegable con el nombre de los marineros -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-3">
                                             <label>MARINERO</label>
                 					        <select class="custom-select" name="nombre_marinero" id="nombre_marinero" >
-                                                <option ><?php echo $nombre_marinero?></option>
+                                                
                 						        <option value=" ">Ninguno</option>
 										        <option value="1">Nuevo marinero</option>
                 						        <?php
@@ -215,7 +215,39 @@ if(isset($_POST['editar']))
 else 
     {
         if(isset($_POST['eliminar']));
-        echo "eliminar";
+        
+$id=$_POST['id'];
+$nombre=$_POST['nombre']; 
+
+// Recupero las variables id y nombre enviadas por post para mostrar en pantaya//  
+?>
+<div class="row m-0 justify-content-center align-items-center vh-100">
+	<div class="col-sm-10">
+		<div class="alert alert-primary" role="alert"> 
+    		<div class="row"> 
+    			<h1 class="text-uppercase" class="align-items-center"  >ESTAS SEGURO DE QUERER ELIMINAR A <?php echo $nombre ; ?></h1> 
+			</div>
+			<br>			
+			<div class="row">
+				<div class="col-sm-9"></div>
+					<form method="POST" action="verificar_borrado.php">
+					<div class="col-sm-1">
+						<input name="id" type="hidden" value="<?php echo $id; ?>">
+              			<button class="btn btn-success" name="borrar" type="submit">BORRAR</button>
+					</div>		
+					</form>
+					<div class="col-sm-1">
+						<!-- boton regreso atras -->
+						<a href="javascript: history.go(-1)" class="btn btn-danger"  name="cancelar" id="cancelar">CANCELAR</a>
+					</div>					
+				</div>  
+			</div>
+		</div>		
+	</div>
+</div>
+
+<?php
+
     }
 ?>
 

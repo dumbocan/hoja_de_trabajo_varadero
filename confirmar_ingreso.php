@@ -11,28 +11,13 @@ $marinero='0';
 $tecnico='0';
 
 if(isset($_POST['cliente']) && $_POST['cliente'] == '1')
-	{$cliente='1';
-     echo"<br>";
-        echo"<br>";
-        echo"<br>";
-echo $cliente.'cliente';
-}
+	{$cliente='1';}
 		
 if(isset($_POST['marinero']) && $_POST['marinero'] == '1')
-	{$marinero='1';
-     echo"<br>";
-        echo"<br>";
-        echo"<br>";
-echo $marinero.'marinero';
-    }
+	{$marinero='1';}
 								
 if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
-	{$tecnico='1';
-    echo"<br>";
-        echo"<br>";
-        echo"<br>";
-echo $tecnico.'tecnico';
-}		
+	{$tecnico='1';}		
 
 // si ninguna de las casillas check se han clicado te da error//
 			if ($cliente + $marinero + $tecnico == '0' )
@@ -72,12 +57,8 @@ if(isset($_POST['ingresar_btn']))
         $comentbarco=$_POST['comentbarco'];	
 		$documento=$_POST['documento'];
         $nomarinero=$_POST['nombre_marinero'];
-       
-        echo"<br>";
-        echo"<br>";
-        echo"<br>";
-        echo $marinero.'marinero';
-        echo $tecnico.'tecnico';
+// si no se insertan nombre o documento da fallo//
+          
 			if ($nombre =="" || $documento =="")
 				{
 					?>
@@ -109,18 +90,23 @@ if(isset($_POST['ingresar_btn']))
                    
  				 	if ($cliente =='1') 
  				 	{
- 				 		$sqlcli="INSERT INTO clientes
+                        $sqlcli="INSERT INTO clientes
  				 		(id_datos)
  				 		VALUES
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqlcli);
  				 	    $last_id_clientes = mysqli_insert_id($conexion);
+
+                        if ($nomarinero =='0')
+                            {
+                            $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
+                                             VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes')";
+                            mysqli_query($conexion,$sqldatos_barco);
+                            }
+ 				 		
                         $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente,id_marinero)
                                              VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes','$nomarinero')";
                         mysqli_query($conexion,$sqldatos_barco);
-                    
- 				 	echo "New record created successfully. Last inserted ID is: " . $last_id;
-
                     }
  				 	if ($marinero =='1')
  				 	{
@@ -129,11 +115,7 @@ if(isset($_POST['ingresar_btn']))
  				 		VALUES
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqlmar);
-                           echo"<br>";
-                           echo"<br>";
-                           echo"<br>";
-                           echo "New record created successfully marinero. Last inserted ID is: " . $last_id;
- 				 	}
+                        }
  				 	
  				 	if ($tecnico =='1')
  				 	{

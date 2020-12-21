@@ -45,37 +45,98 @@ else
 // Si aprieto el boton insertar, meto todos los campos en la base de datos //
     $chcli=0;
     $existe =0;
-    $id= $_POST['id'];
+    $id=$_POST['id'];
     $nombre= $_POST['nombre'];
     $direccion= $_POST['direccion'];
     $telefono1= $_POST['telefono1'];
     $telefono2= $_POST['telefono2'];
     $email= $_POST['email'];
     $documento=$_POST['documento'];
-    $comentario=$_POST['comentario'];
+    $comentariocli=$_POST['comentariocli'];
+    $nombrebarco=$_POST['nombrebarco'];
+    $tipobarco=$_POST['tipobarco'];
+    $puertobarco=$_POST['puertobarco'];
+    $comentbarco=$_POST['comentbarco'];
+    $nombre_marinero=$_POST['nombre_marinero'];
+
 
     if(isset($_POST['insertar_btn']))
       {
         $update ="UPDATE datos_personales SET  
-        nombre='$nombre',
-        direccion='$direccion',
-        telefono1='$telefono1',
-        telefono2='$telefono2',
-        email1='$email',
-        comentario='$comentario',
-        documento='$documento'
-        WHERE 
-        id_datos='$id'";
+                  nombre='$nombre',
+                  direccion='$direccion',
+                  telefono1='$telefono1',
+                  telefono2='$telefono2',
+                  email1='$email',       
+                  documento='$documento'
+                  WHERE 
+                  id_datos='$id'";
         mysqli_query($conexion,$update);
+        
+
+        $update_cli ="UPDATE clientes SET  
+                      comentario_cliente ='$comentariocli'        
+                      WHERE 
+                      id_datos='$id'";
+        mysqli_query($conexion,$update_cli);
+
+        $buscar_barco="SELECT * FROM clientes C INNER JOIN barcos B ON C.id_cliente = B.id_cliente WHERE C.id_datos = '$id'";
+        $sql_barco=mysqli_query($conexion,$buscar_barco);
+        while ($sql_buscar=mysqli_fetch_array($sql_barco))
+        {
+        $id_barco=$sql_buscar['id_barco'];
+        }
+        if ($nombre_marinero === " ")
+            {
+            $update_barco = "UPDATE barcos SET
+                        nombre_barco='$nombrebarco',
+                        tipo_barco='$tipobarco',
+                        puerto_barco='$puertobarco',
+                        comentario_barco='$comentbarco'
+                        WHERE
+                        id_barco ='$id_barco'";
+            mysqli_query($conexion,$update_barco);
+            }
+            else
+            {
+            $update_barco = "UPDATE barcos SET
+                        nombre_barco='$nombrebarco',
+                        tipo_barco='$tipobarco',
+                        puerto_barco='$puertobarco',
+                        comentario_barco='$comentbarco',
+                        id_marinero='$nombre_marinero'
+                        WHERE
+                        id_barco ='$id_barco'";
+        mysqli_query($conexion,$update_barco);
+             }           
+
+echo ".</br>";
+echo ".</br>";
+echo ".</br>";
+echo    "$id.</br>";
+echo    "$nombre.</br>";
+echo    "$direccion.</br>";
+echo    "$telefono1.</br>";
+echo    "$telefono2.</br>";
+echo    "$email.</br>";
+echo    "$documento.</br>";
+
+echo    "$comentariocli.</br>";
+
+echo    "$nombrebarco.</br>";
+echo    "$tipobarco.</br>";
+echo    "$puertobarco.</br>";
+echo    "$comentbarco.</br>";
+echo    "$nombre_marinero.</br>";
+echo    "$id_barco</br>";
+
+// se comprueba que los checkbox que se han introducido existen ya o no para no duplicar valores en la base de datos y si se desmarcaron los checkbox borrar el dato de la base de datos.//
 $idcli=0;
 $idmar=0;
 $idtec=0;
-
-// se comprueba que los checkbox que se han introducido existen ya o no para no duplicar valores en la base de datos y si se desmarcaron los checkbox borrar el dato de la base de datos.//
-
-$contcli = 0;
-$contmar = 0;
-$conttec = 0;
+$contcli=0;
+$contmar=0;
+$conttec=0;
  
         if ($cliente == 1) //si checkbox esta clicada comprueba si ya existe por id
           {
