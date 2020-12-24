@@ -85,31 +85,22 @@ else
         while ($sql_buscar=mysqli_fetch_array($sql_barco))
         {
         $id_barco=$sql_buscar['id_barco'];
-        }
-        if ($nombre_marinero === " ")
-            {
+        
+        
+           
+            
             $update_barco = "UPDATE barcos SET
-                        nombre_barco='$nombrebarco',
-                        tipo_barco='$tipobarco',
-                        puerto_barco='$puertobarco',
-                        comentario_barco='$comentbarco'
-                        WHERE
-                        id_barco ='$id_barco'";
-            mysqli_query($conexion,$update_barco);
-            }
-            else
-            {
-            $update_barco = "UPDATE barcos SET
-                        nombre_barco='$nombrebarco',
-                        tipo_barco='$tipobarco',
-                        puerto_barco='$puertobarco',
-                        comentario_barco='$comentbarco',
-                        id_marinero='$nombre_marinero'
+                        nombre_barco ='$nombrebarco',
+                        tipo_barco ='$tipobarco',
+                        puerto_barco ='$puertobarco',
+                        comentario_barco ='$comentbarco'
+                        
                         WHERE
                         id_barco ='$id_barco'";
         mysqli_query($conexion,$update_barco);
-             }           
+          }              
 
+echo ".</br>";
 echo ".</br>";
 echo ".</br>";
 echo ".</br>";
@@ -128,7 +119,7 @@ echo    "$tipobarco.</br>";
 echo    "$puertobarco.</br>";
 echo    "$comentbarco.</br>";
 echo    "$nombre_marinero.</br>";
-echo    "$id_barco</br>";
+
 
 // se comprueba que los checkbox que se han introducido existen ya o no para no duplicar valores en la base de datos y si se desmarcaron los checkbox borrar el dato de la base de datos.//
 $idcli=0;
@@ -161,7 +152,7 @@ $conttec=0;
             $sqlbocli="DELETE FROM clientes WHERE id_datos ='$id'";
             mysqli_query($conexion,$sqlbocli);     
           }    
-
+//si checkbox esta clicada comprueba si ya existe por id
         if ($marinero ==1)
           {
             $sqlmar="SELECT * FROM marineros where id_datos = '$id'";
@@ -171,6 +162,7 @@ $conttec=0;
                 $idmar = $marinero ['id_datos'];
                 $contmar ++;
               } 
+// si no existe inserta dato id
                 if ($contmar == 0)
                   {
                     $sqlmar2 = "INSERT INTO marineros 
@@ -180,11 +172,13 @@ $conttec=0;
                     mysqli_query($conexion,$sqlmar2);    
                   }              
           }
+ // si checkbox no esta clicada borro id de base de datos
         else
           {
             $sqlbomar="DELETE FROM marineros WHERE id_datos ='$id'";
             mysqli_query($conexion,$sqlbomar);     
           }  
+//si checkbox esta clicada comprueba si ya existe por id
 
         if ($tecnico ==1)
           {
@@ -195,6 +189,8 @@ $conttec=0;
                 $idtec = $tecnico ['id_datos'];
                 $conttec ++;
               }             
+// si no existe inserta dato id
+
                 if ($conttec == 0)
                   {
                     $sqltec2 = "INSERT INTO tecnicos 
@@ -204,6 +200,7 @@ $conttec=0;
                     mysqli_query($conexion,$sqltec2);    
                   }              
           }
+ // si checkbox no esta clicada borro id de base de datos
         else 
           {
           $sqlbotec="DELETE FROM tecnicos WHERE id_datos ='$id'";

@@ -57,6 +57,9 @@ if(isset($_POST['ingresar_btn']))
         $comentbarco=$_POST['comentbarco'];	
 		$documento=$_POST['documento'];
         $nomarinero=$_POST['nombre_marinero'];
+
+       
+        
 // si no se insertan nombre o documento da fallo//
           
 			if ($nombre =="" || $documento =="")
@@ -97,16 +100,15 @@ if(isset($_POST['ingresar_btn']))
  				 		mysqli_query($conexion,$sqlcli);
  				 	    $last_id_clientes = mysqli_insert_id($conexion);
 
-                        if ($nomarinero =='0')
-                            {
-                            $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
-                                             VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes')";
-                            mysqli_query($conexion,$sqldatos_barco);
-                            }
+                        
+                           
+                            
  				 		
-                        $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente,id_marinero)
-                                             VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes','$nomarinero')";
+                         
+                        $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
+                                             VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes')";
                         mysqli_query($conexion,$sqldatos_barco);
+                           
                     }
  				 	if ($marinero =='1')
  				 	{
@@ -125,9 +127,8 @@ if(isset($_POST['ingresar_btn']))
  				 		($last_id)";
  				 		mysqli_query($conexion,$sqltec);
  				 	}
-				
-	
-
+		
+      
 //presento una caja con texto centrado y boton ok con hiperlink a inicio//
 
 ?>
@@ -137,16 +138,12 @@ if(isset($_POST['ingresar_btn']))
 			<div class="col-sm-10">
     			<h1 class="text-uppercase" class="align-items-center"  >CONTACTO INGRESADO EN LA BASE DE DATOS</h1>
     		</div>
-    		<form action="resultados_busqueda.php" method="POST">
-    			<input id="Nombre" name="Nombre"  type="hidden" value="<?php echo $nombre; ?>">
-    		
- 			 <div class="col-sm-2"> 
-
- 			 	<button class="btn btn-primary" name="buscar_nombre_btn" type="submit">OK</button>
-    			</form>
-    		 </div>
-    		
-    	
+            <div class="col-sm-2">
+    		    <form action="resultados_busqueda.php" method="POST">
+    			    <input id="Nombre" name="Nombre"  type="hidden" value="<?php echo $nombre; ?>">
+    		        <button class="btn btn-primary" name="buscar_nombre_btn" type="submit">OK</button>
+                </form>
+    		</div>
     	</div>
 	</div>
 </div>

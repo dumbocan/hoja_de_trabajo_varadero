@@ -71,8 +71,9 @@ if (isset($_POST['buscar_nombre_btn']))
                 $comentbarco = $consultadatosbarcocli['comentario_barco'];
                 $idmarinero = $consultadatosbarcocli['id_marinero'];
                 }
+                echo $idmarinero;
 //busco el monbre del marinero buscando su id//
-            $sql_marinero="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
+            $sql_marinero="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos WHERE D.id_datos ='$idmarinero'";
             $buscanommar=mysqli_query($conexion,$sql_marinero);
             while ($datos=mysqli_fetch_array($buscanommar))
                 {
@@ -175,6 +176,7 @@ if (isset($_POST['buscar_nombre_btn']))
                                         {
                                         $nombre_marinero=$datos['nombre'];
                                         }
+                                        echo $nombre_marinero;
 /*si el cliente tiene barco se muestra la informacion del barco si no no sale*/
                                     if ($nombrebarco) 
                                     {?>

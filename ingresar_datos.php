@@ -96,24 +96,17 @@ include 'conexbd.php';
 
                 						<option value="0">Ninguno</option>
 										
+										
                 						<?php
-							
-
                 						$buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
-                						$buscanommar=mysqli_query($conexion,$buscamar);
-                			
+                						$buscanommar=mysqli_query($conexion,$buscamar);                			
                 						while ($datos=mysqli_fetch_array($buscanommar)):
                 						$nombre_marinero=$datos['nombre'];
                                         $id_marinero=$datos['id_marinero'];
-
                 			 			?>
-                			    
                 						<option value="<?php echo $id_marinero;?>"><?php echo $nombre_marinero;?></option>
-
                 						<?php 
-                			 
                 						endwhile;
-                		
                 						?>
                 					</select>
 
