@@ -55,8 +55,8 @@ if (isset($_POST['buscar_nombre_btn']))
             $documento = $consulta['documento'];
         
             $sqldatos_barco="SELECT * FROM datos_personales D   left JOIN clientes C    ON c.id_datos = D.id_datos
-								                                         left JOIN barcos B    ON b.id_cliente = C.id_cliente
-                                                                         WHERE nombre = '$nombre'";
+								                                left JOIN barcos B      ON b.id_cliente = C.id_cliente
+                                                                WHERE nombre = '$nombre'";
             $sqldatosbarcoresul2 = mysqli_query($conexion, $sqldatos_barco);
        
             while ($consultadatosbarcocli = mysqli_fetch_array($sqldatosbarcoresul2)) 
@@ -71,7 +71,7 @@ if (isset($_POST['buscar_nombre_btn']))
                 $comentbarco = $consultadatosbarcocli['comentario_barco'];
                 $idmarinero = $consultadatosbarcocli['id_marinero'];
                 }
-                echo $idmarinero;
+                
 //busco el monbre del marinero buscando su id//
             $sql_marinero="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos WHERE D.id_datos ='$idmarinero'";
             $buscanommar=mysqli_query($conexion,$sql_marinero);
@@ -80,7 +80,7 @@ if (isset($_POST['buscar_nombre_btn']))
                 $nombre_marinero=$datos['nombre'];
                 }
             ++$existe;
-            //buscar datos en tablas clientes, marineros, tecnicos //
+//buscar datos en tablas clientes, marineros, tecnicos //
             $sqlcli = "SELECT * FROM clientes where id_datos = '$id'";
             $resulcli = mysqli_query($conexion, $sqlcli);
             while ($cliente = mysqli_fetch_array($resulcli)) 
@@ -139,10 +139,7 @@ if (isset($_POST['buscar_nombre_btn']))
 				                <div class="col-sm-3"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
                                 <div class="col-sm-1"><label>ROL</label><?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?> </div>                                    
                             </div>         
-                            <div class="row ml-1">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli ?></div>
-                            </div>
+                            
                             <?php
 /*Si el nombre encontrado es un marinero se muestran los barcos que tiene a cargo*/
                             if ($rolmar)
@@ -164,22 +161,28 @@ if (isset($_POST['buscar_nombre_btn']))
                                             }
                                         ?>
                                     </div>
-                                    </div>
-                                    <?php
+                                </div>
+                                <?php
                                 }
       
                                     
  //busco el monbre del marinero buscando su id//
-                                    $sql_marinero="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos WHERE M.id_marinero = '$idmarinero'";
-                                    $buscanommar=mysqli_query($conexion,$sql_marinero);
-                                    while ($datos=mysqli_fetch_array($buscanommar))
-                                        {
-                                        $nombre_marinero=$datos['nombre'];
-                                        }
-                                        echo $nombre_marinero;
+                                $nombremarinero ="";
+                                $sql_marinero="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos WHERE M.id_marinero = '$idmarinero'";
+                                $buscanommar=mysqli_query($conexion,$sql_marinero);
+                                while ($datos=mysqli_fetch_array($buscanommar))
+                                    {
+                                    $nombremarinero=$datos['nombre'];
+                                    }
+                          
 /*si el cliente tiene barco se muestra la informacion del barco si no no sale*/
-                                    if ($nombrebarco) 
+                                if ($nombrebarco) 
                                     {?>
+                                    <div class="row ml-1">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli ?></div>
+                                    </div>
+
                                     <div class="row ml-1">  
                                         <div class="col-sm-1"></div>
                                         <div class="col-sm"><label>NOMBRE EMBARCACION</label><?php echo" :   ".$nombrebarco ?></div>
@@ -192,9 +195,15 @@ if (isset($_POST['buscar_nombre_btn']))
                                     </div>
                                     <div class="row ml-1">
                                         <div class="col-sm-1"></div>
-                                        <div class="col-sm"><label>MARINERO</label><?php echo" :   ".$nombre_marinero ?></div>
+                                        <div class="col-sm"><label>MARINERO</label><?php echo" :   ".$nombremarinero ?></div>
                                     </div>
-                                  <?php } ?>
+                                  <?php
+                                    }
+                                    if ($nombremarinero == " ")
+                                        {
+                                        $nombremarinero = null;
+                                        }
+                                    ?>
 
                                 <div class="row">
                                     <div class="col-2 col-sm-5 col-lg-8"></div>
@@ -202,7 +211,7 @@ if (isset($_POST['buscar_nombre_btn']))
 <!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
                                         <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
                                         <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
-                                        <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombre_marinero; ?>">
+                                        <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombremarinero; ?>">
                                         <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
                                         <button type="submit" name="editar" class="btn btn-warning">EDITAR</button>
                                     </div>

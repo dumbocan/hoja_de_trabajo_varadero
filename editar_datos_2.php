@@ -1,20 +1,18 @@
 <?php 
 include("includes/header.php");
 include 'conexbd.php';
-$nombre_marinero=' ';
+
 
  ?>
-<br />
-<br />
-<br />
+
 <?php
+/* si se oprime el boton editar en resultado de busquedas se realiza lo siguiente*/
+
 if(isset($_POST['editar']))
     {
     $id_datos = ($_POST['id']);
     $rol =($_POST['rol']);
     $nombre_marinero=($_POST['nombre_marinero']);
-
-
     $sql_datos="SELECT * FROM datos_personales D    LEFT JOIN clientes C ON c.id_datos = D.id_datos 
                                                     LEFT JOIN barcos B ON b.id_cliente = C.id_cliente
                                                     WHERE D.id_datos = $id_datos";
@@ -32,16 +30,18 @@ if(isset($_POST['editar']))
         $comentbarco =  $consulta['comentario_barco'];
         $puertobarco =  $consulta['puerto_barco']; 
         $comentariocli =  $consulta['comentario_cliente'];
-
+        $id_marinero=$consulta['id_marinero'];
         ?>
 
         <!-- composicion del formulario para editar los datos del monbre buscado-->
-
+<br />
+<br />
+<br />
         <div class="container-fluid">
             <form method="POST" action="confirmar_edicion.php"> 
                 <div class="bg-secondary text-white">
                     <div class="border border-white">
-                        <br />
+                     
                         <div class="row">
                             <div class="col-sm-4 ml-5">
                                 
@@ -170,29 +170,32 @@ if(isset($_POST['editar']))
                                         <div class="col-md-1"></div>
                                         <div class="col-md-3">
                                             <label>MARINERO</label>
-                					        <select class="custom-select" name="nombre_marinero" id="nombre_marinero" >
-                                                
-                						        <option value="0">Ninguno</option>
-										       
-										        
-                						        <?php
-							
+                                             <?php 
+                                           if ($nombre_marinero == null)
+                                                        {
+                                                         $nombre_marinero = "ninguno";
+                                                         $id_marinero = 0;
+                                                        } 
+                                           
+                                             ?>
 
-                						        $buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
+                					        <select class="custom-select" name="nombre_marinero" id="nombre_marinero" >
+
+                                                <option selected value="<?php echo $id_marinero;?>"><?php echo $nombre_marinero;?></option>
+                						       
+                                                <option value="0">Ninguno</option>
+                                                <?php 
+					                            $buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
                 						        $buscanommar=mysqli_query($conexion,$buscamar);
-                			
                 						        while ($datos=mysqli_fetch_array($buscanommar)):
                 						            $nombre_marinero=$datos['nombre'];
                                                     $id_marinero=$datos['id_marinero'];
-
-                			 			            ?>
-                			    
-                						            <option value="<?php echo $id_marinero;?>"><?php echo $nombre_marinero;?></option>
-
-                						            <?php 
-                			 
+                			 			        ?>
+                                                <
+										        <option value="<?php echo $id_marinero;?>"><?php echo $nombre_marinero;?></option>
+                						        <?php 
                 						        endwhile;
-                		
+                                               
                 						        ?>
                 					        </select>
                                         </div>
@@ -202,7 +205,7 @@ if(isset($_POST['editar']))
                                         </div>
                                     </div>
                                 </div>
-                                <br />
+
                     </div>
                 </div>
             </form>
@@ -214,41 +217,42 @@ if(isset($_POST['editar']))
 
     }
 else 
+/* si el boton pulsado es el de eliminar te pregunta antes de pasar a borrar el registro*/
     {
-        if(isset($_POST['eliminar']));
-        
-$id=$_POST['id'];
-$nombre=$_POST['nombre']; 
+        if(isset($_POST['eliminar']))
+            {      
+            $id=$_POST['id'];
+            $nombre=$_POST['nombre']; 
 
 // Recupero las variables id y nombre enviadas por post para mostrar en pantaya//  
 ?>
-<div class="row m-0 justify-content-center align-items-center vh-100">
-	<div class="col-sm-10">
-		<div class="alert alert-primary" role="alert"> 
-    		<div class="row"> 
-    			<h1 class="text-uppercase" class="align-items-center"  >ESTAS SEGURO DE QUERER ELIMINAR A <?php echo $nombre ; ?></h1> 
-			</div>
-			<br>			
-			<div class="row">
-				<div class="col-sm-9"></div>
-					<form method="POST" action="verificar_borrado.php">
-					<div class="col-sm-1">
-						<input name="id" type="hidden" value="<?php echo $id; ?>">
-              			<button class="btn btn-success" name="borrar" type="submit">BORRAR</button>
-					</div>		
-					</form>
-					<div class="col-sm-1">
+            <div class="row m-0 justify-content-center align-items-center vh-100">
+	            <div class="col-sm-10">
+		            <div class="alert alert-primary" role="alert"> 
+    		            <div class="row"> 
+    			            <h1 class="text-uppercase align-items-center"  >ESTAS SEGURO DE QUERER ELIMINAR A <?php echo $nombre ; ?></h1> 
+			            </div>
+			            <br>			
+			            <div class="row">
+				            <div class="col-sm-9"></div>
+					            <form method="POST" action="verificar_borrado.php">
+            					<div class="col-sm-1">
+			            			<input name="id" type="hidden" value="<?php echo $id; ?>">
+              			            <button class="btn btn-success" name="borrar" type="submit">BORRAR</button>
+            					</div>		
+			            		</form>
+					            <div class="col-sm-1">
 						<!-- boton regreso atras -->
-						<a href="javascript: history.go(-1)" class="btn btn-danger"  name="cancelar" id="cancelar">CANCELAR</a>
-					</div>					
-				</div>  
-			</div>
-		</div>		
-	</div>
-</div>
+						            <a href="javascript: history.go(-1)" class="btn btn-danger"  name="cancelar" id="cancelar">CANCELAR</a>
+		            			</div>					
+			            </div>  
+		            </div>
+	            </div>		
+	        </div>
+            
 
 <?php
-
+}
     }
 ?>
 

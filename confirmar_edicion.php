@@ -42,7 +42,7 @@ if ($cliente + $marinero + $tecnico == '0' )
 else 
   {
 
-// Si aprieto el boton insertar, meto todos los campos en la base de datos //
+// recojo los valores del formulario para insertar nuevos datos //
     $chcli=0;
     $existe =0;
     $id=$_POST['id'];
@@ -60,6 +60,8 @@ else
     $nombre_marinero=$_POST['nombre_marinero'];
 
 
+
+// si doy al boton insertar_btn procedo a cambiar datos//
     if(isset($_POST['insertar_btn']))
       {
         $update ="UPDATE datos_personales SET  
@@ -79,57 +81,38 @@ else
                       WHERE 
                       id_datos='$id'";
         mysqli_query($conexion,$update_cli);
-
+//busco el id_barco del barco que pertenece al cliente
         $buscar_barco="SELECT * FROM clientes C INNER JOIN barcos B ON C.id_cliente = B.id_cliente WHERE C.id_datos = '$id'";
         $sql_barco=mysqli_query($conexion,$buscar_barco);
         while ($sql_buscar=mysqli_fetch_array($sql_barco))
         {
         $id_barco=$sql_buscar['id_barco'];
         
-        
-           
-            
+//al no ingresar marinero o quitar marinero a un barco lo borra de la base de datos//
+            if ($nombre_marinero == "0")
+                {$nombre_marinero = 'NULL';}               
             $update_barco = "UPDATE barcos SET
                         nombre_barco ='$nombrebarco',
                         tipo_barco ='$tipobarco',
                         puerto_barco ='$puertobarco',
-                        comentario_barco ='$comentbarco'
-                        
+                        comentario_barco ='$comentbarco',                      
+                        id_marinero = $nombre_marinero  
                         WHERE
                         id_barco ='$id_barco'";
-        mysqli_query($conexion,$update_barco);
-          }              
+            mysqli_query($conexion,$update_barco);
+            print_r($update_barco);
+        }              
 
-echo ".</br>";
-echo ".</br>";
-echo ".</br>";
-echo ".</br>";
-echo    "$id.</br>";
-echo    "$nombre.</br>";
-echo    "$direccion.</br>";
-echo    "$telefono1.</br>";
-echo    "$telefono2.</br>";
-echo    "$email.</br>";
-echo    "$documento.</br>";
-
-echo    "$comentariocli.</br>";
-
-echo    "$nombrebarco.</br>";
-echo    "$tipobarco.</br>";
-echo    "$puertobarco.</br>";
-echo    "$comentbarco.</br>";
-echo    "$nombre_marinero.</br>";
-
-
-// se comprueba que los checkbox que se han introducido existen ya o no para no duplicar valores en la base de datos y si se desmarcaron los checkbox borrar el dato de la base de datos.//
+/* se comprueba que los checkbox que se han introducido existen ya o no para no duplicar valores en la base de datos
+ y si se desmarcaron los checkbox borrar el dato de la base de datos.*/
 $idcli=0;
 $idmar=0;
 $idtec=0;
 $contcli=0;
 $contmar=0;
 $conttec=0;
- 
-        if ($cliente == 1) //si checkbox esta clicada comprueba si ya existe por id
+ //si checkbox esta clicada comprueba si ya existe por id
+        if ($cliente == 1) 
           {
             $sqlcli="SELECT * FROM clientes where id_datos = '$id'";
             $resulcli = mysqli_query($conexion,$sqlcli); 
@@ -137,8 +120,9 @@ $conttec=0;
               {
                 $idcli = $cliente ['id_datos'];
                 $contcli ++;
-               }               
-                if ($contcli == 0) // si no existe inserta dato id
+               } 
+// si no existe inserta dato id              
+                if ($contcli == 0) 
                   {
                     $sqlcli2 = "INSERT INTO clientes 
                     (id_datos)
@@ -147,7 +131,8 @@ $conttec=0;
                     mysqli_query($conexion,$sqlcli2);    
                   }
           }
-        else  // si checkbox no esta clicada borro id de base de datos
+// si checkbox no esta clicada borro id de base de datos
+        else  
           {
             $sqlbocli="DELETE FROM clientes WHERE id_datos ='$id'";
             mysqli_query($conexion,$sqlbocli);     
@@ -209,22 +194,23 @@ $conttec=0;
       }
            
 ?>
-
+<!--pinta una advewrtencia que se ha actualizado con exito-->
 <div class="row m-0 justify-content-center align-items-center vh-100">
 	<div class="alert alert-primary" role="alert">
 		<div class="row">
-			<div class="col-sm-10">
-    			<h1 class="text-uppercase" class="align-items-center"  >EL CONTACTO SE HA ACTUALIZADO CON EXITO</h1>
+			<div class="col-sm-11">
+    			<h1 class="text-uppercase" class="align-items-center"  >CONTACTO SE HA ACTUALIZADO CON EXITO</h1>
     		</div>
-    			 
- 			 <div class="col-sm-2"> 
-    			<a href="inicio3.php" type="button" class="btn btn-primary" >OK</a> 
+            <div class="col-sm-1">
+    		    <form action="resultados_busqueda.php" method="POST">
+    			    <input id="Nombre" name="Nombre"  type="hidden" value="<?php echo $nombre; ?>">
+    		        <button class="btn btn-primary" name="buscar_nombre_btn" type="submit">OK</button>
+                </form>
     		</div>
-    		
-    	
     	</div>
 	</div>
 </div>
+
 <?php 
 }
 include("includes/footer.php"); 

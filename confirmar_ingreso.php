@@ -57,7 +57,7 @@ if(isset($_POST['ingresar_btn']))
         $comentbarco=$_POST['comentbarco'];	
 		$documento=$_POST['documento'];
         $nomarinero=$_POST['nombre_marinero'];
-
+        $comentariocli=$_POST['comentariocli'];
        
         
 // si no se insertan nombre o documento da fallo//
@@ -94,21 +94,28 @@ if(isset($_POST['ingresar_btn']))
  				 	if ($cliente =='1') 
  				 	{
                         $sqlcli="INSERT INTO clientes
- 				 		(id_datos)
+ 				 		(id_datos,comentario_cliente)
  				 		VALUES
- 				 		($last_id)";
+ 				 		('$last_id','$comentariocli')";
  				 		mysqli_query($conexion,$sqlcli);
  				 	    $last_id_clientes = mysqli_insert_id($conexion);
-
-                        
-                           
-                            
- 				 		
-                         
+                        if ($nomarinero <> "0")
+                        {
+                        $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente,id_marinero)
+                                             VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes','$nomarinero')";
+                        mysqli_query($conexion,$sqldatos_barco); 
+                        }  
+                        else
+                        {
                         $sqldatos_barco="INSERT INTO barcos (nombre_barco,tipo_barco,puerto_barco,comentario_barco,id_cliente)
                                              VALUES ('$nombrebarco','$tipobarco','$puertobarco','$comentbarco','$last_id_clientes')";
                         mysqli_query($conexion,$sqldatos_barco);
-                           
+                        $nomarinero = '0';
+                        }   
+ 				 		
+                         
+                        
+                          
                     }
  				 	if ($marinero =='1')
  				 	{
