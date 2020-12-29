@@ -1,5 +1,6 @@
 
   <?php
+  /*
 include("includes/header.php");
 include ("conexbd.php");
 
@@ -12,7 +13,7 @@ include ("includes/sql_datos_personales.php");
 
 ?>
 
-<!-- Enseño en pantaya el resumen de los datos del cliente-->
+<!-- Enseño en pantaya el resumen de los datos del cliente
 <br />
 
 
@@ -54,11 +55,11 @@ include ("includes/sql_datos_personales.php");
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->
 <?php
 
 
-/* compruevo en base de datos si el cliente tiene un barco a su nombre*/
+/* compruevo en base de datos si el cliente tiene un barco a su nombre
 $count = 0;
 $sqlbarcos=("SELECT * FROM barcos WHERE id_cliente = '$idcli'");
 $resulbarcos = mysqli_query($conexion,$sqlbarcos);
@@ -76,7 +77,7 @@ while ($consulbarcos=mysqli_fetch_array($resulbarcos) )
 }
 if ($rolmar) 
 	{
-		/* compruevo si el nombre introducido es de un marinero lista los barcos asociados a el */
+		/* compruevo si el nombre introducido es de un marinero lista los barcos asociados a el 
 		
 
 		$sql_mar="SELECT * FROM barcos where id_marinero = '$idmar'";
@@ -95,7 +96,7 @@ if ($rolmar)
 				</div>
 			</div>
 		</div>
-<?php
+<?php /*
 		
 
 		}
@@ -105,8 +106,8 @@ else {
 
 if ($count== '0')
 	{
-	/* si no tiene ningun barco en base de datos, se muestra un formulario para introducir el barco y el marinero si lo tuviese*/
-		?>
+	 si no tiene ningun barco en base de datos, se muestra un formulario para introducir el barco y el marinero si lo tuviese*/
+		?><!--
 
 		<div class="container mt-3">
 			<div class="row">
@@ -127,9 +128,9 @@ if ($count== '0')
                 					<select class="custom-select" name="nombremarinero">
 
                 						<option value=" ">Ninguno</option>
-										<option value="1">Nuevo marinero</option>
+										<option value="1">Nuevo marinero</option>-->
                 						<?php
-							
+							/*
 
                 						$buscamar="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos";
                 						$buscanommar=mysqli_query($conexion,$buscamar);
@@ -159,8 +160,8 @@ if ($count== '0')
 			</div>
 
 		</div>
-  	
-    	<?php
+
+      		<?php
     }    
 	else
     	{
@@ -174,7 +175,7 @@ if ($count== '0')
 
 
 		?>
-
+<!--
 <div class="container-fluid">
 	<div class="bg-secondary">
 		<div class="border border-white">

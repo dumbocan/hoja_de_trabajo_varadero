@@ -8,10 +8,10 @@ include("includes/header.php");
 <br />
 <br />
 <br />
-   <div class="container">  
+   <div class="container text-white">  
       <div class="row">
          <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-6 ">
                <h2> Busqueda datos </h2>
                <form method="POST" action="resultados_busqueda.php">
                   <div class="form-group">

@@ -125,7 +125,7 @@ if (isset($_POST['buscar_nombre_btn']))
                         <center><h2><u class="transformacion2"><?php echo $nombre ?></u></h2></center>
                         <br /> 
 <!--creo un formulario que me envia los datos a la pagina editar datos_2.php-->
-                        <form action="editar_datos_2.php" method="post">   
+                        <form  action="editar_datos_2.php" method="post">   
 			                <div class="row ">
                                 <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$id;?></div>
 				                <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
@@ -204,24 +204,26 @@ if (isset($_POST['buscar_nombre_btn']))
                                         $nombremarinero = null;
                                         }
                                     ?>
-
-                                <div class="row">
-                                    <div class="col-2 col-sm-5 col-lg-8"></div>
+                            <div class="container-fluid">
+                                <div class="row" >
+                                    
+                                    <div class="col-1 col-sm-5 col-lg-8"></div>
                                     <div class="col col-sm-2 col-lg-1">
 <!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
                                         <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
                                         <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
                                         <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombremarinero; ?>">
                                         <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
-                                        <button type="submit" name="editar" class="btn btn-warning">EDITAR</button>
+                                        <button type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
                                     </div>
                                     <div class="col col-sm-2 col-lg-1">
-                                        <button type="submit" name="eliminar" class="btn btn-danger">ELIMINAR</button>
+                                        <button type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
                                     </div>
                                     <div class="col col-sm-2 col-lg-1">
-                                        <button type="submit" name="continuar_btn" class="btn btn-primary">CONTINUAR</button>
+                                        <button type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>
                                     </div>                                   
                                 </div>
+                            </div>
                         </form>
                         <br />
                         

@@ -27,7 +27,7 @@ if(isset($_POST['tecnico']) && $_POST['tecnico'] == '1')
 						<div class="alert alert-primary" role="alert">
 							<div class="row">
 								<div class="col-sm-10">
-    								<h1 class="text-uppercase" class="align-items-center"  >añadir cliente o tecnico porfavor</h1>
+    								<h1 class="text-uppercase align-items-center"  >añadir cliente o tecnico porfavor</h1>
     							</div>
     			 
  			 					<div class="col-sm-2"> 
@@ -69,7 +69,7 @@ if(isset($_POST['ingresar_btn']))
 						<div class="alert alert-primary" role="alert">
 							<div class="row">
 								<div class="col-sm-10">
-    								<h1 class="text-uppercase" class="align-items-center"  >Al menos el nombre y documento son obligatorios</h1>
+    								<h1 class="text-uppercase align-items-center"  >Al menos el nombre y documento son obligatorios</h1>
     							</div>
     			 
  			 					<div class="col-sm-2"> 
@@ -143,7 +143,7 @@ if(isset($_POST['ingresar_btn']))
 	<div class="alert alert-primary" role="alert">
 		<div class="row">
 			<div class="col-sm-10">
-    			<h1 class="text-uppercase" class="align-items-center"  >CONTACTO INGRESADO EN LA BASE DE DATOS</h1>
+    			<h1 class="text-uppercase align-items-center"  >CONTACTO INGRESADO EN LA BASE DE DATOS</h1>
     		</div>
             <div class="col-sm-2">
     		    <form action="resultados_busqueda.php" method="POST">

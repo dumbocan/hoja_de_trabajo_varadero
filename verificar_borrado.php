@@ -14,7 +14,7 @@ include ("conexbd.php");
           <h1>CONTACTO ELIMINADO DE LA BASE DE DATOS</h1>
         
         <div class="col ms-3"></div>
-        <a href="inicio3.php" class="btn btn-success my-1 my-sm-2"  type="button" class="btn btn-primary" >OK</a> 
+        <a href="inicio3.php" class="btn btn-success my-1 my-sm-2"  type="button">OK</a> 
         
       </div>
   </div>
