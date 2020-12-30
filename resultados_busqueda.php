@@ -126,8 +126,8 @@ if (isset($_POST['buscar_nombre_btn']))
                         <br /> 
 <!--creo un formulario que me envia los datos a la pagina editar datos_2.php-->
                         <form  action="editar_datos_2.php" method="post">   
-			                <div class="row ">
-                                <div class="col-sm-1 ml-2"><label>Nro:</label><?php echo ": ".$id;?></div>
+			                <div class="row ml-2">
+                                <div class="col-sm-1 "><label>Nro:</label><?php echo ": ".$id;?></div>
 				                <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
 				                <div class="col-sm-4"> <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
 				                <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
@@ -136,7 +136,7 @@ if (isset($_POST['buscar_nombre_btn']))
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-3"><label>TELEFONO 2</label><?php echo" :   ".$telefono2 ?></div>				 
 				                <div class="col-sm-3"><label>EMAIL</label><?php echo" :   ".$email ?></div>
-				                <div class="col-sm-3"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
+				                <div class="col-sm-2"><label>DOCUMENTO</label> <?php echo" :   ". $documento ?></div>
                                 <div class="col-sm-1"><label>ROL</label><?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?> </div>                                    
                             </div>         
                             
@@ -178,16 +178,17 @@ if (isset($_POST['buscar_nombre_btn']))
 /*si el cliente tiene barco se muestra la informacion del barco si no no sale*/
                                 if ($nombrebarco) 
                                     {?>
-                                    <div class="row ml-1">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli ?></div>
-                                    </div>
+                                    
 
                                     <div class="row ml-1">  
                                         <div class="col-sm-1"></div>
                                         <div class="col-sm"><label>NOMBRE EMBARCACION</label><?php echo" :   ".$nombrebarco ?></div>
                                         <div class="col-sm"><label>TIPO EMBARCACION</label><?php echo" :   ".$tipobarco ?></div>
                                         <div class="col-sm"><label>PUERTO EMBARCACION</label><?php echo" :   ".$puertobarco ?></div>
+                                    </div>
+                                    <div class="row ml-1">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm"><label>COMENTARIO CLIENTE</label><?php echo" :   ".$comentariocli ?></div>
                                     </div>
                                     <div class="row ml-1">
                                         <div class="col-sm-1"></div>
@@ -204,30 +205,24 @@ if (isset($_POST['buscar_nombre_btn']))
                                         $nombremarinero = null;
                                         }
                                     ?>
-                            <div class="container-fluid">
-                                <div class="row" >
-                                    
-                                    <div class="col-1 col-sm-5 col-lg-8"></div>
-                                    <div class="col col-sm-2 col-lg-1">
-<!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
-                                        <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
-                                        <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
-                                        <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombremarinero; ?>">
-                                        <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
-                                        <button type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
+                            <!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
+                                    <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
+                                    <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
+                                    <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombremarinero; ?>">
+                                    <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
+                                    <div class="container">
+                                        <div class="row">    
+                                            <div class="col"></div>
+                                            <div class="col "></div>
+                                                <div class="col-auto">
+                                                    <button style="margin: 10px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
+                                                    <button style="margin: 10px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
+                                                    <button style="margin: 10px" type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>   
+                                                </div>
+                                        </div>
                                     </div>
-                                    <div class="col col-sm-2 col-lg-1">
-                                        <button type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
-                                    </div>
-                                    <div class="col col-sm-2 col-lg-1">
-                                        <button type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>
-                                    </div>                                   
-                                </div>
-                            </div>
                         </form>
                         <br />
-                        
-
 		            </div>
                 </div>       
             </div>
