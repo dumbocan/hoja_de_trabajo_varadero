@@ -11,11 +11,19 @@
     <title>VARADERO</title>
 </head>
 <body>
- 
+ background-size: cover;
 <!--poner pagina color negro en css y letra blanca-->
 <style>
-   body {background-color: black;}
-  
+   body 
+   {
+       background-color: black;
+       background-image: url("http://localhost/varadero/images/imagen-base-de-datos.jpg");
+       background-position: center center;
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-size: cover;
+
+   }
 </style>
 
 <!--BARRA DE NAVEGACION-->
@@ -39,13 +47,13 @@
 <br />
 <br />
 <br />-->
-  <nav class="navbar navbar-light bg-light bg-dark navbar-dark fixed-top">
+  <nav class="navbar navbar-light bg-light bg-dark navbar-dark ">
   <div class="container-fluid">
     <a class="navbar-brand" href="inicio3.php">Inicio</a>
     <form class="form-inline my-2 my-lg-0" method="POST" action="resultados_busqueda.php">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Nombre">
-      <button class="btn btn-outline-success" type="submit" name="buscar_nombre_btn">BUSCAR NOMBRE</button>
-      <button class="btn btn-outline-info" type="submit" name="buscar_barco_btn">BUSCAR BARCO</button>
+      <button class="btn btn-outline-success" type="submit" name="buscar_nombre_btn"> NOMBRE</button>
+      <button class="btn btn-outline-info" type="submit" name="buscar_barco_btn"> BARCO</button>
       <a href="ingresar_datos.php" class="btn btn-outline-primary" role="button" >NUEVO</a>
     </form>
   </div>

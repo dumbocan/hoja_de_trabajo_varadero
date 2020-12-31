@@ -215,9 +215,9 @@ if (isset($_POST['buscar_nombre_btn']))
                                             <div class="col"></div>
                                             <div class="col "></div>
                                                 <div class="col-auto">
-                                                    <button style="margin: 10px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
-                                                    <button style="margin: 10px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
-                                                    <button style="margin: 10px" type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>   
+                                                    <button style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
+                                                    <button style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
+                                                    <button style="margin: 3px" type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>   
                                                 </div>
                                         </div>
                                     </div>
