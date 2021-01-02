@@ -11,13 +11,13 @@
     <title>VARADERO</title>
 </head>
 <body>
- background-size: cover;
+ 
 <!--poner pagina color negro en css y letra blanca-->
 <style>
    body 
    {
        background-color: black;
-       background-image: url("http://localhost/varadero/images/imagen-base-de-datos.jpg");
+       background-image: url("images/imagen-base-de-datos.jpg");
        background-position: center center;
        background-repeat: no-repeat;
        background-attachment: fixed;
