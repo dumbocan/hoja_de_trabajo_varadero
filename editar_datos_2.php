@@ -216,15 +216,13 @@ if(isset($_POST['editar']))
         }
 
     }
-else 
-/* si el boton pulsado es el de eliminar te pregunta antes de pasar a borrar el registro*/
-    {
-        if(isset($_POST['eliminar']))
-            {      
-            $id=$_POST['id'];
-            $nombre=$_POST['nombre']; 
 
+/* si el boton pulsado es el de eliminar te pregunta antes de pasar a borrar el registro*/
+elseif  (isset($_POST['eliminar']))
+ { 
 // Recupero las variables id y nombre enviadas por post para mostrar en pantaya//  
+    $id=$_POST['id'];
+    $nombre=$_POST['nombre']; 
 ?>
             <div class="row m-0 justify-content-center align-items-center vh-100">
 	            <div class="col-sm-10">
@@ -253,6 +251,16 @@ else
 
 <?php
 }
+else
+    {
+    echo"<br><br><br><br>";
+    if( isset($_POST['continuar']))
+        {
+        $id=$_POST['id'];
+        $nombre=$_POST['nombre']; 
+        echo $id;
+        echo $nombre;
+        }
     }
 ?>
 

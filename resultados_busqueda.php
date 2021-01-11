@@ -7,30 +7,11 @@ if (isset($_POST['buscar_nombre_btn']))
     $existe = 0;
     if ($nombre1 == '') 
     {
-        ?>
-<!--no deja insertar en blanco te da un error-->
-                <br>
-                <br>
-                <br>            
-                <br>  
-                <div class="container-md">
-                    <div class="container mt-5">
-                        <div class="alert alert-primary" role="alert">
-                            <div class="row">
-                                <div class="col md-2">
-                                <h1>Insertar texto.</h1>
-                                </div>
-                                <div class="col md-10">
-                                    <div class="col text-right">
-                                        <a href="inicio3.php" class="btn btn-success" name="regresar_btn">Regresar</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<!--busca resultados en base de datos-->          
-                <?php
+//no deja insertar en blanco te da un error
+      include 'includes/no_vacio.php'; 
+
+//busca resultados en base de datos          
+                
     } 
     else 
         {
@@ -81,36 +62,10 @@ if (isset($_POST['buscar_nombre_btn']))
                 }
             ++$existe;
 //buscar datos en tablas clientes, marineros, tecnicos //
-            $sqlcli = "SELECT * FROM clientes where id_datos = '$id'";
-            $resulcli = mysqli_query($conexion, $sqlcli);
-            while ($cliente = mysqli_fetch_array($resulcli)) 
-                {
-                $idcli = $cliente['id_cliente'];
-                if ($idcli) 
-                    {
-                    $rolcli = 'Cliente';
-                    }
-                }
-            $sqlmar = "SELECT * FROM marineros where id_datos = '$id'";
-            $resulmar = mysqli_query($conexion, $sqlmar);
-            while ($marinero = mysqli_fetch_array($resulmar))   
-                {
-                $idmar = $marinero['id_marinero'];
-                if ($idmar) 
-                    {
-                    $rolmar = 'Marinero';
-                    }
-                }
-            $sqltec = "SELECT * FROM tecnicos where id_datos = '$id'";
-            $resultec = mysqli_query($conexion, $sqltec);
-            while ($tecnico = mysqli_fetch_array($resultec)) 
-                {
-                $idtec = $tecnico['id_tecnico'];
-                if ($idtec) 
-                    {
-                    $roltec = 'Tecnico';
-                    }
-                }
+        include 'includes/sql_cliente_marinero_tecnico.php';
+
+
+
  ?> 
  
 <!--presento en pantalla los resultados de la busqueda-->
@@ -217,7 +172,7 @@ if (isset($_POST['buscar_nombre_btn']))
                                                 <div class="col-auto">
                                                     <button style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
                                                     <button style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
-                                                    <button style="margin: 3px" type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>   
+                                                    <button style="margin: 3px" type="submit" name="continuar" class="btn btn-responsive btn-primary">CONTINUAR</button>   
                                                 </div>
                                         </div>
                                     </div>
@@ -234,29 +189,8 @@ if (isset($_POST['buscar_nombre_btn']))
         endwhile;
             if ($existe == 0) 
             {
-            ?> 
-<!--avisa que el resultado no se encuentra en la base d datos  -->
-                    <br>
-                    <br>
-                    <br>            
-                    <br>                        
-                    <div class="container-md">
-                        <div class="container mt-5">
-                            <div class="alert alert-primary" role="alert">
-                                <div class="row">
-                                    <div class="col md-2">
-                                       <h1> Lo siento<br> El documento no existe. </h1>
-                                    </div>
-                                    <div class="col md-10">
-                                       <div class="col text-right">
-                                          <a href="inicio3.php" class="btn btn-success" name="regresar_btn">Regresar</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                    <?php
+//avisa que el resultado no se encuentra en la base d datos
+            include 'includes/doc_no_existe.php';
             }
         }
     }
@@ -269,30 +203,11 @@ else
 
       if ($nombre1 == '') 
       {
-        ?>
-<!--no deja insertar en blanco te da un error-->
-                <br>
-                <br>
-                <br>            
-                <br>  
-                <div class="container-md">
-                    <div class="container mt-5">
-                        <div class="alert alert-primary" role="alert">
-                            <div class="row">
-                                <div class="col md-2">
-                                <h1>Insertar texto.</h1>
-                                </div>
-                                <div class="col md-10">
-                                    <div class="col text-right">
-                                        <a href="inicio3.php" class="btn btn-success" name="regresar_btn">Regresar</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<!--busca resultados en base de datos-->          
-                <?php
+       
+//no deja insertar en blanco te da un error
+      include 'includes/no_vacio.php'; 
+//busca resultados en base de datos          
+              
       } 
       else
       {
@@ -395,7 +310,7 @@ else
                                                 <div class="col-auto">
                                                     <button style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
                                                     <button style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
-                                                    <button style="margin: 3px" type="submit" name="continuar_btn" class="btn btn-responsive btn-primary">CONTINUAR</button>   
+                                                    <button style="margin: 3px" type="submit" name="continuar" class="btn btn-responsive btn-primary">CONTINUAR</button>   
                                                 </div>
                                         </div>
                                     </div>
@@ -414,29 +329,8 @@ else
                 }
             if ($existe == 0) 
                 {
-                ?> 
-<!--avisa que el resultado no se encuentra en la base d datos  -->
-                    <br>
-                    <br>
-                    <br>            
-                    <br>                        
-                    <div class="container-md">
-                        <div class="container mt-5">
-                            <div class="alert alert-primary" role="alert">
-                                <div class="row">
-                                    <div class="col md-2">
-                                       <h1> Lo siento<br> El documento no existe. </h1>
-                                    </div>
-                                    <div class="col md-10">
-                                       <div class="col text-right">
-                                          <a href="inicio3.php" class="btn btn-success" name="regresar_btn">Regresar</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                    <?php
+//avisa que el resultado no se encuentra en la base d datos
+            include 'includes/doc_no_existe.php';
         }
     }
     }
