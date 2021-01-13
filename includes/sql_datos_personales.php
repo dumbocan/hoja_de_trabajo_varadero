@@ -10,6 +10,6 @@ while ($consulta = mysqli_fetch_array($resultados))
 		$telefono2= $consulta ['telefono2'];
 		$email= $consulta['email1'];
 		$documento= $consulta['documento'];
-		$comentario= $consulta['comentario'];
+		
 	}
 ?>	

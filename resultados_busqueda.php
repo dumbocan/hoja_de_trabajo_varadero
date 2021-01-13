@@ -3,9 +3,9 @@ include 'includes/header.php';
 include 'conexbd.php';
 if (isset($_POST['buscar_nombre_btn'])) 
 {
-    $nombre1 = ($_POST['Nombre']);
+    $nombre = ($_POST['nombre']);
     $existe = 0;
-    if ($nombre1 == '') 
+    if ($nombre == '') 
     {
 //no deja insertar en blanco te da un error
       include 'includes/no_vacio.php'; 
@@ -21,7 +21,7 @@ if (isset($_POST['buscar_nombre_btn']))
        <p><center><h2>BUSQUEDA POR NOMBRE DE CLIENTE </h2></center> </p>
         <?PHP
         /*busca en base de datos de datos personales si hay algun nombre de cliente parecido al introducido*/
-        $sqldatos = "SELECT * FROM datos_personales where nombre like '%$nombre1%'";
+        $sqldatos = "SELECT * FROM datos_personales where nombre like '%$nombre%'";
         $resultados = mysqli_query($conexion, $sqldatos);
         while ($consulta = mysqli_fetch_array($resultados)):
             $rolcli = '';
@@ -43,7 +43,7 @@ if (isset($_POST['buscar_nombre_btn']))
             while ($consultadatosbarcocli = mysqli_fetch_array($sqldatosbarcoresul2)) 
                 {
                 $nombrebarco = $consultadatosbarcocli['nombre_barco'];
-                $nombrecliente = $consultadatosbarcocli['nombre'];
+                $nombre = $consultadatosbarcocli['nombre'];
                 $tipobarco = $consultadatosbarcocli['tipo_barco'];
                 $puertobarco = $consultadatosbarcocli['puerto_barco'];
                 $comentbarco = $consultadatosbarcocli['comentario_barco'];
@@ -80,7 +80,8 @@ if (isset($_POST['buscar_nombre_btn']))
                         <center><h2><u class="transformacion2"><?php echo $nombre ?></u></h2></center>
                         <br /> 
 <!--creo un formulario que me envia los datos a la pagina editar datos_2.php-->
-                        <form  action="editar_datos_2.php" method="post">   
+                        <form  action="editar_datos_2.php" method="post" >
+                        
 			                <div class="row ml-2">
                                 <div class="col-sm-1 "><label>Nro:</label><?php echo ": ".$id;?></div>
 				                <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
@@ -162,7 +163,7 @@ if (isset($_POST['buscar_nombre_btn']))
                                     ?>
                             <!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
                                     <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
-                                    <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
+                                    <input id="rol" name="rol" type="hidden" value="<?php echo $rolcli.$rolmar.$roltec; ?>">
                                     <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombremarinero; ?>">
                                     <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
                                     <div class="container">
@@ -170,13 +171,14 @@ if (isset($_POST['buscar_nombre_btn']))
                                             <div class="col"></div>
                                             <div class="col "></div>
                                                 <div class="col-auto">
-                                                    <button style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
-                                                    <button style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
-                                                    <button style="margin: 3px" type="submit" name="continuar" class="btn btn-responsive btn-primary">CONTINUAR</button>   
+                                                    <button  style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
+                                                    <button  style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
+                                                    <a href="hoja_de_trabajo.php?id=<?php echo $id?>"  style="margin: 3px"  name="continuar" class="btn btn-responsive btn-primary">CONTINUAR</a>   
                                                 </div>
                                         </div>
                                     </div>
                         </form>
+
                         <br />
 		            </div>
                 </div>       
@@ -198,10 +200,10 @@ if (isset($_POST['buscar_nombre_btn']))
 /*si el boton es buscar barco busco en base de datos de barco y muestro en pantaya*/
 else 
     {
-    $nombre1=($_POST['Nombre']);
+    $nombre=($_POST['nombre']);
      $existe = 0;
 
-      if ($nombre1 == '') 
+      if ($nombre == '') 
       {
        
 //no deja insertar en blanco te da un error
@@ -218,7 +220,7 @@ else
             <?php
             $idbarco = '';
             $nombre_marinero='';
-            $sqlbarco = "SELECT * FROM barcos WHERE nombre_barco like '%$nombre1%'";
+            $sqlbarco = "SELECT * FROM barcos WHERE nombre_barco like '%$nombre%'";
             $sqlbarcoresul = mysqli_query($conexion, $sqlbarco);
             while ($consultabarco = mysqli_fetch_array($sqlbarcoresul)) 
                 {
@@ -231,7 +233,7 @@ else
                     {
                     $id = $consultadatosbarco['id_datos'];
                     $nombrebarco = $consultadatosbarco['nombre_barco'];
-                    $nombrecliente = $consultadatosbarco['nombre'];
+                    $nombre = $consultadatosbarco['nombre'];
                     $tipobarco = $consultadatosbarco['tipo_barco']; 
                     $comentbarco = $consultadatosbarco['comentario_barco'];
                     $puertobarco = $consultadatosbarco['puerto_barco'];
@@ -245,7 +247,7 @@ else
                     $idmarinero=$consultadatosbarco['id_marinero'];
 //buscar datos en tablas clientes, marineros, tecnicos con el include //
                     include ("includes/sql_cliente_marinero_tecnico.php");
-                    //busco el monbre del marinero buscando su id//
+//busco el monbre del marinero buscando su id//
                                     $sql_marinero="SELECT * FROM datos_personales D INNER JOIN marineros M ON D.id_datos = M.id_datos WHERE M.id_marinero = '$idmarinero'";
                                     $buscanommar=mysqli_query($conexion,$sql_marinero);
                                     while ($datos=mysqli_fetch_array($buscanommar))
@@ -262,10 +264,11 @@ else
                             </style>     
                             <center><h2><u class="transformacion2"><?php echo $nombrebarco ?></u></h2></center>
                             <br />       
-                            <form action="editar_datos_2.php" method="post">   
+                            <form action="editar_datos_2.php" method="post" id="editar_borrar"> 
+                            
 			                    <div class="row ml-2">
                                     <div class="col-sm-1 "><label>Nro:</label><?php echo ": ".$id;?></div>
-				                    <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombrecliente; ?></div>
+				                    <div class="col-sm-4"><label> NOMBRE </label><?php echo ":  ". $nombre; ?></div>
 				                    <div class="col-sm-4"> <label>DIRECCION </label><?php echo":  ". $direccion ?></div>			                    
 				                    <div class="col-sm "><label>TELEFONO</label> <?php echo":  ". $telefono1 ?></div>
 			                    </div>
@@ -299,8 +302,8 @@ else
                                 
 <!--se mandan al formulario los valores id y el rol que tenga la persona en invisible-->
                                         <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
-                                        <input id="rol" name="rol" type="hidden" value="<?php echo" :   ".$rolcli.'  '.$rolmar.'  '.$roltec; ?>">
-                                        <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombrecliente; ?>">
+                                        <input id="rol" name="rol" type="hidden" value="<?php echo $rolcli.$rolmar.$roltec; ?>">
+                                        <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
                                         <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombre_marinero; ?>">
                                         
                                    <div class="container">
@@ -308,13 +311,14 @@ else
                                             <div class="col"></div>
                                             <div class="col "></div>
                                                 <div class="col-auto">
-                                                    <button style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
-                                                    <button style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
-                                                    <button style="margin: 3px" type="submit" name="continuar" class="btn btn-responsive btn-primary">CONTINUAR</button>   
+                                                    <button  style="margin: 3px" type="submit" name="editar" class="btn btn-responsive btn-warning">EDITAR</button>
+                                                    <button  style="margin: 3px" type="submit" name="eliminar" class="btn btn-responsive btn-danger">ELIMINAR</button>
+                                                    <button  style="margin: 3px" type="submit" name="continuar" class="btn btn-responsive btn-primary">CONTINUAR</button>   
                                                 </div>
                                         </div>
                                     </div>
                             </form>
+                            
                                 <br />
                         
 

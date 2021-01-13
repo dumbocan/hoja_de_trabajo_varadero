@@ -51,7 +51,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="inicio3.php">Inicio</a>
     <form class="form-inline my-2 my-lg-0" method="POST" action="resultados_busqueda.php">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Nombre">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="nombre">
       <button class="btn btn-outline-success" type="submit" name="buscar_nombre_btn"> NOMBRE</button>
       <button class="btn btn-outline-info" type="submit" name="buscar_barco_btn"> BARCO</button>
       <a href="ingresar_datos.php" class="btn btn-outline-primary" role="button" >NUEVO</a>

@@ -203,7 +203,7 @@ $conttec=0;
     		</div>
             <div class="col-sm-1">
     		    <form action="resultados_busqueda.php" method="POST">
-    			    <input id="Nombre" name="Nombre"  type="hidden" value="<?php echo $nombre; ?>">
+    			    <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
     		        <button class="btn btn-primary" name="buscar_nombre_btn" type="submit">OK</button>
                 </form>
     		</div>

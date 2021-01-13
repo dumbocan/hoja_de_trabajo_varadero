@@ -1,7 +1,7 @@
   <?php
-include("includes/header.php");
+include("includes/header2.php");
 include ("conexbd.php");
-$id=$_POST['id'];
+$id=$_GET['id'];
 include ("includes/sql_datos_personales.php");
 include ("includes/sql_cliente_marinero_tecnico.php");
 

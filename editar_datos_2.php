@@ -256,10 +256,32 @@ else
     echo"<br><br><br><br>";
     if( isset($_POST['continuar']))
         {
+        $rolmar="";
+        $roltec="";
+        $rolcli="";
         $id=$_POST['id'];
         $nombre=$_POST['nombre']; 
+        $rol=$_POST['rol'];
+        $nombre_marinero=$_POST['nombre_marinero'];
         echo $id;
         echo $nombre;
+        echo $rol;
+        echo $nombre_marinero;
+
+        ?>
+
+        <form method="POST" action="hoja_de_trabajo_rellenada.php">
+            <input id="id" name="id" type="hidden" value="<?php echo $id; ?>">
+            <input id="rol" name="rol" type="hidden" value="<?php echo $rolcli.$rolmar.$roltec; ?>">
+            <input id="nombre" name="nombre"  type="hidden" value="<?php echo $nombre; ?>">
+            <input id="nombre_marinero" name="nombre_marinero"  type="hidden" value="<?php echo $nombre_marinero; ?>">
+
+           <?php header('Location: [http://www.mipagina.com/%27) http://www.mipagina.com/')];?>
+        </form>
+
+       
+
+ <?php
         }
     }
 ?>
